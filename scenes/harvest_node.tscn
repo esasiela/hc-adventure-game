@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://d0tr80q20kj22"]
+
+[ext_resource type="Script" uid="uid://csi4eih0dr74d" path="res://scripts/harvest_node.gd" id="1_iwril"]
+[ext_resource type="Texture2D" uid="uid://dv2idymnyoyq" path="res://assets/images/items/tile025.png" id="2_iwril"]
+
+[sub_resource type="Shader" id="Shader_iwril"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+uniform bool active = false;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	if (active) {	
+		vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+		float outline = 0.0;
+		
+		for (int i = 0; i < OFFSETS.length(); i++) {
+			outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+		}
+		outline = min(outline, 1.0);
+		
+		vec4 color = texture(TEXTURE, UV);
+		COLOR = mix(color, line_color, outline - color.a);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h74ku"]
+shader = SubResource("Shader_iwril")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/active = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qligw"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qligw"]
+size = Vector2(14, 12)
+
+[node name="HarvestNode" type="Area2D" unique_id=1909235107]
+script = ExtResource("1_iwril")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2116934011]
+material = SubResource("ShaderMaterial_h74ku")
+texture = ExtResource("2_iwril")
+region_rect = Rect2(0, 48, 16, 16)
+
+[node name="Harvestbox" type="CollisionShape2D" parent="." unique_id=1483248762]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_qligw")
+debug_color = Color(0.48235294, 0.48235294, 1, 0.41960785)
+
+[node name="Hitbox" type="StaticBody2D" parent="." unique_id=1654150806]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1602804936]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_qligw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

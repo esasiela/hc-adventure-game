@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HarvestNodeType" format=3 uid="uid://c6jjx7eaesfn1"]
+
+[ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="1_400jw"]
+[ext_resource type="Script" uid="uid://cv5jydibxl6bv" path="res://harvest_nodes/harvest_node_type.gd" id="1_ojqf5"]
+[ext_resource type="Texture2D" uid="uid://c8prlukjxbgu7" path="res://assets/images/items/tile023.png" id="2_0pfbj"]
+
+[resource]
+script = ExtResource("1_ojqf5")
+id = "stone_node"
+display_name = "Stone Node"
+harvest_texture = ExtResource("2_0pfbj")
+drop_item = ExtResource("1_400jw")
+metadata/_custom_type_script = "uid://cv5jydibxl6bv"

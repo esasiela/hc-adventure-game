@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://q3oklm07ui4s"]
+
+[ext_resource type="Texture2D" uid="uid://4sbpytkmc7os" path="res://assets/images/items/tile038.png" id="1_5dfrc"]
+[ext_resource type="Script" uid="uid://cbnde0ytvfd0g" path="res://items/item.gd" id="1_js6ap"]
+
+[resource]
+script = ExtResource("1_js6ap")
+id = "copper"
+display_name = "Copper"
+world_texture = ExtResource("1_5dfrc")
+metadata/_custom_type_script = "uid://cbnde0ytvfd0g"

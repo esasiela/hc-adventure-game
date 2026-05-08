@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dj5l165kosjrq"]
+
+[ext_resource type="Script" uid="uid://comptaovbtkdm" path="res://scripts/world_item.gd" id="1_8r7n1"]
+[ext_resource type="Texture2D" uid="uid://ciohen1dgt6ef" path="res://assets/images/items/tile024.png" id="2_k7chi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8r7n1"]
+
+[node name="WorldItem" type="Area2D" unique_id=852606424]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_8r7n1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2072031479]
+texture = ExtResource("2_k7chi")
+region_rect = Rect2(48, 48, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=447834463]
+visible = false
+shape = SubResource("RectangleShape2D_8r7n1")
+debug_color = Color(0.78039217, 0.4117647, 0.40392157, 0.41960785)
+
+[node name="QuantityLabel" type="Label" parent="." unique_id=2059224128]
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 25.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1

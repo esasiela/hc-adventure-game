@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HarvestNodeType" format=3 uid="uid://dyvqpfunlev1w"]
+
+[ext_resource type="Script" uid="uid://cv5jydibxl6bv" path="res://harvest_nodes/harvest_node_type.gd" id="1_16eni"]
+[ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="1_il3av"]
+[ext_resource type="Texture2D" uid="uid://ct2i6l20an4yc" path="res://assets/images/items/tile035.png" id="2_41jvp"]
+
+[resource]
+script = ExtResource("1_16eni")
+id = "copper_vein_rich"
+display_name = "Rich Copper Vein"
+harvest_texture = ExtResource("2_41jvp")
+drop_item = ExtResource("1_il3av")
+drop_quantity = 5
+harvest_duration = 5.0
+metadata/_custom_type_script = "uid://cv5jydibxl6bv"
