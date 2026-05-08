@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://01uqb2odcapj"]
+
+[ext_resource type="Script" uid="uid://7fxit40wb2ip" path="res://scripts/harvest_node_marker.gd" id="1_35tb8"]
+[ext_resource type="Texture2D" uid="uid://dvqm0xkaus5vl" path="res://assets/images/items/tile020.png" id="2_bqjas"]
+
+[node name="HarvestNodeMarker" type="Node2D" unique_id=1645630429]
+script = ExtResource("1_35tb8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1126478238]
+modulate = Color(1, 1, 1, 0.5019608)
+texture = ExtResource("2_bqjas")
+
+[node name="RespawnTimer" type="Timer" parent="." unique_id=455417831]
+wait_time = 10.0
+one_shot = true

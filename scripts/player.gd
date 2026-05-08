@@ -136,15 +136,8 @@ func _exit_state_mining() -> void:
 func _on_mining_timer_timeout() -> void:
 	if interact_target and interact_target is HarvestNode:
 		var harvest_node: HarvestNode = interact_target
-
-		var drop_pos := harvest_node.global_position
-		var drop_item := harvest_node.node_type.drop_item
-		var drop_qty := harvest_node.node_type.drop_quantity
+		harvest_node.harvest()
 		
-		var world_item := get_zone().spawn_world_item(drop_item, drop_pos, drop_qty)
-		world_item.drop_from(drop_pos)
-		
-		interact_target.queue_free()
 		interact_target = null
 	
 	change_state(State.IDLE)
