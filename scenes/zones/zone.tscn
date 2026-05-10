@@ -8,11 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://c5calwrltjt8i" path="res://assets/images/tiles/Cliff_Tile.png" id="4_q5xik"]
 [ext_resource type="PackedScene" uid="uid://01uqb2odcapj" path="res://scenes/harvest_node_marker.tscn" id="6_0urh0"]
 [ext_resource type="PackedScene" uid="uid://d0tr80q20kj22" path="res://scenes/harvest_node.tscn" id="6_q5xik"]
-[ext_resource type="Script" uid="uid://cnyegwxqbu7da" path="res://harvest_nodes/spawn_weight.gd" id="7_twevw"]
+[ext_resource type="Resource" uid="uid://dlmfc2brf566g" path="res://harvest_nodes/copper_spawn_profile.tres" id="7_1mmwj"]
 [ext_resource type="Resource" uid="uid://c6jjx7eaesfn1" path="res://harvest_nodes/stone_node.tres" id="7_ye06x"]
 [ext_resource type="Resource" uid="uid://bkyrv8wqinhoy" path="res://harvest_nodes/copper_vein.tres" id="8_0urh0"]
 [ext_resource type="PackedScene" uid="uid://dj5l165kosjrq" path="res://scenes/world_item.tscn" id="8_4bvwj"]
 [ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="8_q7x21"]
+[ext_resource type="Resource" uid="uid://bj5il7ktxon6n" path="res://harvest_nodes/stone_spawn_profile.tres" id="8_vbgk0"]
 [ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="9_q7x21"]
 [ext_resource type="Resource" uid="uid://dyvqpfunlev1w" path="res://harvest_nodes/copper_vein_rich.tres" id="9_twevw"]
 [ext_resource type="Resource" uid="uid://dhl1c13bcbfym" path="res://items/gold_coin_small.tres" id="15_eljkp"]
@@ -115,18 +116,6 @@ sources/1 = SubResource("TileSetAtlasSource_lu4fi")
 sources/2 = SubResource("TileSetAtlasSource_n1mk8")
 sources/3 = SubResource("TileSetAtlasSource_wh31b")
 
-[sub_resource type="Resource" id="Resource_eljkp"]
-script = ExtResource("7_twevw")
-node_type = ExtResource("8_0urh0")
-weight = 90.0
-metadata/_custom_type_script = "uid://cnyegwxqbu7da"
-
-[sub_resource type="Resource" id="Resource_hiey3"]
-script = ExtResource("7_twevw")
-node_type = ExtResource("9_twevw")
-weight = 10.0
-metadata/_custom_type_script = "uid://cnyegwxqbu7da"
-
 [node name="Zone" type="Node2D" unique_id=450182265 groups=["zone"]]
 script = ExtResource("1_n1mk8")
 
@@ -140,13 +129,37 @@ tile_set = SubResource("TileSet_q5xik")
 
 [node name="HarvestNodeMarkers" type="Node2D" parent="." unique_id=347710378]
 
-[node name="HarvestNodeMarker1" parent="HarvestNodeMarkers" unique_id=1645630429 instance=ExtResource("6_0urh0")]
+[node name="Copper1" parent="HarvestNodeMarkers" unique_id=1645630429 instance=ExtResource("6_0urh0")]
 position = Vector2(258, 121)
-spawn_weights = Array[ExtResource("7_twevw")]([SubResource("Resource_eljkp"), SubResource("Resource_hiey3")])
+spawn_profile = ExtResource("7_1mmwj")
 
-[node name="HarvestNodeMarker2" parent="HarvestNodeMarkers" unique_id=1771494585 instance=ExtResource("6_0urh0")]
-position = Vector2(206, 121)
-spawn_weights = Array[ExtResource("7_twevw")]([SubResource("Resource_eljkp"), SubResource("Resource_hiey3")])
+[node name="Copper2" parent="HarvestNodeMarkers" unique_id=1771494585 instance=ExtResource("6_0urh0")]
+position = Vector2(209, 119)
+spawn_profile = ExtResource("7_1mmwj")
+
+[node name="Copper3" parent="HarvestNodeMarkers" unique_id=126805563 instance=ExtResource("6_0urh0")]
+position = Vector2(268, 197)
+spawn_profile = ExtResource("7_1mmwj")
+
+[node name="Stone1" parent="HarvestNodeMarkers" unique_id=1240055130 instance=ExtResource("6_0urh0")]
+position = Vector2(233, 98)
+spawn_profile = ExtResource("8_vbgk0")
+
+[node name="Stone2" parent="HarvestNodeMarkers" unique_id=1074832355 instance=ExtResource("6_0urh0")]
+position = Vector2(231, 147)
+spawn_profile = ExtResource("8_vbgk0")
+
+[node name="Stone3" parent="HarvestNodeMarkers" unique_id=1306678520 instance=ExtResource("6_0urh0")]
+position = Vector2(173, 180)
+spawn_profile = ExtResource("8_vbgk0")
+
+[node name="Stone4" parent="HarvestNodeMarkers" unique_id=240886826 instance=ExtResource("6_0urh0")]
+position = Vector2(198, 191)
+spawn_profile = ExtResource("8_vbgk0")
+
+[node name="Stone5" parent="HarvestNodeMarkers" unique_id=1167927558 instance=ExtResource("6_0urh0")]
+position = Vector2(129, 140)
+spawn_profile = ExtResource("8_vbgk0")
 
 [node name="HarvestNodes" type="Node2D" parent="." unique_id=1725551045]
 

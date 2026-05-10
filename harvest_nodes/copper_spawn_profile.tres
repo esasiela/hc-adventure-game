@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="SpawnProfile" format=3 uid="uid://dlmfc2brf566g"]
+
+[ext_resource type="Script" uid="uid://cxpnqws1iiw5u" path="res://harvest_nodes/spawn_profile.gd" id="1_7svl5"]
+[ext_resource type="Script" uid="uid://cnyegwxqbu7da" path="res://harvest_nodes/spawn_weight.gd" id="2_0hdro"]
+[ext_resource type="Resource" uid="uid://bkyrv8wqinhoy" path="res://harvest_nodes/copper_vein.tres" id="3_1koml"]
+[ext_resource type="Resource" uid="uid://dyvqpfunlev1w" path="res://harvest_nodes/copper_vein_rich.tres" id="4_hoipw"]
+
+[sub_resource type="Resource" id="Resource_bct2m"]
+script = ExtResource("2_0hdro")
+node_type = ExtResource("3_1koml")
+weight = 0.9
+metadata/_custom_type_script = "uid://cnyegwxqbu7da"
+
+[sub_resource type="Resource" id="Resource_lxfca"]
+script = ExtResource("2_0hdro")
+node_type = ExtResource("4_hoipw")
+weight = 0.1
+metadata/_custom_type_script = "uid://cnyegwxqbu7da"
+
+[resource]
+script = ExtResource("1_7svl5")
+weights = Array[ExtResource("2_0hdro")]([SubResource("Resource_bct2m"), SubResource("Resource_lxfca")])
+metadata/_custom_type_script = "uid://cxpnqws1iiw5u"

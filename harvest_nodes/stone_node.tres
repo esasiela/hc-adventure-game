@@ -1,13 +1,26 @@
 [gd_resource type="Resource" script_class="HarvestNodeType" format=3 uid="uid://c6jjx7eaesfn1"]
 
 [ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="1_400jw"]
+[ext_resource type="Script" uid="uid://bmgw05otcnwn" path="res://harvest_nodes/drop_entry.gd" id="1_ktfnu"]
 [ext_resource type="Script" uid="uid://cv5jydibxl6bv" path="res://harvest_nodes/harvest_node_type.gd" id="1_ojqf5"]
-[ext_resource type="Texture2D" uid="uid://c8prlukjxbgu7" path="res://assets/images/items/tile023.png" id="2_0pfbj"]
+[ext_resource type="Resource" uid="uid://dhl1c13bcbfym" path="res://items/gold_coin_small.tres" id="3_82m6r"]
+[ext_resource type="Texture2D" uid="uid://c8prlukjxbgu7" path="res://assets/images/items/cute_fantasy/tile023.png" id="4_82m6r"]
+
+[sub_resource type="Resource" id="Resource_g4ve0"]
+script = ExtResource("1_ktfnu")
+item = ExtResource("1_400jw")
+metadata/_custom_type_script = "uid://bmgw05otcnwn"
+
+[sub_resource type="Resource" id="Resource_qutjg"]
+script = ExtResource("1_ktfnu")
+item = ExtResource("3_82m6r")
+chance = 0.05
+metadata/_custom_type_script = "uid://bmgw05otcnwn"
 
 [resource]
 script = ExtResource("1_ojqf5")
 id = "stone_node"
 display_name = "Stone Node"
-harvest_texture = ExtResource("2_0pfbj")
-drop_item = ExtResource("1_400jw")
+harvest_texture = ExtResource("4_82m6r")
+drop_table = Array[ExtResource("1_ktfnu")]([SubResource("Resource_g4ve0"), SubResource("Resource_qutjg")])
 metadata/_custom_type_script = "uid://cv5jydibxl6bv"

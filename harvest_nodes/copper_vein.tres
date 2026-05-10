@@ -1,13 +1,27 @@
 [gd_resource type="Resource" script_class="HarvestNodeType" format=3 uid="uid://bkyrv8wqinhoy"]
 
 [ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="1_dmc4k"]
+[ext_resource type="Script" uid="uid://bmgw05otcnwn" path="res://harvest_nodes/drop_entry.gd" id="1_dn2wo"]
 [ext_resource type="Script" uid="uid://cv5jydibxl6bv" path="res://harvest_nodes/harvest_node_type.gd" id="1_ovo5l"]
-[ext_resource type="Texture2D" uid="uid://drsx8afepac1s" path="res://assets/images/items/tile037.png" id="2_4lecb"]
+[ext_resource type="Resource" uid="uid://dhl1c13bcbfym" path="res://items/gold_coin_small.tres" id="3_dn2wo"]
+[ext_resource type="Texture2D" uid="uid://drsx8afepac1s" path="res://assets/images/items/cute_fantasy/tile037.png" id="4_8ynqf"]
+
+[sub_resource type="Resource" id="Resource_dn2wo"]
+script = ExtResource("1_dn2wo")
+item = ExtResource("1_dmc4k")
+max_quantity = 2
+metadata/_custom_type_script = "uid://bmgw05otcnwn"
+
+[sub_resource type="Resource" id="Resource_8ynqf"]
+script = ExtResource("1_dn2wo")
+item = ExtResource("3_dn2wo")
+chance = 0.05
+metadata/_custom_type_script = "uid://bmgw05otcnwn"
 
 [resource]
 script = ExtResource("1_ovo5l")
 id = "copper_vein"
 display_name = "Copper Vein"
-harvest_texture = ExtResource("2_4lecb")
-drop_item = ExtResource("1_dmc4k")
+harvest_texture = ExtResource("4_8ynqf")
+drop_table = Array[ExtResource("1_dn2wo")]([SubResource("Resource_dn2wo"), SubResource("Resource_8ynqf")])
 metadata/_custom_type_script = "uid://cv5jydibxl6bv"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpawnProfile" format=3 uid="uid://bj5il7ktxon6n"]
+
+[ext_resource type="Script" uid="uid://cxpnqws1iiw5u" path="res://harvest_nodes/spawn_profile.gd" id="1_4a1nh"]
+[ext_resource type="Script" uid="uid://cnyegwxqbu7da" path="res://harvest_nodes/spawn_weight.gd" id="2_j3wp6"]
+[ext_resource type="Resource" uid="uid://c6jjx7eaesfn1" path="res://harvest_nodes/stone_node.tres" id="3_j3wp6"]
+
+[sub_resource type="Resource" id="Resource_6qd7s"]
+script = ExtResource("2_j3wp6")
+node_type = ExtResource("3_j3wp6")
+metadata/_custom_type_script = "uid://cnyegwxqbu7da"
+
+[resource]
+script = ExtResource("1_4a1nh")
+weights = Array[ExtResource("2_j3wp6")]([SubResource("Resource_6qd7s")])
+metadata/_custom_type_script = "uid://cxpnqws1iiw5u"

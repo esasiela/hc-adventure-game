@@ -3,7 +3,10 @@ class_name HarvestNodeMarker
 extends Node2D
 
 
-@export var spawn_weights: Array[SpawnWeight] = []
+@export var spawn_profile: SpawnProfile = null:
+	set(value):
+		spawn_profile = value
+		_update_editor_visual()
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var respawn_timer: Timer = $RespawnTimer
@@ -11,12 +14,28 @@ extends Node2D
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
+		_update_editor_visual()
 		return
 	
 	# uncomment next line to make the wheat sprite disappear
 	#sprite_2d.visible = false
 	respawn_timer.timeout.connect(_on_respawn_timer_timeout)
 	call_deferred("spawn_node")
+
+
+func _update_editor_visual() -> void:
+	if not is_node_ready():
+		return
+	if not Engine.is_editor_hint():
+		return
+		
+	if spawn_profile == null or spawn_profile.weights == null or spawn_profile.weights.is_empty() or spawn_profile.weights[0] == null or spawn_profile.weights[0].node_type == null:
+		# fall back to default wheat icon - leave whatever's already set
+		sprite_2d.modulate = Color(1, 1, 1, 0.5)
+		return
+	
+	sprite_2d.texture = spawn_profile.weights[0].node_type.harvest_texture
+	sprite_2d.modulate = Color(1, 1, 1, 0.5)
 
 
 func spawn_node() -> void:
@@ -39,21 +58,21 @@ func _on_respawn_timer_timeout() -> void:
 
 
 func pick_node_type() -> HarvestNodeType:
-	if spawn_weights.is_empty():
+	if spawn_profile == null or spawn_profile.weights == null or spawn_profile.weights.is_empty():
 		return null
 	
 	var total: float = 0.0
-	for sw in spawn_weights:
+	for sw in spawn_profile.weights:
 		total += sw.weight
 	
 	var roll := randf() * total
 	var cumulative: float = 0.0
-	for sw in spawn_weights:
+	for sw in spawn_profile.weights:
 		cumulative += sw.weight
 		if roll <= cumulative:
 			return sw.node_type
 	
-	return spawn_weights[-1].node_type  # fallback for floating point edge case
+	return spawn_profile.weights[-1].node_type  # fallback for floating point edge case
 
 
 func get_zone() -> Zone:

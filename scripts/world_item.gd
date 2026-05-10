@@ -36,4 +36,5 @@ func drop_from(origin: Vector2) -> void:
 	var target := origin + offset
 	var tween := create_tween()
 	tween.tween_property(self, "global_position", target, 0.3)
+	tween.tween_interval(1.2) # grace period after movement stops
 	tween.tween_callback(func(): $CollisionShape2D.disabled = false)

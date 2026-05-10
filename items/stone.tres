@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dy1o715l7uimk"]
 
 [ext_resource type="Script" uid="uid://cbnde0ytvfd0g" path="res://items/item.gd" id="1_becff"]
-[ext_resource type="Texture2D" uid="uid://ciohen1dgt6ef" path="res://assets/images/items/tile024.png" id="2_mwerj"]
+[ext_resource type="Texture2D" uid="uid://ciohen1dgt6ef" path="res://assets/images/items/cute_fantasy/tile024.png" id="1_mwerj"]
 
 [resource]
 script = ExtResource("1_becff")
 id = "stone"
 display_name = "Stone"
-icon = ExtResource("2_mwerj")
-world_texture = ExtResource("2_mwerj")
+icon = ExtResource("1_mwerj")
+world_texture = ExtResource("1_mwerj")
 description = "Stone can be used to build stuff, and also for skimming across the surface of water bodies."
 metadata/_custom_type_script = "uid://cbnde0ytvfd0g"

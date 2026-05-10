@@ -27,14 +27,23 @@ func _update_visual() -> void:
 
 func harvest() -> void:
 	var drop_pos := global_position
-	var drop_item := node_type.drop_item
-	var drop_qty := node_type.drop_quantity
 	
-	var world_item := get_zone().spawn_world_item(drop_item, drop_pos, drop_qty)
-	world_item.drop_from(drop_pos)
-	
-	harvested.emit()	
+	for drop in roll_drops():
+		var world_item := get_zone().spawn_world_item(drop.item, drop_pos, drop.quantity)
+		world_item.drop_from(global_position)
+		
+	harvested.emit()
 	queue_free()
+
+
+func roll_drops() -> Array:
+	var drops := []
+	for entry in node_type.drop_table:
+		if randf() <= entry.chance:
+			var qty := randi_range(entry.min_quantity, entry.max_quantity)
+			if qty > 0:
+				drops.append({"item": entry.item, "quantity": qty})
+	return drops
 
 
 func _on_body_entered(body: Node2D) -> void:
