@@ -1,12 +1,34 @@
 extends Node
 
 
+var gold: int = 0
 var inventory: Dictionary = {}  # Item -> int quantity
+
+signal gold_changed(new_amount: int)
+signal gold_added(amount: int)
+signal gold_spent(amount: int)
 
 signal item_added(item: Item, quantity: int)
 signal item_removed(item: Item, quantity: int)
 
-	
+
+func add_gold(amount: int) -> void:
+	if amount <= 0:
+		return
+	gold += amount
+	gold_changed.emit(gold)
+
+
+func spend_gold(amount: int) -> bool:
+	if amount <= 0:
+		return false
+	if gold < amount:
+		return false
+	gold -= amount
+	gold_changed.emit(gold)
+	return true
+
+
 func add_item(item: Item, quantity: int) -> void:
 	inventory[item] = inventory.get(item, 0) + quantity
 	print_inventory()

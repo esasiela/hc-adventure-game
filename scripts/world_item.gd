@@ -25,6 +25,7 @@ func _update_visual() -> void:
 		return
 	if item:
 		sprite_2d.texture = item.world_texture
+		sprite_2d.scale = Vector2.ONE * item.world_scale
 	quantity_label.text = str(quantity) if quantity > 1 else ""
 
 

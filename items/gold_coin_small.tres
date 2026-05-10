@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Currency" format=3 uid="uid://dhl1c13bcbfym"]
+
+[ext_resource type="Texture2D" uid="uid://d0gjix135ryp7" path="res://assets/images/items/shikashi/tile199.png" id="1_bxokm"]
+[ext_resource type="Script" uid="uid://dh8mhx0f6ko35" path="res://items/currency.gd" id="2_bxokm"]
+
+[resource]
+script = ExtResource("2_bxokm")
+id = "gold_coin_small"
+display_name = "Gold Coin"
+icon = ExtResource("1_bxokm")
+world_texture = ExtResource("1_bxokm")
+world_scale = 0.5
+description = "A single gold coin"
+metadata/_custom_type_script = "uid://cbnde0ytvfd0g"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Currency" format=3 uid="uid://bon6hxgvds0rn"]
+
+[ext_resource type="Texture2D" uid="uid://bmnwx2vyit01j" path="res://assets/images/items/shikashi/tile203.png" id="1_7d4q3"]
+[ext_resource type="Script" uid="uid://dh8mhx0f6ko35" path="res://items/currency.gd" id="2_7d4q3"]
+
+[resource]
+script = ExtResource("2_7d4q3")
+id = "gold_coin_large"
+display_name = "Gold Coin Purse"
+icon = ExtResource("1_7d4q3")
+world_texture = ExtResource("1_7d4q3")
+world_scale = 0.5
+description = "A stack of five gold coins"
+metadata/_custom_type_script = "uid://cbnde0ytvfd0g"

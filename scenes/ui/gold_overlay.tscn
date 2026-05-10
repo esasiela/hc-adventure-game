@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c1hvf17j858x4"]
+
+[ext_resource type="Script" uid="uid://b8vrufebcpfag" path="res://scripts/gold_overlay.gd" id="1_8crq4"]
+
+[node name="GoldOverlay" type="CanvasLayer" unique_id=245660110]
+script = ExtResource("1_8crq4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=180779303]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -196.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 55.0
+grow_horizontal = 0
+
+[node name="FieldLabel" type="Label" parent="HBoxContainer" unique_id=34695659]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "GOLD: "
+
+[node name="QuantityLabel" type="Label" parent="HBoxContainer" unique_id=1182496279]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"

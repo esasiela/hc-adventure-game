@@ -97,6 +97,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				change_state(State.MINING)
 	if event.is_action_pressed("inventory_toggle"):
 		print("inventory toggle pressed")
+	if event.is_action_pressed("gold_debug"):
+		PlayerData.add_gold(1)
 
 
 func change_state(new_state: State, clobber_same_state: bool = true) -> void:
@@ -150,7 +152,11 @@ func _on_lootbox_area_entered(area: Area2D) -> void:
 		return
 	var world_item := area as WorldItem
 	print("lootbox - item:", world_item.item.id, " qty:", world_item.quantity)
-	PlayerData.add_item(world_item.item, world_item.quantity)
+	
+	if world_item.item is Currency:
+		PlayerData.add_gold(world_item.quantity)
+	else:
+		PlayerData.add_item(world_item.item, world_item.quantity)
 	world_item.queue_free()
 
 

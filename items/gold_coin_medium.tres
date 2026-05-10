@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Currency" format=3 uid="uid://6ywwrebx2che"]
+
+[ext_resource type="Texture2D" uid="uid://d4chn7g6tlsyk" path="res://assets/images/items/shikashi/tile202.png" id="1_rvs6m"]
+[ext_resource type="Script" uid="uid://dh8mhx0f6ko35" path="res://items/currency.gd" id="2_rvs6m"]
+
+[resource]
+script = ExtResource("2_rvs6m")
+id = "gold_coin_medium"
+display_name = "Gold Coin Stack"
+icon = ExtResource("1_rvs6m")
+world_texture = ExtResource("1_rvs6m")
+world_scale = 0.5
+description = "A stack of five gold coins"
+metadata/_custom_type_script = "uid://cbnde0ytvfd0g"
