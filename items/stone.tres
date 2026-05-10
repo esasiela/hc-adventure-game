@@ -7,5 +7,7 @@
 script = ExtResource("1_becff")
 id = "stone"
 display_name = "Stone"
+icon = ExtResource("2_mwerj")
 world_texture = ExtResource("2_mwerj")
+description = "Stone can be used to build stuff, and also for skimming across the surface of water bodies."
 metadata/_custom_type_script = "uid://cbnde0ytvfd0g"

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://t6fqeecha0yj"]
+
+[ext_resource type="Script" uid="uid://sr5stm7lwg7h" path="res://scripts/inventory_ui.gd" id="1_7nagc"]
+
+[node name="InventoryUI" type="CanvasLayer" unique_id=1237190782]
+process_mode = 3
+script = ExtResource("1_7nagc")
+
+[node name="Panel" type="Panel" parent="." unique_id=427579585]
+custom_minimum_size = Vector2(600, 400)
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Panel" unique_id=1670358824]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Body" type="HBoxContainer" parent="Panel" unique_id=1322049285]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 100.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemGrid" type="GridContainer" parent="Panel/Body" unique_id=829848662]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 6
+
+[node name="Details" type="VBoxContainer" parent="Panel/Body" unique_id=618064192]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Panel/Body/Details" unique_id=1514179997]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Item name"
+
+[node name="ItemDescriptionLabel" type="Label" parent="Panel/Body/Details" unique_id=272598427]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Description displays here"
+autowrap_mode = 2

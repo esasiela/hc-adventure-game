@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ix6cns601gxd"]
+
+[ext_resource type="Script" uid="uid://inewsn111cpk" path="res://scripts/inventory_cell.gd" id="1_m1t2f"]
+[ext_resource type="StyleBox" uid="uid://cf3c58gyjh8q7" path="res://scenes/ui/cell_normal.tres" id="1_ugnx3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1t2f"]
+bg_color = Color(0, 0, 0, 0.7)
+
+[node name="InventoryCell" type="Panel" unique_id=359474519]
+custom_minimum_size = Vector2(192, 192)
+focus_mode = 2
+theme_override_styles/panel = ExtResource("1_ugnx3")
+script = ExtResource("1_m1t2f")
+
+[node name="IconTexture" type="TextureRect" parent="." unique_id=64661937]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="QuantityLabel" type="Label" parent="." unique_id=1182844738]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -67.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_m1t2f")
+text = "99"
+horizontal_alignment = 1

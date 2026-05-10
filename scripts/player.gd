@@ -95,6 +95,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if interact_target:
 			if interact_target is HarvestNode:
 				change_state(State.MINING)
+	if event.is_action_pressed("inventory_toggle"):
+		print("inventory toggle pressed")
 
 
 func change_state(new_state: State, clobber_same_state: bool = true) -> void:

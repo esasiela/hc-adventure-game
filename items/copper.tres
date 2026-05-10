@@ -7,5 +7,7 @@
 script = ExtResource("1_js6ap")
 id = "copper"
 display_name = "Copper"
+icon = ExtResource("1_5dfrc")
 world_texture = ExtResource("1_5dfrc")
+description = "Copper is a basic metallic mineral, useful for smelting into bars and conducting electricity."
 metadata/_custom_type_script = "uid://cbnde0ytvfd0g"
