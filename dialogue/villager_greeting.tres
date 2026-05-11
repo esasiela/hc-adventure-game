@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dmmfjgihqcro2"]
+
+[ext_resource type="Script" uid="uid://bcq7s40seq3ik" path="res://dialogue/dialogue_choice.gd" id="1_h40yd"]
+[ext_resource type="Script" uid="uid://baauah4044ivb" path="res://dialogue/dialogue_line.gd" id="2_65jxs"]
+[ext_resource type="Script" uid="uid://duy33n3rk3o2f" path="res://dialogue/dialogue.gd" id="3_ag6kv"]
+
+[sub_resource type="Resource" id="Resource_ag6kv"]
+script = ExtResource("1_h40yd")
+text = "Goodbye"
+metadata/_custom_type_script = "uid://bcq7s40seq3ik"
+
+[sub_resource type="Resource" id="Resource_h40yd"]
+script = ExtResource("2_65jxs")
+speaker = "Villager"
+text = "Oh, hello there! Lovely day, isn't it?
+this is a very long line that i'm gonna keep typing and typing and it will fill enough to wrap."
+metadata/_custom_type_script = "uid://baauah4044ivb"
+
+[sub_resource type="Resource" id="Resource_65jxs"]
+script = ExtResource("2_65jxs")
+speaker = "Villager"
+text = "I haven't seen you around these parts before."
+metadata/_custom_type_script = "uid://baauah4044ivb"
+
+[resource]
+script = ExtResource("3_ag6kv")
+lines = Array[ExtResource("2_65jxs")]([SubResource("Resource_h40yd"), SubResource("Resource_65jxs")])
+choices = Array[ExtResource("1_h40yd")]([SubResource("Resource_ag6kv")])
+metadata/_custom_type_script = "uid://duy33n3rk3o2f"

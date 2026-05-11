@@ -22,6 +22,9 @@ func toggle() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory_toggle"):
+		var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
+		if dialogue_ui and dialogue_ui.visible:
+			return
 		toggle()
 		get_viewport().set_input_as_handled()
 

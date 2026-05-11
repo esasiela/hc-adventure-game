@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 
-enum State { IDLE, WALKING, MINING }
+enum State { IDLE, WALKING, TALKING, MINING }
 var state: State = State.IDLE
 
 enum Facing { DOWN, UP, LEFT, RIGHT }
@@ -49,6 +49,11 @@ func update_facing(dir: Vector2) -> void:
 
 
 func update_movement() -> void:
+	# exit early for immobile states
+	if state == State.TALKING:
+		velocity = Vector2.ZERO
+		return
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_vector("left", "right", "up", "down")	
@@ -96,9 +101,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			if interact_target is HarvestNode:
 				change_state(State.MINING)
 			elif interact_target is NPC:
-				(interact_target as NPC).talk_to(self)
+				change_state(State.TALKING)
+	
 	if event.is_action_pressed("inventory_toggle"):
 		print("inventory toggle pressed")
+	
 	if event.is_action_pressed("gold_debug"):
 		PlayerData.add_gold(1)
 
@@ -115,6 +122,7 @@ func change_state(new_state: State, clobber_same_state: bool = true) -> void:
 func _exit_state(old_state: State) -> void:
 	match old_state:
 		State.MINING: _exit_state_mining()
+		State.TALKING: pass
 		State.WALKING: pass
 		State.IDLE: pass
 
@@ -122,12 +130,25 @@ func _exit_state(old_state: State) -> void:
 func _enter_state(new_state: State) -> void:
 	match new_state:
 		State.MINING: _enter_state_mining()
+		State.TALKING: _enter_state_talking()
 		State.WALKING: pass
 		State.IDLE: _enter_state_idle()
 
 
 func _enter_state_idle() -> void:
 	play_directional_animation("idle")
+
+
+func _enter_state_talking() -> void:
+	play_directional_animation("idle")
+	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
+	if not dialogue_ui.closed.is_connected(_on_dialogue_closed):
+		dialogue_ui.closed.connect(_on_dialogue_closed)
+	(interact_target as NPC).talk_to(self)
+
+
+func _on_dialogue_closed() -> void:
+	change_state(State.IDLE)
 
 
 func _enter_state_mining() -> void:
