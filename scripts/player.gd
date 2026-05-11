@@ -95,6 +95,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if interact_target:
 			if interact_target is HarvestNode:
 				change_state(State.MINING)
+			elif interact_target is NPC:
+				(interact_target as NPC).talk_to(self)
 	if event.is_action_pressed("inventory_toggle"):
 		print("inventory toggle pressed")
 	if event.is_action_pressed("gold_debug"):

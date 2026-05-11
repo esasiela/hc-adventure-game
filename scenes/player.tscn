@@ -350,7 +350,7 @@ animations = [{
 size = Vector2(11, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
-radius = 14.0
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
@@ -366,20 +366,20 @@ animation = &"mining_down"
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_3vyb7")
 
-[node name="Lootbox" type="Area2D" parent="." unique_id=1719536526]
+[node name="LootBox" type="Area2D" parent="." unique_id=1719536526]
 collision_layer = 32
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lootbox" unique_id=723882992]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LootBox" unique_id=723882992]
 shape = SubResource("CircleShape2D_qhqgy")
 debug_color = Color(0.77892065, 0.4131505, 0.40211958, 0.41960785)
 
-[node name="Harvestbox" type="Area2D" parent="." unique_id=625275642]
+[node name="InteractBox" type="Area2D" parent="." unique_id=625275642]
 collision_layer = 16
-collision_mask = 16
+collision_mask = 0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Harvestbox" unique_id=1642552557]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractBox" unique_id=1642552557]
 shape = SubResource("CircleShape2D_g2els")
 debug_color = Color(0.48235294, 0.48235294, 1, 0.41960785)
 
@@ -392,5 +392,5 @@ limit_top = 0
 wait_time = 3.0
 one_shot = true
 
-[connection signal="area_entered" from="Lootbox" to="." method="_on_lootbox_area_entered"]
+[connection signal="area_entered" from="LootBox" to="." method="_on_lootbox_area_entered"]
 [connection signal="timeout" from="MiningTimer" to="." method="_on_mining_timer_timeout"]

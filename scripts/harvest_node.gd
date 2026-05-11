@@ -1,6 +1,7 @@
 @tool
 class_name HarvestNode
-extends Area2D
+extends Interactable
+
 
 signal harvested
 
@@ -14,6 +15,7 @@ signal harvested
 
 
 func _ready() -> void:
+	super()
 	sprite_2d.material = sprite_2d.material.duplicate()
 	sprite_2d.material.set_shader_parameter("active", false)
 	_update_visual()
@@ -46,23 +48,13 @@ func roll_drops() -> Array:
 	return drops
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if not body is Player:
-		return
-	var player: Player = body
-	
+func _on_interact_target_acquired() -> void:
 	sprite_2d.material.set_shader_parameter("active", true)
-	player.interact_target = self
 
 
-func _on_body_exited(body: Node2D) -> void:
-	if not body is Player:
-		return
-	var player: Player = body
-	
+func _on_interact_target_lost() -> void:
 	sprite_2d.material.set_shader_parameter("active", false)
-	if player.interact_target == self:
-		player.interact_target = null
+
 
 func get_zone() -> Zone:
 	return get_tree().get_first_node_in_group("zone") as Zone

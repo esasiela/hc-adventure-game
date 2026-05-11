@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://q8xeyu0a0hp8"]
+
+[ext_resource type="Script" uid="uid://dd7cstgoted7" path="res://scripts/npc.gd" id="1_5ejjj"]
+[ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="2_m5fb5"]
+[ext_resource type="Texture2D" uid="uid://dkqprriovne61" path="res://assets/images/items/shikashi/tile003.png" id="3_5ejjj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ejjj"]
+
+[node name="Npc" type="Area2D" unique_id=391410755]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_5ejjj")
+metadata/_custom_type_script = "uid://bwh3tj30fgxko"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=949810608]
+texture = ExtResource("2_m5fb5")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1278372703]
+shape = SubResource("CircleShape2D_5ejjj")
+
+[node name="InteractIndicator" type="Sprite2D" parent="." unique_id=1271443950]
+visible = false
+position = Vector2(0, -17)
+scale = Vector2(0.5, 0.5625)
+texture = ExtResource("3_5ejjj")
