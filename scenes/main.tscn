@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://t6fqeecha0yj" path="res://scenes/ui/inventory_ui.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://chcm47bg56cr6" path="res://scenes/ui/dialogue_ui.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c1hvf17j858x4" path="res://scenes/ui/gold_overlay.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://b5i7dfi4umlbb" path="res://scenes/ui/vendor_ui.tscn" id="4_tbgi4"]
 
 [node name="Main" type="Node2D" unique_id=1083891039]
 
@@ -12,5 +13,7 @@
 [node name="InventoryUI" parent="." unique_id=1237190782 instance=ExtResource("2_0wfyh")]
 
 [node name="DialogueUI" parent="." unique_id=1351978307 groups=["dialogue_ui"] instance=ExtResource("3_jyhfs")]
+
+[node name="VendorUI" parent="." unique_id=226857976 groups=["vendor_ui"] instance=ExtResource("4_tbgi4")]
 
 [node name="GoldOverlay" parent="." unique_id=245660110 instance=ExtResource("3_sugp2")]

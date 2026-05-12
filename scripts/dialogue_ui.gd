@@ -63,8 +63,7 @@ func _clear_choices() -> void:
 
 func _on_choice_pressed(action: String) -> void:
 	choice_selected.emit(action)
-	if action == "close":
-		close()
+	close()
 
 func close() -> void:
 	visible = false

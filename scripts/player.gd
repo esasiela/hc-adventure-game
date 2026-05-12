@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 
-enum State { IDLE, WALKING, TALKING, MINING }
+enum State { IDLE, WALKING, TALKING, VENDORING, MINING }
 var state: State = State.IDLE
 
 enum Facing { DOWN, UP, LEFT, RIGHT }
@@ -28,6 +28,11 @@ func _ready() -> void:
 	camera_2d.limit_right = int(used_rect.end.x * tile_size.x)
 	camera_2d.limit_bottom = int(used_rect.end.y * tile_size.y)
 	
+	# connect to vendor signals
+	var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
+	vendor_ui.opened.connect(_on_vendor_opened)
+	vendor_ui.closed.connect(_on_vendor_closed)
+	
 	change_state(State.IDLE)
 
 
@@ -50,7 +55,7 @@ func update_facing(dir: Vector2) -> void:
 
 func update_movement() -> void:
 	# exit early for immobile states
-	if state == State.TALKING:
+	if state == State.TALKING or state == State.VENDORING:
 		velocity = Vector2.ZERO
 		return
 	
@@ -122,6 +127,7 @@ func change_state(new_state: State, clobber_same_state: bool = true) -> void:
 func _exit_state(old_state: State) -> void:
 	match old_state:
 		State.MINING: _exit_state_mining()
+		State.VENDORING: pass
 		State.TALKING: pass
 		State.WALKING: pass
 		State.IDLE: pass
@@ -148,7 +154,12 @@ func _enter_state_talking() -> void:
 
 
 func _on_dialogue_closed() -> void:
-	change_state(State.IDLE)
+	if state == State.TALKING:
+		change_state(State.IDLE)
+
+
+func _enter_state_vendoring() -> void:
+	play_directional_animation("idle")
 
 
 func _enter_state_mining() -> void:
@@ -181,6 +192,13 @@ func _on_lootbox_area_entered(area: Area2D) -> void:
 	else:
 		PlayerData.add_item(world_item.item, world_item.quantity)
 	world_item.queue_free()
+
+
+func _on_vendor_opened() -> void:
+	change_state(State.VENDORING)
+
+func _on_vendor_closed() -> void:
+	change_state(State.IDLE)
 
 
 func get_zone() -> Zone:

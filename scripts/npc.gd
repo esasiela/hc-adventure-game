@@ -41,4 +41,5 @@ func _on_dialogue_closed() -> void:
 
 
 func _open_vendor() -> void:
-	print(display_name, " would open vendor here")
+	var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
+	vendor_ui.open_for(self)

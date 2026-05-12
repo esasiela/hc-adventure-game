@@ -29,6 +29,7 @@ window/size/viewport_height=1296
 player=""
 zone=""
 dialogue_ui=""
+vendor_ui=""
 
 [input]
 
