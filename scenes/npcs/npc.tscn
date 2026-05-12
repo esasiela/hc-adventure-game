@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dd7cstgoted7" path="res://scripts/npc.gd" id="1_5ejjj"]
 [ext_resource type="PackedScene" uid="uid://ugu74liv03kx" path="res://scenes/interactable.tscn" id="1_ivh6b"]
-[ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="2_m5fb5"]
 [ext_resource type="Texture2D" uid="uid://dkqprriovne61" path="res://assets/images/items/shikashi/tile003.png" id="3_5ejjj"]
 [ext_resource type="Resource" uid="uid://dmmfjgihqcro2" path="res://dialogue/villager_greeting.tres" id="3_uit3j"]
 
@@ -14,17 +13,12 @@ display_name = "Villager"
 dialogue = ExtResource("3_uit3j")
 portrait = null
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=923734743]
-texture = ExtResource("2_m5fb5")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 18)
-
-[node name="InteractIndicator" type="Sprite2D" parent="." index="2" unique_id=1385889537]
+[node name="InteractIndicator" type="Sprite2D" parent="." index="1" unique_id=1385889537]
 position = Vector2(1, -17.000002)
 scale = Vector2(0.625, 0.56249994)
 texture = ExtResource("3_5ejjj")
 
-[node name="HitBox" type="StaticBody2D" parent="." index="3" unique_id=1243924056]
+[node name="HitBox" type="StaticBody2D" parent="." index="2" unique_id=1243924056]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=1140847653]
 shape = SubResource("CircleShape2D_p1a37")

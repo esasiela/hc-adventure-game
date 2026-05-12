@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c204068mp4jey"]
+
+[ext_resource type="PackedScene" uid="uid://q8xeyu0a0hp8" path="res://scenes/npcs/npc.tscn" id="1_hpyu0"]
+[ext_resource type="Resource" uid="uid://cekx130h1rqfs" path="res://dialogue/vendor_one.tres" id="2_2g5ka"]
+[ext_resource type="Texture2D" uid="uid://ccdvui2l5y0a0" path="res://assets/images/items/shikashi/tile204.png" id="2_70ie1"]
+[ext_resource type="Texture2D" uid="uid://dl7vmpsrfsg6v" path="res://assets/images/ninja_adventure/Actor/Character/OldMan/SpriteSheet.png" id="2_l8vx5"]
+
+[node name="VendorOne" unique_id=1751764694 instance=ExtResource("1_hpyu0")]
+display_name = "Vendor One"
+dialogue = ExtResource("2_2g5ka")
+portrait = ExtResource("2_70ie1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1256236975]
+texture = ExtResource("2_l8vx5")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
