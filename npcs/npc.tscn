@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://q8xeyu0a0hp8"]
+
+[ext_resource type="PackedScene" uid="uid://ugu74liv03kx" path="res://scenes/interactable.tscn" id="1_mea8m"]
+[ext_resource type="Script" uid="uid://dd7cstgoted7" path="res://scripts/npc.gd" id="2_atlxo"]
+[ext_resource type="Resource" uid="uid://dmmfjgihqcro2" path="res://npcs/villager_one/villager_one_dialogue.tres" id="3_p37wn"]
+[ext_resource type="Texture2D" uid="uid://dkqprriovne61" path="res://assets/images/items/shikashi/tile003.png" id="4_65ghs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1a37"]
+
+[node name="NPC" unique_id=1751764694 instance=ExtResource("1_mea8m")]
+script = ExtResource("2_atlxo")
+display_name = "Villager"
+dialogue = ExtResource("3_p37wn")
+portrait = null
+
+[node name="InteractIndicator" type="Sprite2D" parent="." index="1" unique_id=1385889537]
+position = Vector2(1, -17.000002)
+scale = Vector2(0.625, 0.56249994)
+texture = ExtResource("4_65ghs")
+
+[node name="HitBox" type="StaticBody2D" parent="." index="2" unique_id=1243924056]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=1140847653]
+shape = SubResource("CircleShape2D_p1a37")
