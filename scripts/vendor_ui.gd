@@ -4,6 +4,8 @@ extends CanvasLayer
 
 const INVENTORY_CELL_SCENE: PackedScene = preload("res://scenes/ui/inventory_cell.tscn")
 
+var current_vendor_inventory: VendorInventory
+
 @onready var title_label: Label = $Panel/MarginContainer/Root/TitleLabel
 @onready var body_label: Label = $Panel/MarginContainer/Root/BodyLabel
 @onready var item_name_label: Label = $Panel/MarginContainer/Root/Header/ItemInfo/ItemNameLabel
@@ -12,8 +14,9 @@ const INVENTORY_CELL_SCENE: PackedScene = preload("res://scenes/ui/inventory_cel
 @onready var price_label: Label = $Panel/MarginContainer/Root/Header/TransactionInfo/PriceLabel
 @onready var available_label: Label = $Panel/MarginContainer/Root/Header/TransactionInfo/AvailableLabel
 @onready var transaction_qty_label: Label = $Panel/MarginContainer/Root/Header/TransactionInfo/TransactionQtyLabel
-@onready var player_inventory_grid: GridContainer = $Panel/MarginContainer/Root/PlayerInventoryGrid
 @onready var close_button: Button = $Panel/MarginContainer/Root/Footer/CloseButton
+@onready var player_inventory_grid: GridContainer = $Panel/MarginContainer/Root/Grids/PlayerSide/PlayerInventoryGrid
+@onready var vendor_stock_grid: GridContainer = $Panel/MarginContainer/Root/Grids/VendorSide/VendorStockGrid
 
 signal opened
 signal closed
@@ -25,8 +28,10 @@ func _ready() -> void:
 
 func open_for(npc: NPC) -> void:
 	title_label.text = npc.display_name
+	current_vendor_inventory = npc.vendor_inventory
 	visible = true
 	_populate_player_inventory()
+	_populate_vendor_stock()
 	opened.emit()
 	
 
@@ -48,6 +53,62 @@ func _populate_player_inventory() -> void:
 		first_cell.grab_focus.call_deferred()
 	else:
 		close_button.grab_focus.call_deferred()
+
+
+func _populate_vendor_stock() -> void:
+	for child in vendor_stock_grid.get_children():
+		child.queue_free()
+	
+	if not current_vendor_inventory:
+		return
+	
+	for item in current_vendor_inventory.stock:
+		var cell := INVENTORY_CELL_SCENE.instantiate() as InventoryCell
+		vendor_stock_grid.add_child(cell)
+		cell.set_item(item, 1)  # quantity 1 for display; really infinite
+		cell.focus_gained.connect(_on_vendor_cell_focused)
+		cell.selected.connect(_on_vendor_cell_selected)
+
+
+func _on_vendor_cell_focused(item: Item) -> void:
+	_update_header_for_buy(item)
+
+func _on_vendor_cell_selected(item: Item) -> void:
+	_buy_one(item)
+
+func _update_header_for_buy(item: Item) -> void:
+	item_name_label.text = item.display_name
+	item_icon.texture = item.icon
+	action_label.text = "Buying"
+	price_label.text = "Price: %d gold" % item.value
+	available_label.text = "Available: ∞"
+	transaction_qty_label.text = "Quantity: 1"
+
+func _buy_one(item: Item) -> void:
+	if not PlayerData.spend_gold(item.value):
+		# not enough gold; silent fail for MVP
+		return
+	PlayerData.add_item(item, 1)
+	# vendor stock is infinite; no need to update vendor cell
+	# but header's "available" stays at ∞, and player inventory has changed —
+	# if you want the player grid to refresh to show the new item count, do that:
+	_refresh_player_inventory_in_place(item)
+
+
+func _refresh_player_inventory_in_place(item: Item) -> void:
+	# find existing cell for this item
+	for child in player_inventory_grid.get_children():
+		var cell := child as InventoryCell
+		if cell and cell.item == item:
+			cell.update_quantity(PlayerData.inventory[item])
+			return
+	
+	# not found — player didn't have this item before. Add a new cell.
+	var cell := INVENTORY_CELL_SCENE.instantiate() as InventoryCell
+	player_inventory_grid.add_child(cell)
+	cell.set_item(item, PlayerData.inventory[item])
+	cell.focus_gained.connect(_on_player_cell_focused)
+	cell.selected.connect(_on_player_cell_selected)
 
 
 func _on_player_cell_selected(item: Item) -> void:

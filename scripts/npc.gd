@@ -5,6 +5,7 @@ extends Interactable
 @export var display_name: String = "Villager"
 @export var dialogue: Dialogue
 @export var portrait: Texture2D
+@export var vendor_inventory: VendorInventory
 
 @onready var interact_indicator: Sprite2D = $InteractIndicator
 

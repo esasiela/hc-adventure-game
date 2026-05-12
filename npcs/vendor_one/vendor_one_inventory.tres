@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VendorInventory" format=3 uid="uid://b3s7mun6oyqf4"]
+
+[ext_resource type="Script" uid="uid://e2o0ti6fh3x8" path="res://npcs/vendor_inventory.gd" id="1_4w8i8"]
+[ext_resource type="Script" uid="uid://cbnde0ytvfd0g" path="res://items/item.gd" id="2_afq5w"]
+[ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="3_afq5w"]
+[ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="4_3r5x3"]
+
+[resource]
+script = ExtResource("1_4w8i8")
+stock = Array[ExtResource("2_afq5w")]([ExtResource("3_afq5w"), ExtResource("4_3r5x3")])
+metadata/_custom_type_script = "uid://e2o0ti6fh3x8"

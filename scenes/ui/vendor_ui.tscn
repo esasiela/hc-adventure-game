@@ -82,12 +82,37 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "---"
 
-[node name="PlayerInventoryLabel" type="Label" parent="Panel/MarginContainer/Root" unique_id=295437170]
+[node name="Grids" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=406091517]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="PlayerSide" type="VBoxContainer" parent="Panel/MarginContainer/Root/Grids" unique_id=166772200]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PlayerInventoryLabel" type="Label" parent="Panel/MarginContainer/Root/Grids/PlayerSide" unique_id=295437170]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Your Inventory"
 
-[node name="PlayerInventoryGrid" type="GridContainer" parent="Panel/MarginContainer/Root" unique_id=1427380503]
+[node name="PlayerInventoryGrid" type="GridContainer" parent="Panel/MarginContainer/Root/Grids/PlayerSide" unique_id=1427380503]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
+
+[node name="VendorSide" type="VBoxContainer" parent="Panel/MarginContainer/Root/Grids" unique_id=1374217905]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VendorStockLabel" type="Label" parent="Panel/MarginContainer/Root/Grids/VendorSide" unique_id=1960097643]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Vendor Stock"
+
+[node name="VendorStockGrid" type="GridContainer" parent="Panel/MarginContainer/Root/Grids/VendorSide" unique_id=2103920355]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 8
