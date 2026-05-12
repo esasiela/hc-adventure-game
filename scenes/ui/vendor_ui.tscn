@@ -33,10 +33,66 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Vendor"
 
-[node name="BodyLabel" type="Label" parent="Panel/MarginContainer/Root" unique_id=324349909]
+[node name="BodyLabel" type="Label" parent="Panel/MarginContainer/Root" unique_id=1198321376]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Vendor inventory will appear here"
+text = "Vendor name and greeting"
+
+[node name="Header" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=1474171741]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="ItemInfo" type="VBoxContainer" parent="Panel/MarginContainer/Root/Header" unique_id=267366409]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="Panel/MarginContainer/Root/Header/ItemInfo" unique_id=744509087]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Select an item"
+
+[node name="ItemIcon" type="TextureRect" parent="Panel/MarginContainer/Root/Header/ItemInfo" unique_id=1075746264]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="TransactionInfo" type="VBoxContainer" parent="Panel/MarginContainer/Root/Header" unique_id=1316117246]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="ActionLabel" type="Label" parent="Panel/MarginContainer/Root/Header/TransactionInfo" unique_id=1326391165]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "---"
+
+[node name="PriceLabel" type="Label" parent="Panel/MarginContainer/Root/Header/TransactionInfo" unique_id=1360769244]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "---"
+
+[node name="AvailableLabel" type="Label" parent="Panel/MarginContainer/Root/Header/TransactionInfo" unique_id=1682291275]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "---"
+
+[node name="TransactionQtyLabel" type="Label" parent="Panel/MarginContainer/Root/Header/TransactionInfo" unique_id=1581946275]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "---"
+
+[node name="PlayerInventoryLabel" type="Label" parent="Panel/MarginContainer/Root" unique_id=295437170]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Your Inventory"
+
+[node name="PlayerInventoryGrid" type="GridContainer" parent="Panel/MarginContainer/Root" unique_id=1427380503]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
 
 [node name="Footer" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=641940498]
 layout_mode = 2

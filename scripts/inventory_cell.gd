@@ -17,11 +17,21 @@ var pending_item: Item
 var pending_quantity: int = 1
 
 
+signal selected(item: Item)
+
+
 func set_item(item: Item, quantity: int) -> void:
 	pending_item = item
 	pending_quantity = quantity
 	if is_node_ready():
 		_apply()
+
+
+func update_quantity(new_quantity: int) -> void:
+	pending_quantity = new_quantity
+	if is_node_ready():
+		_apply()
+
 
 func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
@@ -33,6 +43,12 @@ func _apply() -> void:
 		item = pending_item
 		icon_texture.texture = pending_item.icon
 		quantity_label.text = str(pending_quantity) if pending_quantity > 1 else ""
+
+func _gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		if item:
+			selected.emit(item)
+		accept_event()
 
 
 func _on_focus_entered() -> void:

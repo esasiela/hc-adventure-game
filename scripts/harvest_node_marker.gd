@@ -49,7 +49,6 @@ func spawn_node() -> void:
 
 
 func _on_node_harvested() -> void:
-	print("marker: my node was harvested")
 	respawn_timer.start()
 
 

@@ -107,10 +107,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				change_state(State.MINING)
 			elif interact_target is NPC:
 				change_state(State.TALKING)
-	
-	if event.is_action_pressed("inventory_toggle"):
-		print("inventory toggle pressed")
-	
+		
 	if event.is_action_pressed("gold_debug"):
 		PlayerData.add_gold(1)
 
@@ -185,7 +182,6 @@ func _on_lootbox_area_entered(area: Area2D) -> void:
 	if not area is WorldItem:
 		return
 	var world_item := area as WorldItem
-	print("lootbox - item:", world_item.item.id, " qty:", world_item.quantity)
 	
 	if world_item.item is Currency:
 		PlayerData.add_gold(world_item.quantity)

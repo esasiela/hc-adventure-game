@@ -55,7 +55,7 @@ func _show_choices() -> void:
 	# focus the first choice for controller nav
 	if choices_container.get_child_count() > 0:
 		choices_container.get_child(0).grab_focus.call_deferred()
-		print("focusing button: ", choices_container.get_child(0))
+
 
 func _clear_choices() -> void:
 	for child in choices_container.get_children():
@@ -65,10 +65,13 @@ func _on_choice_pressed(action: String) -> void:
 	choice_selected.emit(action)
 	close()
 
+
 func close() -> void:
 	visible = false
 	_clear_choices()
+	get_viewport().gui_release_focus()
 	closed.emit()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible:
