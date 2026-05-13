@@ -136,6 +136,7 @@ position = Vector2(167, 226)
 
 [node name="VendorOne" parent="NPCs" unique_id=354890248 instance=ExtResource("7_v7mmq")]
 position = Vector2(226, 246)
+vendor_inventory = null
 
 [node name="HarvestNodeMarkers" type="Node2D" parent="." unique_id=347710378]
 
