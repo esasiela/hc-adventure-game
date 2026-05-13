@@ -57,4 +57,4 @@ func _on_interact_target_lost() -> void:
 
 
 func get_zone() -> Zone:
-	return get_tree().get_first_node_in_group("zone") as Zone
+	return ZoneManager.current_zone

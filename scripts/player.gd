@@ -188,4 +188,4 @@ func _on_vendor_closed() -> void:
 
 
 func get_zone() -> Zone:
-	return get_tree().get_first_node_in_group("zone") as Zone
+	return ZoneManager.current_zone

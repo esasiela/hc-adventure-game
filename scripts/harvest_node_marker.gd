@@ -43,8 +43,9 @@ func spawn_node() -> void:
 	if node_type == null:
 		return
 	
-	var zone := get_zone()
-	var node := zone.spawn_harvest_node(node_type, global_position)
+	# TODO get_zone()
+	var zone = ZoneManager.current_zone
+	var node = zone.spawn_harvest_node(node_type, global_position)
 	node.harvested.connect(_on_node_harvested)
 
 
@@ -75,4 +76,4 @@ func pick_node_type() -> HarvestNodeType:
 
 
 func get_zone() -> Zone:
-	return get_tree().get_first_node_in_group("zone") as Zone
+	return ZoneManager.current_zone
