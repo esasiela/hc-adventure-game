@@ -7,11 +7,21 @@ const HARVEST_NODE_SCENE: PackedScene = preload("res://scenes/harvest_node.tscn"
 
 @onready var harvest_nodes: Node2D = $HarvestNodes
 @onready var world_items: Node2D = $WorldItems
+@onready var tilemap: TileMapLayer = $TileMapLayer
 
 
 func _ready() -> void:
 	var test_type: HarvestNodeType = preload("res://harvest_nodes/copper_vein.tres")
 	spawn_harvest_node(test_type, Vector2(100, 100))
+
+
+func get_camera_bounds() -> Rect2:
+	var used_rect := tilemap.get_used_rect()
+	var tile_size := tilemap.tile_set.tile_size
+	return Rect2(
+		used_rect.position * tile_size,
+		used_rect.size * tile_size
+	)
 
 
 func spawn_world_item(item: Item, pos: Vector2, quantity: int) -> WorldItem:

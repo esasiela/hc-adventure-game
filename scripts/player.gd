@@ -13,22 +13,12 @@ var last_direction: Vector2 = Vector2.RIGHT
 var interact_target = null
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var tilemap: TileMapLayer = $"../TileMapLayer"
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var mining_timer: Timer = $MiningTimer
 
 
 func _ready() -> void:
-	var used_rect = tilemap.get_used_rect()
-	var tile_size = tilemap.tile_set.tile_size
-	
-	# Calculate limits in pixels
-	camera_2d.limit_left = int(used_rect.position.x * tile_size.x)
-	camera_2d.limit_top = int(used_rect.position.y * tile_size.y)
-	camera_2d.limit_right = int(used_rect.end.x * tile_size.x)
-	camera_2d.limit_bottom = int(used_rect.end.y * tile_size.y)
-	
-	# connect to vendor signals
+		# connect to vendor signals
 	var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
 	vendor_ui.opened.connect(_on_vendor_opened)
 	vendor_ui.closed.connect(_on_vendor_closed)
