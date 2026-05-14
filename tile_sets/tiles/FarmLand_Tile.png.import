@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbpjgmq66501p"
-path="res://.godot/imported/Path_Middle.png-982b45fb77b5891de16d2edf72fb926a.ctex"
+uid="uid://bklar3kx3gi1s"
+path="res://.godot/imported/FarmLand_Tile.png-d38bebb7b86aa7e6eea3822b2e7df27f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tiles/Path_Middle.png"
-dest_files=["res://.godot/imported/Path_Middle.png-982b45fb77b5891de16d2edf72fb926a.ctex"]
+source_file="res://tile_sets/tiles/FarmLand_Tile.png"
+dest_files=["res://.godot/imported/FarmLand_Tile.png-d38bebb7b86aa7e6eea3822b2e7df27f.ctex"]
 
 [params]
 
