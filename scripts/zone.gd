@@ -2,6 +2,8 @@ extends Node2D
 class_name Zone
 
 
+const DEFAULT_SPAWN: String = "DefaultPlayerSpawn"
+
 const WORLD_ITEM_SCENE: PackedScene = preload("res://scenes/world_item.tscn")
 const HARVEST_NODE_SCENE: PackedScene = preload("res://scenes/harvest_node.tscn")
 

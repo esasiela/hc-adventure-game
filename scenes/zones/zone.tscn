@@ -5,6 +5,10 @@
 [node name="Zone" type="Node2D" unique_id=1825439271]
 script = ExtResource("1_n1mk8")
 
+[node name="PlayerSpawns" type="Node2D" parent="." unique_id=1647000973]
+
+[node name="DefaultPlayerSpawn" type="Node2D" parent="PlayerSpawns" unique_id=1400840493]
+
 [node name="NPCs" type="Node2D" parent="." unique_id=1279334607]
 
 [node name="HarvestNodeMarkers" type="Node2D" parent="." unique_id=178503207]

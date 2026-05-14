@@ -20,9 +20,13 @@ func register_player(p: Node) -> void:
 
 
 func change_zone(scene: PackedScene, spawn_point_name: String) -> void:
+	# clean up old zone(s)
 	if current_zone:
 		current_zone.queue_free()
 		current_zone = null
+	# also clear any pre-placed children that we don't track
+	for child in zone_container.get_children():
+		child.queue_free()
 	
 	var new_zone := scene.instantiate()
 	zone_container.add_child(new_zone)
@@ -38,11 +42,12 @@ func change_zone(scene: PackedScene, spawn_point_name: String) -> void:
 func _place_player_at_spawn(spawn_point_name: String) -> void:
 	if not current_zone:
 		return
-	var spawn := current_zone.find_child(spawn_point_name, true, false)
+	var name_to_use := spawn_point_name if spawn_point_name != "" else Zone.DEFAULT_SPAWN
+	var spawn := current_zone.find_child(name_to_use, true, false)
 	if spawn:
 		player.global_position = spawn.global_position
 	else:
-		push_warning("Spawn point not found: " + spawn_point_name)
+		push_warning("Spawn point not found: " + name_to_use)
 
 
 func _apply_camera_bounds() -> void:
