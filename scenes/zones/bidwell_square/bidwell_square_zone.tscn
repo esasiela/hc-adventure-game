@@ -14,6 +14,9 @@ tile_set = ExtResource("2_dhck0")
 [node name="DefaultPlayerSpawn" parent="PlayerSpawns" parent_id_path=PackedInt32Array(1647000973) index="0" unique_id=1400840493]
 position = Vector2(644, 499)
 
+[node name="WakeupHouseDoor" type="Node2D" parent="PlayerSpawns" parent_id_path=PackedInt32Array(1647000973) index="1" unique_id=1302288842]
+position = Vector2(726, 459)
+
 [node name="NPCs" parent="." index="2" unique_id=1279334607]
 visible = false
 
@@ -27,6 +30,7 @@ visible = false
 visible = false
 
 [node name="WakeupHouseExterior" type="Node2D" parent="." index="6" unique_id=1906813394]
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="WakeupHouseExterior" index="0" unique_id=2038821526]
 position = Vector2(742, 362)
