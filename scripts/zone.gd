@@ -12,11 +12,6 @@ const HARVEST_NODE_SCENE: PackedScene = preload("res://scenes/harvest_node.tscn"
 @onready var tilemap: TileMapLayer = $TileMapLayer
 
 
-func _ready() -> void:
-	var test_type: HarvestNodeType = preload("res://harvest_nodes/copper_vein.tres")
-	spawn_harvest_node(test_type, Vector2(100, 100))
-
-
 func get_camera_bounds() -> Rect2:
 	var used_rect := tilemap.get_used_rect()
 	var tile_size := tilemap.tile_set.tile_size
