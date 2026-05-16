@@ -12,13 +12,19 @@ const HARVEST_NODE_SCENE: PackedScene = preload("res://scenes/harvest_node.tscn"
 @onready var tilemap: TileMapLayer = $TileMapLayer
 
 
-func get_camera_bounds() -> Rect2:
+func get_camera_bounds() -> Rect2:	
+	if not tilemap:
+		return Rect2()
 	var used_rect := tilemap.get_used_rect()
 	var tile_size := tilemap.tile_set.tile_size
-	return Rect2(
+	var bounds := Rect2(
 		used_rect.position * tile_size,
 		used_rect.size * tile_size
 	)
+	# account for the tilemap's scale
+	bounds.position *= tilemap.scale
+	bounds.size *= tilemap.scale
+	return bounds
 
 
 func spawn_world_item(item: Item, pos: Vector2, quantity: int) -> WorldItem:
