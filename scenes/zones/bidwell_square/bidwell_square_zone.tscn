@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://b2f4d2witxiri" path="res://scenes/zones/zone.tscn" id="1_sjqc4"]
 [ext_resource type="TileSet" uid="uid://cee6ya3y4x8dn" path="res://tile_sets/outdoor_tileset.tres" id="2_dhck0"]
+[ext_resource type="PackedScene" uid="uid://01uqb2odcapj" path="res://scenes/harvest_node_marker.tscn" id="3_5pled"]
 [ext_resource type="Texture2D" uid="uid://cir72fvdwnbop" path="res://assets/images/decor/House_1_Wood_Base_Blue.png" id="3_e48xg"]
+[ext_resource type="Resource" uid="uid://dlmfc2brf566g" path="res://harvest_nodes/copper_spawn_profile.tres" id="4_k2550"]
 [ext_resource type="PackedScene" uid="uid://cml6jhn7slil7" path="res://scenes/door.tscn" id="4_ub5mf"]
 
 [node name="BidwellSquareZone" unique_id=1825439271 instance=ExtResource("1_sjqc4")]
@@ -14,17 +16,9 @@ tile_set = ExtResource("2_dhck0")
 [node name="DefaultPlayerSpawn" parent="PlayerSpawns" parent_id_path=PackedInt32Array(1647000973) index="0" unique_id=395128476]
 position = Vector2(644, 499)
 
-[node name="NPCs" parent="." index="2" unique_id=1279334607]
-visible = false
-
-[node name="HarvestNodeMarkers" parent="." index="3" unique_id=178503207]
-visible = false
-
-[node name="HarvestNodes" parent="." index="4" unique_id=2008417457]
-visible = false
-
-[node name="WorldItems" parent="." index="5" unique_id=113593078]
-visible = false
+[node name="Copper" parent="HarvestNodeMarkers" parent_id_path=PackedInt32Array(178503207) index="0" unique_id=1645630429 instance=ExtResource("3_5pled")]
+position = Vector2(835, 547)
+spawn_profile = ExtResource("4_k2550")
 
 [node name="WakeupHouseExterior" type="Node2D" parent="." index="6" unique_id=1906813394]
 metadata/_edit_group_ = true

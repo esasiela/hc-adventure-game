@@ -19,13 +19,13 @@ tile_map_data = PackedByteArray("AAABAAgAAAAUAAcAAAATAAQAAAAUAAYAAAAUABQAAAARAAA
 tile_set = ExtResource("3_piilu")
 
 [node name="DefaultPlayerSpawn" parent="PlayerSpawns" parent_id_path=PackedInt32Array(1647000973) index="0" unique_id=395128476]
-position = Vector2(257, 361)
+position = Vector2(386, 531)
 
 [node name="WakeupSpawn" type="Marker2D" parent="PlayerSpawns" parent_id_path=PackedInt32Array(1647000973) index="1" unique_id=1960466819]
 position = Vector2(79, 102)
 
 [node name="ExitDoor" parent="." index="3" unique_id=1814524743 instance=ExtResource("4_h733d")]
-position = Vector2(256, 399)
+position = Vector2(385, 588)
 target_zone_path = "uid://mk5qbfaf17gp"
 target_spawn = "WakeupHouseSpawn"
 
