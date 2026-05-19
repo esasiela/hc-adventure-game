@@ -9,20 +9,7 @@ script = ExtResource("1_c8huc")
 text = "Goodbye"
 metadata/_custom_type_script = "uid://bcq7s40seq3ik"
 
-[sub_resource type="Resource" id="Resource_h40yd"]
-script = ExtResource("2_mgpdu")
-speaker = "Villager"
-text = "Oh, hello there! Lovely day, isn't it?"
-metadata/_custom_type_script = "uid://baauah4044ivb"
-
-[sub_resource type="Resource" id="Resource_65jxs"]
-script = ExtResource("2_mgpdu")
-speaker = "Villager"
-text = "I haven't seen you around these parts before."
-metadata/_custom_type_script = "uid://baauah4044ivb"
-
 [resource]
 script = ExtResource("3_dgtdw")
-lines = Array[ExtResource("2_mgpdu")]([SubResource("Resource_h40yd"), SubResource("Resource_65jxs")])
 choices = Array[ExtResource("1_c8huc")]([SubResource("Resource_ag6kv")])
 metadata/_custom_type_script = "uid://duy33n3rk3o2f"

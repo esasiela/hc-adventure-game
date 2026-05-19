@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cddtchahi40mp"]
+
+[ext_resource type="PackedScene" uid="uid://q8xeyu0a0hp8" path="res://npcs/npc.tscn" id="1_dnrts"]
+[ext_resource type="Texture2D" uid="uid://8rw3x0iwu62t" path="res://assets/images/items/cute_fantasy/tile044.png" id="2_jl8rk"]
+[ext_resource type="Resource" uid="uid://cxxbhoax8lrir" path="res://quests/gather_copper/gather_copper.tres" id="3_jl8rk"]
+[ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="3_vva32"]
+
+[node name="AldwinSmith" unique_id=1751764694 instance=ExtResource("1_dnrts")]
+display_name = "Aldwin"
+dialogue = null
+portrait = ExtResource("2_jl8rk")
+vendor_inventory = null
+quest = ExtResource("3_jl8rk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1136388758]
+texture = ExtResource("3_vva32")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

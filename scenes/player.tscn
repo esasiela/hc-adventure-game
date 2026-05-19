@@ -360,7 +360,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1621253660]
 sprite_frames = SubResource("SpriteFrames_60mlk")
-animation = &"mining_down"
+animation = &"idle_up"
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=131896049]
 position = Vector2(-0.5, 4)

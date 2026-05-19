@@ -9,8 +9,8 @@
 
 [node name="Main" type="Node2D" unique_id=1083891039]
 script = ExtResource("1_o6xl0")
-initial_zone_path = "uid://dib4bnabbd0qv"
-initial_spawn_name = "WakeupSpawn"
+initial_zone_path = "uid://mk5qbfaf17gp"
+initial_spawn_name = "DefaultPlayerSpawn"
 
 [node name="ZoneContainer" type="Node2D" parent="." unique_id=1273939375]
 

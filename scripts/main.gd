@@ -9,6 +9,10 @@ extends Node2D
 func _ready() -> void:
 	ZoneManager.register_zone_container(zone_container)
 	ZoneManager.register_player(player)
+	
+	# TODO replace quest registry with something dynamic
+	QuestLog.register_quest(preload("res://quests/gather_copper/gather_copper.tres"))
+	
 	if initial_zone_path == "":
 		push_error("No initial_zone_path set on Main")
 		return

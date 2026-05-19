@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cee6ya3y4x8dn" path="res://tile_sets/outdoor_tileset.tres" id="2_dhck0"]
 [ext_resource type="PackedScene" uid="uid://01uqb2odcapj" path="res://scenes/harvest_node_marker.tscn" id="3_5pled"]
 [ext_resource type="Texture2D" uid="uid://cir72fvdwnbop" path="res://assets/images/decor/House_1_Wood_Base_Blue.png" id="3_e48xg"]
+[ext_resource type="PackedScene" uid="uid://cddtchahi40mp" path="res://npcs/aldwin_smith/aldwin_smith.tscn" id="3_k2550"]
 [ext_resource type="Resource" uid="uid://dlmfc2brf566g" path="res://harvest_nodes/copper_spawn_profile.tres" id="4_k2550"]
 [ext_resource type="PackedScene" uid="uid://cml6jhn7slil7" path="res://scenes/door.tscn" id="4_ub5mf"]
 
@@ -15,6 +16,9 @@ tile_set = ExtResource("2_dhck0")
 
 [node name="DefaultPlayerSpawn" parent="PlayerSpawns" parent_id_path=PackedInt32Array(1647000973) index="0" unique_id=395128476]
 position = Vector2(644, 499)
+
+[node name="AldwinSmith" parent="NPCs" parent_id_path=PackedInt32Array(1279334607) index="0" unique_id=1751764694 instance=ExtResource("3_k2550")]
+position = Vector2(516, 520)
 
 [node name="Copper" parent="HarvestNodeMarkers" parent_id_path=PackedInt32Array(178503207) index="0" unique_id=1645630429 instance=ExtResource("3_5pled")]
 position = Vector2(835, 547)

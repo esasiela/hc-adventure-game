@@ -96,7 +96,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			if interact_target is HarvestNode:
 				change_state(State.MINING)
 			elif interact_target is NPC:
-				change_state(State.TALKING)
+				var npc := interact_target as NPC
+				if npc.has_interaction():
+					change_state(State.TALKING)
 		
 	if event.is_action_pressed("gold_debug"):
 		PlayerData.add_gold(1)

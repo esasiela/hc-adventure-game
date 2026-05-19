@@ -19,12 +19,12 @@ config/icon="res://icon.svg"
 
 PlayerData="*uid://duay47crmyirf"
 ZoneManager="*uid://u8xxj86wg58d"
+QuestLog="*uid://bct0i8hhq3oru"
 
 [display]
 
 window/size/viewport_width=2304
 window/size/viewport_height=1296
-window/size/mode=2
 
 [global_group]
 
