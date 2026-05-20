@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://b2lrsixkprher"]
+
+[ext_resource type="Resource" uid="uid://dhsxjy7pxbuws" path="res://quests/gather_stone/gather_stone_completed.tres" id="1_2fli1"]
+[ext_resource type="Script" uid="uid://d0fnk84827y3j" path="res://quests/objective.gd" id="1_ebmvd"]
+[ext_resource type="Resource" uid="uid://cknn46s3pvl35" path="res://quests/gather_stone/gather_stone_in_progress.tres" id="1_n6et6"]
+[ext_resource type="Script" uid="uid://dnsnn3jvnfqdq" path="res://quests/reward.gd" id="2_0823m"]
+[ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="2_njroy"]
+[ext_resource type="Script" uid="uid://bpnpycmbewxmx" path="res://quests/objective_gather.gd" id="3_lj8h1"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="3_njroy"]
+[ext_resource type="Resource" uid="uid://dumrjfrd4o8fd" path="res://quests/gather_stone/gather_stone_offer.tres" id="4_lj8h1"]
+[ext_resource type="Resource" uid="uid://nwup8qhxym1t" path="res://quests/gather_stone/gather_stone_turn_in.tres" id="8_1ks5b"]
+[ext_resource type="Script" uid="uid://dvuxfj4rkkw00" path="res://quests/reward_gold.gd" id="8_pmgo0"]
+[ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="9_0od4x"]
+[ext_resource type="Script" uid="uid://478l12uuxcht" path="res://quests/reward_item.gd" id="10_0mrtv"]
+
+[sub_resource type="Resource" id="Resource_n6et6"]
+script = ExtResource("3_lj8h1")
+item = ExtResource("2_njroy")
+required_quantity = 2
+description = "Gather raw stone"
+metadata/_custom_type_script = "uid://bpnpycmbewxmx"
+
+[sub_resource type="Resource" id="Resource_uacju"]
+script = ExtResource("8_pmgo0")
+amount = 44
+description = "Gold"
+metadata/_custom_type_script = "uid://dvuxfj4rkkw00"
+
+[sub_resource type="Resource" id="Resource_kn7dq"]
+script = ExtResource("10_0mrtv")
+item = ExtResource("9_0od4x")
+description = "Copper"
+metadata/_custom_type_script = "uid://478l12uuxcht"
+
+[resource]
+script = ExtResource("3_njroy")
+id = "gather_stone"
+title = "Stone for the Grungie"
+description = "The mason Grungie Grumble needs raw stone to sculpt into a statue for the village. Bring him 2 pieces of stone."
+objectives = Array[ExtResource("1_ebmvd")]([SubResource("Resource_n6et6")])
+offer_dialogue = ExtResource("4_lj8h1")
+in_progress_dialogue = ExtResource("1_n6et6")
+turn_in_dialogue = ExtResource("8_1ks5b")
+completed_dialogue = ExtResource("1_2fli1")
+rewards = Array[ExtResource("2_0823m")]([SubResource("Resource_uacju"), SubResource("Resource_kn7dq")])
+metadata/_custom_type_script = "uid://klkf740dgoy6"

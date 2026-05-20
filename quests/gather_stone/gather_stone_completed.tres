@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dhsxjy7pxbuws"]
+
+[ext_resource type="Script" uid="uid://bcq7s40seq3ik" path="res://scripts/dialogue/dialogue_choice.gd" id="1_kg7k4"]
+[ext_resource type="Script" uid="uid://baauah4044ivb" path="res://scripts/dialogue/dialogue_line.gd" id="2_1d3kg"]
+[ext_resource type="Script" uid="uid://duy33n3rk3o2f" path="res://scripts/dialogue/dialogue.gd" id="3_tdqud"]
+
+[sub_resource type="Resource" id="Resource_qj27g"]
+script = ExtResource("1_kg7k4")
+text = "Goodbye"
+metadata/_custom_type_script = "uid://bcq7s40seq3ik"
+
+[sub_resource type="Resource" id="Resource_cddm4"]
+script = ExtResource("2_1d3kg")
+speaker = "Grungie"
+text = "Thank you for that stone, really helped me out."
+metadata/_custom_type_script = "uid://baauah4044ivb"
+
+[resource]
+script = ExtResource("3_tdqud")
+lines = Array[ExtResource("2_1d3kg")]([SubResource("Resource_cddm4")])
+choices = Array[ExtResource("1_kg7k4")]([SubResource("Resource_qj27g")])
+metadata/_custom_type_script = "uid://duy33n3rk3o2f"

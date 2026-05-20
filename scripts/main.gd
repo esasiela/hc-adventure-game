@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 	# TODO replace quest registry with something dynamic
 	QuestLog.register_quest(preload("res://quests/gather_copper/gather_copper_quest.tres"))
+	QuestLog.register_quest(preload("res://quests/gather_stone/gather_stone_quest.tres"))
 	
 	if initial_zone_path == "":
 		push_error("No initial_zone_path set on Main")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cs1e6e8yoajcb"]
+
+[ext_resource type="PackedScene" uid="uid://q8xeyu0a0hp8" path="res://npcs/npc.tscn" id="1_s42fy"]
+[ext_resource type="Texture2D" uid="uid://cq2j4ev7ji58b" path="res://assets/images/items/cute_fantasy/tile030.png" id="2_yvhrq"]
+[ext_resource type="Resource" uid="uid://b2lrsixkprher" path="res://quests/gather_stone/gather_stone_quest.tres" id="3_yvhrq"]
+[ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="4_nilrj"]
+
+[node name="GrungieGrumble" unique_id=1751764694 instance=ExtResource("1_s42fy")]
+display_name = "Grungie"
+dialogue = null
+portrait = ExtResource("2_yvhrq")
+vendor_inventory = null
+quest = ExtResource("3_yvhrq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1136388758]
+modulate = Color(1, 0.22352941, 1, 1)
+texture = ExtResource("4_nilrj")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
