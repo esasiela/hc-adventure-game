@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://bcq7s40seq3ik"
 [sub_resource type="Resource" id="Resource_bcowk"]
 script = ExtResource("2_nndbv")
 speaker = "Aldwin"
-text = "Still working on it? Don't forget — 10 pieces of copper. I'll be here."
+text = "Still working on it? Don't forget — 2 pieces of copper. I'll be here."
 metadata/_custom_type_script = "uid://baauah4044ivb"
 
 [resource]

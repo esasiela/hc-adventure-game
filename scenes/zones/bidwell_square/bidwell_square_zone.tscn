@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cddtchahi40mp" path="res://npcs/aldwin_smith/aldwin_smith.tscn" id="3_k2550"]
 [ext_resource type="Resource" uid="uid://dlmfc2brf566g" path="res://harvest_nodes/copper_spawn_profile.tres" id="4_k2550"]
 [ext_resource type="PackedScene" uid="uid://cml6jhn7slil7" path="res://scenes/door.tscn" id="4_ub5mf"]
+[ext_resource type="Resource" uid="uid://bj5il7ktxon6n" path="res://harvest_nodes/stone_spawn_profile.tres" id="6_qy5nk"]
 
 [node name="BidwellSquareZone" unique_id=1825439271 instance=ExtResource("1_sjqc4")]
 
@@ -21,8 +22,12 @@ position = Vector2(644, 499)
 position = Vector2(516, 520)
 
 [node name="Copper" parent="HarvestNodeMarkers" parent_id_path=PackedInt32Array(178503207) index="0" unique_id=1645630429 instance=ExtResource("3_5pled")]
-position = Vector2(835, 547)
+position = Vector2(725, 561)
 spawn_profile = ExtResource("4_k2550")
+
+[node name="Stone" parent="HarvestNodeMarkers" parent_id_path=PackedInt32Array(178503207) index="1" unique_id=730152051 instance=ExtResource("3_5pled")]
+position = Vector2(654, 591)
+spawn_profile = ExtResource("6_qy5nk")
 
 [node name="WakeupHouseExterior" type="Node2D" parent="." index="6" unique_id=1906813394]
 metadata/_edit_group_ = true

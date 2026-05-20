@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dbyuhj6qlj5s8"]
+
+[ext_resource type="Script" uid="uid://qyint0hkuhq6" path="res://scripts/inventory_tab.gd" id="1_qgxhm"]
+
+[node name="InventoryTab" type="Control" unique_id=1771881180]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qgxhm")
+
+[node name="Body" type="HBoxContainer" parent="." unique_id=1110414385]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemGrid" type="GridContainer" parent="Body" unique_id=1256268924]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 6
+
+[node name="Details" type="VBoxContainer" parent="Body" unique_id=583851678]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ItemNameLabel" type="Label" parent="Body/Details" unique_id=311452378]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Item Name"
+
+[node name="ItemDescriptionLabel" type="Label" parent="Body/Details" unique_id=1815449445]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Item Description"
+autowrap_mode = 2

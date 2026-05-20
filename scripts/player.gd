@@ -18,12 +18,21 @@ var interact_target = null
 
 
 func _ready() -> void:
-		# connect to vendor signals
+	# connect to vendor signals
 	var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
 	vendor_ui.opened.connect(_on_vendor_opened)
 	vendor_ui.closed.connect(_on_vendor_closed)
 	
+	if OS.is_debug_build():
+		_seed_test_inventory()
+	
 	change_state(State.IDLE)
+
+
+func _seed_test_inventory() -> void:
+	PlayerData.add_item(preload("res://items/copper.tres"), 25)
+	PlayerData.add_item(preload("res://items/stone.tres"), 15)
+	PlayerData.add_gold(500)
 
 
 func _physics_process(delta: float) -> void:

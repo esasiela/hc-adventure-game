@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://baauah4044ivb"
 [sub_resource type="Resource" id="Resource_sh8hx"]
 script = ExtResource("2_sh8hx")
 speaker = "Aldwin"
-text = "I've been low on copper for weeks. If you could bring me 10 pieces of copper ore, I'd reward you well."
+text = "I've been low on copper for weeks. If you could bring me 2 pieces of copper ore, I'd reward you well."
 metadata/_custom_type_script = "uid://baauah4044ivb"
 
 [resource]

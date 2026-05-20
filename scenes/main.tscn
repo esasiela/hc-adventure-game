@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c3itv6y4a0owl"]
 
 [ext_resource type="Script" uid="uid://dsa2ydwyrv1xb" path="res://scripts/main.gd" id="1_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://t6fqeecha0yj" path="res://scenes/ui/inventory_ui.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://27l7766f757w" path="res://scenes/player.tscn" id="2_tefeu"]
 [ext_resource type="PackedScene" uid="uid://chcm47bg56cr6" path="res://scenes/ui/dialogue_ui.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c1hvf17j858x4" path="res://scenes/ui/gold_overlay.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b5i7dfi4umlbb" path="res://scenes/ui/vendor_ui.tscn" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ctbei6gjvw3gb" path="res://scenes/ui/game_menu.tscn" id="7_o6xl0"]
 
 [node name="Main" type="Node2D" unique_id=1083891039]
 script = ExtResource("1_o6xl0")
@@ -18,10 +18,10 @@ initial_spawn_name = "DefaultPlayerSpawn"
 
 [node name="UI" type="Node" parent="." unique_id=723065241]
 
-[node name="InventoryUI" parent="UI" unique_id=1237190782 instance=ExtResource("2_0wfyh")]
-
 [node name="DialogueUI" parent="UI" unique_id=1351978307 groups=["dialogue_ui"] instance=ExtResource("3_jyhfs")]
 
 [node name="VendorUI" parent="UI" unique_id=226857976 groups=["vendor_ui"] instance=ExtResource("4_tbgi4")]
 
 [node name="GoldOverlay" parent="UI" unique_id=245660110 instance=ExtResource("3_sugp2")]
+
+[node name="GameMenu" parent="UI" unique_id=754159516 groups=["game_menu"] instance=ExtResource("7_o6xl0")]
