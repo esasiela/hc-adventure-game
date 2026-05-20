@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bc4y8ldy0ft3i"]
+
+[ext_resource type="Script" uid="uid://bdqs24te4bdp1" path="res://scripts/quest_list_entry.gd" id="1_7anl0"]
+
+[node name="QuestListEntry" type="Panel" unique_id=2072963360]
+custom_minimum_size = Vector2(0, 60)
+size_flags_horizontal = 3
+focus_mode = 2
+script = ExtResource("1_7anl0")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1474444504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2070694232]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1410855098]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Quest Title"
+vertical_alignment = 1
+
+[node name="StateLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1749238092]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quest State"
+vertical_alignment = 1

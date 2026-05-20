@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://c0cuv3cek10bm"]
+
+[ext_resource type="Script" uid="uid://b2bi88y58v3m3" path="res://scripts/quest_tab.gd" id="1_5gmyl"]
+
+[node name="QuestTab" type="Control" unique_id=125014996]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gmyl")
+
+[node name="Body" type="HBoxContainer" parent="." unique_id=156960717]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="ListPanel" type="VBoxContainer" parent="Body" unique_id=1617746344]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Body/ListPanel" unique_id=309857419]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestList" type="VBoxContainer" parent="Body/ListPanel/ScrollContainer" unique_id=1978166210]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="EmptyLabel" type="Label" parent="Body/ListPanel" unique_id=1708486231]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "No quests yet"
+
+[node name="Details" type="VBoxContainer" parent="Body" unique_id=550232623]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="Body/Details" unique_id=974416942]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quest Title"
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="Body/Details" unique_id=253098569]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Description appears here"
+autowrap_mode = 2
+
+[node name="ObjectivesHeader" type="Label" parent="Body/Details" unique_id=1415679438]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Objectives:"
+
+[node name="ObjectivesContainer" type="VBoxContainer" parent="Body/Details" unique_id=1349842645]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RewardsHeader" type="Label" parent="Body/Details" unique_id=270220028]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rewards:"
+
+[node name="RewardsContainer" type="VBoxContainer" parent="Body/Details" unique_id=490471922]
+layout_mode = 2
+theme_override_constants/separation = 12

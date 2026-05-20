@@ -4,7 +4,8 @@ extends CanvasLayer
 enum Tab { INVENTORY, QUESTS }
 
 @onready var inventory_tab: InventoryTab = $Panel/MarginContainer/Body/ContentArea/InventoryTab
-@onready var quest_tab: Label = $Panel/MarginContainer/Body/ContentArea/QuestTabPlaceholder
+@onready var quest_tab: QuestTab = $Panel/MarginContainer/Body/ContentArea/QuestTab
+
 var current_tab: Tab = Tab.INVENTORY
 var tabs: Array[Tab] = [Tab.INVENTORY, Tab.QUESTS]
 
@@ -19,8 +20,11 @@ func open() -> void:
 	_show_current_tab()
 	visible = true
 	get_tree().paused = true
+	get_viewport().gui_release_focus()
 	inventory_tab.refresh()
+	quest_tab.refresh()
 	opened.emit()
+
 
 func close() -> void:
 	visible = false
@@ -33,6 +37,9 @@ func _show_current_tab() -> void:
 	quest_tab.visible = (current_tab == Tab.QUESTS)
 	if current_tab == Tab.INVENTORY:
 		inventory_tab.focus_first_cell.call_deferred()
+	elif current_tab == Tab.QUESTS:
+		quest_tab.focus_first_entry.call_deferred()
+
 
 func _cycle_tab(direction: int) -> void:
 	var idx := tabs.find(current_tab)

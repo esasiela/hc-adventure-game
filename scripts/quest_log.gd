@@ -32,6 +32,8 @@ func accept_quest(quest: Quest) -> void:
 	quest_states[quest.id] = QuestState.ACTIVE
 	quest_accepted.emit(quest)
 	quest_state_changed.emit(quest, QuestState.ACTIVE)
+	check_quest_progress()
+
 
 func turn_in_quest(quest: Quest) -> void:
 	if get_state(quest) != QuestState.READY:

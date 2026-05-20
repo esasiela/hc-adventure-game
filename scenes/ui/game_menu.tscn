@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0knye3alea0d" path="res://scripts/game_menu.gd" id="1_5s0hc"]
 [ext_resource type="PackedScene" uid="uid://dbyuhj6qlj5s8" path="res://scenes/ui/inventory_tab.tscn" id="2_tup5k"]
+[ext_resource type="PackedScene" uid="uid://c0cuv3cek10bm" path="res://scenes/ui/quest_tab.tscn" id="3_6jy2e"]
 
 [node name="GameMenu" type="CanvasLayer" unique_id=754159516]
 process_mode = 3
@@ -50,13 +51,8 @@ theme_override_constants/margin_bottom = 30
 process_mode = 3
 layout_mode = 2
 
-[node name="QuestTabPlaceholder" type="Label" parent="Panel/MarginContainer/Body/ContentArea" unique_id=1304571875]
-visible = false
+[node name="QuestTab" parent="Panel/MarginContainer/Body/ContentArea" unique_id=125014996 instance=ExtResource("3_6jy2e")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 72
-text = "Quest Tab"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="RightArrow" type="Label" parent="Panel/MarginContainer/Body" unique_id=613542168]
 custom_minimum_size = Vector2(60, 0)
