@@ -5,12 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://ccdvui2l5y0a0" path="res://assets/images/items/shikashi/tile204.png" id="3_4xjor"]
 [ext_resource type="Texture2D" uid="uid://dl7vmpsrfsg6v" path="res://assets/images/ninja_adventure/Actor/Character/OldMan/SpriteSheet.png" id="4_ap1mf"]
 [ext_resource type="Resource" uid="uid://b3s7mun6oyqf4" path="res://npcs/vendor_one/vendor_one_inventory.tres" id="4_ifmkn"]
+[ext_resource type="Resource" uid="uid://cxxbhoax8lrir" path="res://quests/gather_copper/gather_copper_quest.tres" id="5_4xjor"]
 
 [node name="VendorOne" unique_id=1751764694 instance=ExtResource("1_gn6gy")]
 display_name = "Vendor One"
 dialogue = ExtResource("2_ifmkn")
 portrait = ExtResource("3_4xjor")
 vendor_inventory = ExtResource("4_ifmkn")
+quest = ExtResource("5_4xjor")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1256236975]
 texture = ExtResource("4_ap1mf")

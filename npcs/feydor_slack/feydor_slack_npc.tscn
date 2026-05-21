@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bsessbvakrq1f"]
+
+[ext_resource type="PackedScene" uid="uid://q8xeyu0a0hp8" path="res://npcs/npc.tscn" id="1_nquu3"]
+[ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="2_0yt18"]
+[ext_resource type="Resource" uid="uid://c0y8p652npgg" path="res://npcs/feydor_slack/feydor_slack_dialogue.tres" id="2_q8gm6"]
+[ext_resource type="Resource" uid="uid://frd4l0o7g5t1" path="res://quests/gather_copper2/gather_copper2_quest.tres" id="2_te64f"]
+[ext_resource type="Resource" uid="uid://kp02ywkm5xei" path="res://npcs/feydor_slack/feydor_slack_inventory.tres" id="3_u4ebg"]
+
+[node name="FeydorSlack" unique_id=1751764694 instance=ExtResource("1_nquu3")]
+display_name = "Feydor Slack"
+dialogue = ExtResource("2_q8gm6")
+vendor_inventory = ExtResource("3_u4ebg")
+quest = ExtResource("2_te64f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1796010105]
+modulate = Color(0.2901961, 0.24313726, 0.39215687, 1)
+texture = ExtResource("2_0yt18")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 18)

@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://frd4l0o7g5t1"]
+
+[ext_resource type="Resource" uid="uid://bk20h5bs4wq73" path="res://quests/gather_copper2/gather_copper2_completed.tres" id="1_es20n"]
+[ext_resource type="Resource" uid="uid://hw3sjireocki" path="res://quests/gather_copper2/gather_copper2_in_progress.tres" id="2_haq05"]
+[ext_resource type="Script" uid="uid://d0fnk84827y3j" path="res://quests/objective.gd" id="3_perwf"]
+[ext_resource type="Resource" uid="uid://cd0xdjj78ska0" path="res://quests/gather_copper2/gather_copper2_offer.tres" id="4_ddrj8"]
+[ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="4_uptkx"]
+[ext_resource type="Script" uid="uid://bpnpycmbewxmx" path="res://quests/objective_gather.gd" id="5_fsgiy"]
+[ext_resource type="Script" uid="uid://dnsnn3jvnfqdq" path="res://quests/reward.gd" id="7_hnvrj"]
+[ext_resource type="Script" uid="uid://dvuxfj4rkkw00" path="res://quests/reward_gold.gd" id="8_3dxqs"]
+[ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="9_68ijy"]
+[ext_resource type="Script" uid="uid://478l12uuxcht" path="res://quests/reward_item.gd" id="10_bbqpy"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="11_tihay"]
+[ext_resource type="Resource" uid="uid://nijs64ax8ytb" path="res://quests/gather_copper2/gather_copper2_turn_in.tres" id="12_xcwln"]
+
+[sub_resource type="Resource" id="Resource_axnii"]
+script = ExtResource("5_fsgiy")
+item = ExtResource("4_uptkx")
+required_quantity = 3
+description = "Gather Copper ore"
+metadata/_custom_type_script = "uid://bpnpycmbewxmx"
+
+[sub_resource type="Resource" id="Resource_rmlik"]
+script = ExtResource("8_3dxqs")
+amount = 55
+description = "55 Gold"
+metadata/_custom_type_script = "uid://dvuxfj4rkkw00"
+
+[sub_resource type="Resource" id="Resource_no3lo"]
+script = ExtResource("10_bbqpy")
+item = ExtResource("9_68ijy")
+quantity = 3
+description = "1 Stone"
+metadata/_custom_type_script = "uid://478l12uuxcht"
+
+[resource]
+script = ExtResource("11_tihay")
+id = "gather_copper2"
+title = "Vendor's Copper"
+description = "The vendor Feydor Slack needs copper ore to trade with the passing caravans. Bring him 3 pieces of copper."
+objectives = Array[ExtResource("3_perwf")]([SubResource("Resource_axnii")])
+offer_dialogue = ExtResource("4_ddrj8")
+in_progress_dialogue = ExtResource("2_haq05")
+turn_in_dialogue = ExtResource("12_xcwln")
+completed_dialogue = ExtResource("1_es20n")
+rewards = Array[ExtResource("7_hnvrj")]([SubResource("Resource_rmlik"), SubResource("Resource_no3lo")])
+metadata/_custom_type_script = "uid://klkf740dgoy6"

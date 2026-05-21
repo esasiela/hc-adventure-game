@@ -54,16 +54,22 @@ func _show_choices() -> void:
 	
 	# focus the first choice for controller nav
 	if choices_container.get_child_count() > 0:
+		print("dialogue showing choices, count=", choices_container.get_child_count(), " grabbing focus on first")
 		choices_container.get_child(0).grab_focus.call_deferred()
+	else:
+		print("dialogue showing zero or fewer choices")
 
 
 func _clear_choices() -> void:
 	for child in choices_container.get_children():
+		choices_container.remove_child(child)
 		child.queue_free()
+
 
 func _on_choice_pressed(action: String) -> void:
 	choice_selected.emit(action)
-	close()
+	if action in ["close", "open_vendor", "accept_quest", "turn_in_quest"]:
+		close()
 
 
 func close() -> void:
