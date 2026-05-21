@@ -129,7 +129,7 @@ func _on_dialogue_choice(action: String) -> void:
 			if quest:
 				QuestLog.accept_quest(quest)
 		"turn_in_quest":
-			if quest:
+			if quest and QuestLog.get_state(quest) == QuestLog.QuestState.READY:
 				for objective in quest.objectives:
 					objective.consume()
 				for reward in quest.rewards:
@@ -167,7 +167,7 @@ func _open_quest() -> void:
 	if not dialogue_to_play:
 		return
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
-	dialogue_ui.show_dialogue.call_deferred(dialogue_to_play, self)
+	dialogue_ui.show_dialogue.call_deferred(dialogue_to_play, self, quest.rewards)
 
 
 func _pick_quest_dialogue() -> Dialogue:

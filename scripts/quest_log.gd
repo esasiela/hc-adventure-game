@@ -51,20 +51,30 @@ func get_active_quests() -> Array:
 func is_quest_ready(quest: Quest) -> bool:
 	if get_state(quest) != QuestState.ACTIVE:
 		return false
+	return _meets_objectives(quest)
+
+
+# Called periodically (or on inventory changes) to promote ACTIVE quests to READY
+func check_quest_progress() -> void:
+	for quest_id in quest_states:
+		var state = quest_states[quest_id]
+		var quest: Quest = _get_quest_by_id(quest_id)
+		if not quest:
+			continue
+		var meets := _meets_objectives(quest)
+		if state == QuestState.ACTIVE and meets:
+			quest_states[quest_id] = QuestState.READY
+			quest_state_changed.emit(quest, QuestState.READY)
+		elif state == QuestState.READY and not meets:
+			quest_states[quest_id] = QuestState.ACTIVE
+			quest_state_changed.emit(quest, QuestState.ACTIVE)
+
+func _meets_objectives(quest: Quest) -> bool:
 	for obj in quest.objectives:
 		if not obj.is_complete():
 			return false
 	return true
 
-# Called periodically (or on inventory changes) to promote ACTIVE quests to READY
-func check_quest_progress() -> void:
-	for quest_id in quest_states:
-		if quest_states[quest_id] != QuestState.ACTIVE:
-			continue
-		var quest: Quest = _get_quest_by_id(quest_id)
-		if quest and is_quest_ready(quest):
-			quest_states[quest_id] = QuestState.READY
-			quest_state_changed.emit(quest, QuestState.READY)
 
 # Helper to find a Quest resource by id (you'd build a registry later; for now load by path)
 var _quest_registry: Dictionary = {}

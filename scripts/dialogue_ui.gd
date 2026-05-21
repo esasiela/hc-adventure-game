@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var portrait_texture: TextureRect = $Panel/MarginContainer/Root/Body/PortraitTexture
 @onready var choices_container: VBoxContainer = $Panel/MarginContainer/Root/Footer/ChoicesContainer
 @onready var continue_hint: Label = $Panel/MarginContainer/Root/Footer/ContinueHint
+@onready var rewards_panel: HBoxContainer = $Panel/MarginContainer/Root/RewardsPanel
+@onready var rewards_list: VBoxContainer = $Panel/MarginContainer/Root/RewardsPanel/RewardsList
 
 var current_dialogue: Dialogue
 var current_line_index: int = 0
@@ -16,7 +18,7 @@ signal choice_selected(action: String)
 func _ready() -> void:
 	visible = false
 
-func show_dialogue(dialogue: Dialogue, npc: NPC = null) -> void:
+func show_dialogue(dialogue: Dialogue, npc: NPC = null, rewards: Array = []) -> void:
 	current_dialogue = dialogue
 	current_line_index = 0
 	
@@ -28,6 +30,30 @@ func show_dialogue(dialogue: Dialogue, npc: NPC = null) -> void:
 	
 	visible = true
 	_show_current_line()
+	show_rewards(rewards)
+
+
+func show_rewards(rewards: Array) -> void:
+	for child in rewards_list.get_children():
+		rewards_list.remove_child(child)
+		child.queue_free()
+	
+	if rewards.is_empty():
+		rewards_panel.visible = false
+		return
+	
+	for reward in rewards:
+		var label := Label.new()
+		label.text = "• " + reward.description
+		label.add_theme_font_size_override("font_size", 20)
+		rewards_list.add_child(label)
+	
+	rewards_panel.visible = true
+
+
+func clear_rewards() -> void:
+	rewards_panel.visible = false
+
 
 func _show_current_line() -> void:
 	var line: DialogueLine = current_dialogue.lines[current_line_index]

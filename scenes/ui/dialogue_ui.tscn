@@ -45,12 +45,27 @@ layout_mode = 2
 stretch_mode = 5
 
 [node name="TextLabel" type="Label" parent="Panel/MarginContainer/Root/Body" unique_id=1544412421]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 40
 text = "Dialogue text appears here..."
 autowrap_mode = 2
+
+[node name="RewardsPanel" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=372379780]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RewardsHeader" type="Label" parent="Panel/MarginContainer/Root/RewardsPanel" unique_id=1770251300]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rewards:"
+
+[node name="RewardsList" type="VBoxContainer" parent="Panel/MarginContainer/Root/RewardsPanel" unique_id=1095975848]
+layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="Footer" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=1593972262]
 layout_mode = 2
