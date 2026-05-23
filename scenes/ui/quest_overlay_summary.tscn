@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dyvad1hxcib1v"]
+
+[ext_resource type="Script" uid="uid://clcdvkrgddewv" path="res://scripts/quest_overlay_summary.gd" id="1_kamno"]
+
+[node name="QuestOverlaySummary" type="VBoxContainer" unique_id=561654740]
+script = ExtResource("1_kamno")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=222690589]
+layout_mode = 2
+
+[node name="QuestTitle" type="Label" parent="VBoxContainer" unique_id=122169051]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="ObjectivesContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1013202529]
+layout_mode = 2

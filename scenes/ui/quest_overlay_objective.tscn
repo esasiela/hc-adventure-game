@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://04k5d5cytvlb"]
+
+[ext_resource type="Script" uid="uid://csthtq350rc0l" path="res://scripts/quest_overlay_objective.gd" id="1_6bl2d"]
+
+[node name="QuestOverlayObjective" type="HBoxContainer" unique_id=1182570874]
+theme_override_constants/separation = 12
+script = ExtResource("1_6bl2d")
+
+[node name="BulletLabel" type="Label" parent="." unique_id=1899048119]
+layout_mode = 2
+text = "• "
+
+[node name="ProgressLabel" type="Label" parent="." unique_id=464087432]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32

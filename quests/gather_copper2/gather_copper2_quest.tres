@@ -16,7 +16,7 @@
 [sub_resource type="Resource" id="Resource_axnii"]
 script = ExtResource("5_fsgiy")
 item = ExtResource("4_uptkx")
-required_quantity = 3
+required_qty = 5
 description = "Gather Copper ore"
 metadata/_custom_type_script = "uid://bpnpycmbewxmx"
 

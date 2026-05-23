@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://chcm47bg56cr6" path="res://scenes/ui/dialogue_ui.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://c1hvf17j858x4" path="res://scenes/ui/gold_overlay.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://b5i7dfi4umlbb" path="res://scenes/ui/vendor_ui.tscn" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ds4sq1tap7a5k" path="res://scenes/ui/quest_overlay.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ctbei6gjvw3gb" path="res://scenes/ui/game_menu.tscn" id="7_o6xl0"]
 
 [node name="Main" type="Node2D" unique_id=1083891039]
@@ -23,5 +24,7 @@ initial_spawn_name = "DefaultPlayerSpawn"
 [node name="VendorUI" parent="UI" unique_id=226857976 groups=["vendor_ui"] instance=ExtResource("4_tbgi4")]
 
 [node name="GoldOverlay" parent="UI" unique_id=245660110 instance=ExtResource("3_sugp2")]
+
+[node name="QuestOverlay" parent="UI" unique_id=1883518701 instance=ExtResource("6_o6xl0")]
 
 [node name="GameMenu" parent="UI" unique_id=754159516 groups=["game_menu"] instance=ExtResource("7_o6xl0")]

@@ -31,6 +31,7 @@ func spend_gold(amount: int) -> bool:
 
 func add_item(item: Item, quantity: int) -> void:
 	inventory[item] = inventory.get(item, 0) + quantity
+	print("PlayerData.add_item, emitting signal")
 	item_added.emit(item, quantity)
 
 

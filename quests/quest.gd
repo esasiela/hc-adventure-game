@@ -15,3 +15,15 @@ extends Resource
 
 @export_group("Rewards")
 @export var rewards: Array[Reward] = []
+
+
+func activate() -> void:
+	print("Quest.activate(" + id +")")
+	for objective in objectives:
+		objective.activate()
+	
+	
+func deactivate() -> void:
+	print("Quest.deactivate(" + id + ")")
+	for objective in objectives:
+		objective.deactivate()

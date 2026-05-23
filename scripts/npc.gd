@@ -34,16 +34,22 @@ func talk_to(player: Player) -> void:
 	var services := _available_services()
 	if services.is_empty():
 		return
-	if services.size() == 1:
-		_start_service(services[0])
-		return
-	# multiple — show generated menu
-	var menu := _build_service_menu()
+
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
+	
 	if not dialogue_ui.choice_selected.is_connected(_on_dialogue_choice):
 		dialogue_ui.choice_selected.connect(_on_dialogue_choice)
+	
 	if not dialogue_ui.closed.is_connected(_on_dialogue_closed):
 		dialogue_ui.closed.connect(_on_dialogue_closed)
+
+	if services.size() == 1:
+		print("NPC has exactly one service, jumping straight to that dialogue")
+		_start_service(services[0])
+		return
+
+	# multiple — show generated menu
+	var menu := _build_service_menu()	
 	dialogue_ui.show_dialogue(menu, self)
 
 
@@ -79,6 +85,7 @@ func _build_service_menu() -> Dialogue:
 
 
 func _start_service(service: String) -> void:
+	print("npc._start_service(" + service + ")")
 	match service:
 		"quest": _open_quest()
 		"vendor": _open_vendor()
@@ -118,6 +125,7 @@ func _pick_dialogue() -> Dialogue:
 	return null
 
 func _on_dialogue_choice(action: String) -> void:
+	print("npc._on_dialogue_choice(" + action + ")")
 	match action:
 		"open_chat":
 			_open_chat()
@@ -126,8 +134,12 @@ func _on_dialogue_choice(action: String) -> void:
 		"open_quest":
 			_open_quest()
 		"accept_quest":
+			print("dialogue choice - accept_quest")
 			if quest:
+				print("dialogue choice - non-null quest")
 				QuestLog.accept_quest(quest)
+			else:
+				print("dialogue choice - null quest")
 		"turn_in_quest":
 			if quest and QuestLog.get_state(quest) == QuestLog.QuestState.READY:
 				for objective in quest.objectives:
@@ -136,6 +148,8 @@ func _on_dialogue_choice(action: String) -> void:
 					reward.apply()
 				QuestLog.turn_in_quest(quest)
 				# rewards will be applied here later
+		_:
+			print("dialogue choice - action case did not match")
 
 
 func _on_dialogue_closed() -> void:
@@ -145,7 +159,6 @@ func _on_dialogue_closed() -> void:
 
 
 func _open_chat() -> void:
-	print("_open_chat called, dialogue=", dialogue)
 	if not dialogue:
 		return
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
@@ -158,13 +171,13 @@ func _open_vendor() -> void:
 
 
 func _open_quest() -> void:
-	print("_open_quest on ", display_name, " quest=", quest)
+	print("_open_quest() running")
 	if not quest:
-		print("npc has no quest, exiting dialogue")
+		print("early return, null quest")
 		return
-	print("npc has a quest, continuing dialogue")
 	var dialogue_to_play := _pick_quest_dialogue()
 	if not dialogue_to_play:
+		print("early return, null quest dialogue")
 		return
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
 	dialogue_ui.show_dialogue.call_deferred(dialogue_to_play, self, quest.rewards)

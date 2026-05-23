@@ -10,7 +10,11 @@ enum QuestState {
 # quest_id (string) -> QuestState
 var quest_states: Dictionary = {}
 
+# quest_id (string) -> Quest (deep duplicate)
+var _active_quests: Dictionary = {}
+
 signal quest_accepted(quest: Quest)
+signal quest_completed(quest: Quest)
 signal quest_state_changed(quest: Quest, new_state: QuestState)
 
 
@@ -26,12 +30,21 @@ func get_state(quest: Quest) -> QuestState:
 		return QuestState.NOT_STARTED
 	return quest_states.get(quest.id, QuestState.NOT_STARTED)
 
-func accept_quest(quest: Quest) -> void:
+func accept_quest(quest: Quest) -> void:	
 	if get_state(quest) != QuestState.NOT_STARTED:
 		return
+	
+	# make a duplicate of the quest resource so we can mutate the data
+	var runtime_quest := quest.duplicate(true) as Quest
+	_active_quests[quest.id] = runtime_quest
+	runtime_quest.activate()
+	
 	quest_states[quest.id] = QuestState.ACTIVE
-	quest_accepted.emit(quest)
-	quest_state_changed.emit(quest, QuestState.ACTIVE)
+
+	quest_accepted.emit(runtime_quest)
+	quest_state_changed.emit(runtime_quest, QuestState.ACTIVE)
+
+	# TODO replace check_quest_progress with individual quests checking their own
 	check_quest_progress()
 
 
@@ -40,6 +53,8 @@ func turn_in_quest(quest: Quest) -> void:
 		return
 	quest_states[quest.id] = QuestState.TURNED_IN
 	quest_state_changed.emit(quest, QuestState.TURNED_IN)
+	quest_completed.emit(quest)
+
 
 func get_active_quests() -> Array:
 	var result: Array = []

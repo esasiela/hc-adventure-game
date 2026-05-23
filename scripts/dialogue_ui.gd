@@ -45,7 +45,7 @@ func show_rewards(rewards: Array) -> void:
 	for reward in rewards:
 		var label := Label.new()
 		label.text = "• " + reward.description
-		label.add_theme_font_size_override("font_size", 20)
+		label.add_theme_font_size_override("font_size", 32)
 		rewards_list.add_child(label)
 	
 	rewards_panel.visible = true
@@ -80,10 +80,7 @@ func _show_choices() -> void:
 	
 	# focus the first choice for controller nav
 	if choices_container.get_child_count() > 0:
-		print("dialogue showing choices, count=", choices_container.get_child_count(), " grabbing focus on first")
 		choices_container.get_child(0).grab_focus.call_deferred()
-	else:
-		print("dialogue showing zero or fewer choices")
 
 
 func _clear_choices() -> void:
@@ -93,12 +90,14 @@ func _clear_choices() -> void:
 
 
 func _on_choice_pressed(action: String) -> void:
+	print("dialogue_ui._on_choice_pressed(" + action + ") emitting 'choice_selected' signal")
 	choice_selected.emit(action)
 	if action in ["close", "open_vendor", "accept_quest", "turn_in_quest"]:
 		close()
 
 
 func close() -> void:
+	print("dialogue close()\n++++++++++++++\n")
 	visible = false
 	_clear_choices()
 	get_viewport().gui_release_focus()
