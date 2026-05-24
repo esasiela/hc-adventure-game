@@ -9,7 +9,7 @@ enum QuestState {
 	TURNED_IN     # complete and rewarded
 }
 
-var state: QuestState = QuestState.NOT_STARTED
+var _state: QuestState = QuestState.NOT_STARTED
 
 signal state_changed(quest: Quest, new_state: QuestState)
 
@@ -31,24 +31,24 @@ signal state_changed(quest: Quest, new_state: QuestState)
 
 func _recompute_state() -> void:
 	print("Quest._recompute_state()")
-	if state == QuestState.NOT_STARTED or state == QuestState.TURNED_IN:
+	if _state == QuestState.NOT_STARTED or _state == QuestState.TURNED_IN:
 		return
 	
-	var new_state: QuestState = state
+	var new_state: QuestState = _state
 	var all_satisfied: bool = true
 	for objective in objectives:
 		if not objective.is_satisfied():
 			all_satisfied = false
 			break
 	
-	if all_satisfied and state == QuestState.ACTIVE:
+	if all_satisfied and _state == QuestState.ACTIVE:
 		print("Quest._recompute_state() transition to READY")
-		state = QuestState.READY
-		state_changed.emit(self, state)
-	elif not all_satisfied and state == QuestState.READY:
+		_state = QuestState.READY
+		state_changed.emit(self, _state)
+	elif not all_satisfied and _state == QuestState.READY:
 		print("Quest._recompute_state() transition to ACTIVE")
-		state = QuestState.ACTIVE
-		state_changed.emit(self, state)
+		_state = QuestState.ACTIVE
+		state_changed.emit(self, _state)
 
 
 func _on_objective_satisfied_changed() -> void:
@@ -59,10 +59,10 @@ func _on_objective_satisfied_changed() -> void:
 func activate() -> void:
 	print("Quest.activate(" + id +")")
 	
-	if state != QuestState.NOT_STARTED:
-		printerr("Quest.activate(" + id + ") - expect NOT_STARTED but have " + str(state))
+	if _state != QuestState.NOT_STARTED:
+		printerr("Quest.activate(" + id + ") - expect NOT_STARTED but have " + str(_state))
 	
-	state = QuestState.ACTIVE
+	_state = QuestState.ACTIVE
 	
 	for objective in objectives:
 		objective.activate()
@@ -74,8 +74,8 @@ func activate() -> void:
 func turn_in() -> void:
 	print("Quest.turn_in()")
 	
-	if state != QuestState.READY:
-		printerr("Quest.turn_in() cannot turn in when state is:", state)
+	if _state != QuestState.READY:
+		printerr("Quest.turn_in() cannot turn in when state is:", _state)
 		return
 	
 	for objective in objectives:
@@ -84,13 +84,13 @@ func turn_in() -> void:
 		reward.apply()
 	
 	# set state
-	state = QuestState.TURNED_IN
+	_state = QuestState.TURNED_IN
 	
 	# deactivate
 	deactivate()
 	
 	# emit state change signal
-	state_changed.emit(self, state)
+	state_changed.emit(self, _state)
 
 
 func deactivate() -> void:

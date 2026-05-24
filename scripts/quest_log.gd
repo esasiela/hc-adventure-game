@@ -13,7 +13,7 @@ signal quest_turned_in(quest: Quest)
 
 func get_state(id: String) -> Quest.QuestState:
 	if _active_quests.has(id):
-		return _active_quests[id].state
+		return _active_quests[id]._state
 	return _quest_history.get(id, Quest.QuestState.NOT_STARTED)
 
 
@@ -22,7 +22,7 @@ func get_state_str(id: String) -> String:
 
 
 func accept_quest(quest: Quest) -> void:
-	if quest.state != Quest.QuestState.NOT_STARTED:
+	if quest._state != Quest.QuestState.NOT_STARTED:
 		printerr("QuestLog.accept_quest(" + quest.id + ") cannot accept quest in state: " + str(quest.state))
 		return
 	
@@ -40,7 +40,7 @@ func turn_in_quest(quest_id: String) -> void:
 		printerr("QuestLog.turn_in_quest(", quest_id, ") quest not found in _active_quests")
 		return
 	
-	if quest.state != Quest.QuestState.READY:
+	if quest._state != Quest.QuestState.READY:
 		printerr("QuestLog.turn_in_quest(" + quest.id + ") cannot turn in quest in state: " + str(quest.state))
 		return
 	
