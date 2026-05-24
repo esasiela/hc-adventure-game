@@ -8,7 +8,7 @@ signal progress_changed()
 
 
 # Subclasses override these
-func is_complete() -> bool:
+func is_satisfied() -> bool:
 	return false
 
 func get_progress_text() -> String:

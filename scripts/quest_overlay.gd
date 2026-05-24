@@ -9,7 +9,7 @@ const QuestOverlaySummaryScene := preload("res://scenes/ui/quest_overlay_summary
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	QuestLog.quest_accepted.connect(_on_quest_accepted)
-	QuestLog.quest_completed.connect(_on_quest_completed)
+	QuestLog.quest_turned_in.connect(_on_quest_completed)
 
 
 func _on_quest_accepted(quest: Quest) -> void:

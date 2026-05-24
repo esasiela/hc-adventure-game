@@ -32,13 +32,12 @@ func _apply() -> void:
 	state_label.text = _state_text()
 
 func _state_text() -> String:
-	var state := QuestLog.get_state(quest)
-	match state:
-		QuestLog.QuestState.ACTIVE:
+	match quest.state:
+		Quest.QuestState.ACTIVE:
 			return "Active"
-		QuestLog.QuestState.READY:
+		Quest.QuestState.READY:
 			return "Ready to turn in!"
-		QuestLog.QuestState.TURNED_IN:
+		Quest.QuestState.TURNED_IN:
 			return "Complete"
 		_:
 			return ""

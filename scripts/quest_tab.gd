@@ -17,14 +17,13 @@ func refresh() -> void:
 	
 	# gather quests to show: any state except NOT_STARTED
 	var quests_to_show: Array[Quest] = []
-	for quest_id in QuestLog.quest_states:
-		var state = QuestLog.quest_states[quest_id]
-		if state == QuestLog.QuestState.NOT_STARTED:
-			continue
-		var q: Quest = QuestLog._get_quest_by_id(quest_id)
-		if q:
-			quests_to_show.append(q)
-	
+
+	# TODO just iterate active_quests
+	for quest in QuestLog.active_quests():
+		if quest.state == Quest.QuestState.NOT_STARTED:
+			continue	
+		quests_to_show.append(quest)
+		
 	if quests_to_show.is_empty():
 		empty_label.visible = true
 		_clear_details()

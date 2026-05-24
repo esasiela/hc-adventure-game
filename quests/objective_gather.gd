@@ -8,9 +8,9 @@ var progress_qty: int = 0
 var _satisfied: bool = false
 
 
-func is_complete() -> bool:
+func is_satisfied() -> bool:
 	if not item:
-		printerr("GatherObjective.is_complete() - null item needs configuration")
+		printerr("GatherObjective.is_satisfied() - null item needs configuration")
 		return false
 	#return PlayerData.inventory.get(item, 0) >= required_qty
 	return progress_qty >= required_qty
@@ -47,9 +47,9 @@ func _player_inventory_changed(signal_item: Item, signal_qty: int) -> void:
 		print("GatherObjective - emit progress_changed new=" + str(progress_qty) + " old=" + str(old_qty))
 		progress_changed.emit()
 	
-	if is_complete() != old_satisfied:
-		_satisfied = is_complete()
-		print("GatherObjective - emit satisfied_changed new=" + str(is_complete()) + " old=" + str(old_satisfied))
+	if is_satisfied() != old_satisfied:
+		_satisfied = is_satisfied()
+		print("GatherObjective - emit satisfied_changed new=" + str(is_satisfied()) + " old=" + str(old_satisfied))
 		satisfied_changed.emit()
 
 

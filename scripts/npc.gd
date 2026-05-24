@@ -33,6 +33,7 @@ func has_interaction() -> bool:
 func talk_to(player: Player) -> void:
 	var services := _available_services()
 	if services.is_empty():
+		printerr("NPC.talk_to() npc [", display_name, "] offers no services, exiting conversation")
 		return
 
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
@@ -44,12 +45,11 @@ func talk_to(player: Player) -> void:
 		dialogue_ui.closed.connect(_on_dialogue_closed)
 
 	if services.size() == 1:
-		print("NPC has exactly one service, jumping straight to that dialogue")
 		_start_service(services[0])
 		return
 
 	# multiple — show generated menu
-	var menu := _build_service_menu()	
+	var menu := _build_service_menu()
 	dialogue_ui.show_dialogue(menu, self)
 
 
@@ -85,11 +85,11 @@ func _build_service_menu() -> Dialogue:
 
 
 func _start_service(service: String) -> void:
-	print("npc._start_service(" + service + ")")
 	match service:
 		"quest": _open_quest()
 		"vendor": _open_vendor()
 		"chat": _open_chat()
+
 
 func _available_services() -> Array:
 	var result: Array = []
@@ -105,18 +105,18 @@ func _available_services() -> Array:
 func _pick_dialogue() -> Dialogue:
 	# Quest-aware: if NPC has a quest, route based on its state
 	if quest:
-		var state := QuestLog.get_state(quest)
-		match state:
-			QuestLog.QuestState.NOT_STARTED:
+		print("npc._pick_dialogue - QuestLog.get_state(", quest.id, ") =", QuestLog.get_state_str(quest.id))
+		match QuestLog.get_state(quest.id):
+			Quest.QuestState.NOT_STARTED:
 				if quest.offer_dialogue:
 					return quest.offer_dialogue
-			QuestLog.QuestState.ACTIVE:
+			Quest.QuestState.ACTIVE:
 				if quest.in_progress_dialogue:
 					return quest.in_progress_dialogue
-			QuestLog.QuestState.READY:
+			Quest.QuestState.READY:
 				if quest.turn_in_dialogue:
 					return quest.turn_in_dialogue
-			QuestLog.QuestState.TURNED_IN:
+			Quest.QuestState.TURNED_IN:
 				if quest.completed_dialogue:
 					return quest.completed_dialogue
 	# Fallback: NPC's own dialogue field
@@ -125,7 +125,7 @@ func _pick_dialogue() -> Dialogue:
 	return null
 
 func _on_dialogue_choice(action: String) -> void:
-	print("npc._on_dialogue_choice(" + action + ")")
+	print("NPC._on_dialogue_choice(", action, ") running")
 	match action:
 		"open_chat":
 			_open_chat()
@@ -134,22 +134,18 @@ func _on_dialogue_choice(action: String) -> void:
 		"open_quest":
 			_open_quest()
 		"accept_quest":
-			print("dialogue choice - accept_quest")
 			if quest:
-				print("dialogue choice - non-null quest")
 				QuestLog.accept_quest(quest)
-			else:
-				print("dialogue choice - null quest")
 		"turn_in_quest":
-			if quest and QuestLog.get_state(quest) == QuestLog.QuestState.READY:
-				for objective in quest.objectives:
-					objective.consume()
-				for reward in quest.rewards:
-					reward.apply()
-				QuestLog.turn_in_quest(quest)
-				# rewards will be applied here later
+			if quest and QuestLog.get_state(quest.id) == Quest.QuestState.READY:
+				print("NPC._on_dialogue_choice(", action, ") turning in a ready quest")
+				QuestLog.turn_in_quest(quest.id)
+			else:
+				printerr("NPC._on_dialogue_choice(", action, ") cannot turn in quest in state:", QuestLog.get_state_str(quest.id))
+		"close":
+			pass
 		_:
-			print("dialogue choice - action case did not match")
+			printerr("dialogue choice - action case did not match")
 
 
 func _on_dialogue_closed() -> void:
@@ -171,13 +167,10 @@ func _open_vendor() -> void:
 
 
 func _open_quest() -> void:
-	print("_open_quest() running")
 	if not quest:
-		print("early return, null quest")
 		return
 	var dialogue_to_play := _pick_quest_dialogue()
 	if not dialogue_to_play:
-		print("early return, null quest dialogue")
 		return
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
 	dialogue_ui.show_dialogue.call_deferred(dialogue_to_play, self, quest.rewards)
@@ -186,14 +179,13 @@ func _open_quest() -> void:
 func _pick_quest_dialogue() -> Dialogue:
 	if not quest:
 		return null
-	var state := QuestLog.get_state(quest)
-	match state:
-		QuestLog.QuestState.NOT_STARTED:
+	match QuestLog.get_state(quest.id):
+		Quest.QuestState.NOT_STARTED:
 			return quest.offer_dialogue
-		QuestLog.QuestState.ACTIVE:
+		Quest.QuestState.ACTIVE:
 			return quest.in_progress_dialogue
-		QuestLog.QuestState.READY:
+		Quest.QuestState.READY:
 			return quest.turn_in_dialogue
-		QuestLog.QuestState.TURNED_IN:
+		Quest.QuestState.TURNED_IN:
 			return quest.completed_dialogue
 	return null
