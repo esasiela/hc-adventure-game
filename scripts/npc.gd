@@ -33,7 +33,7 @@ func has_interaction() -> bool:
 func talk_to(player: Player) -> void:
 	var services := _available_services()
 	if services.is_empty():
-		printerr("NPC.talk_to() npc [", display_name, "] offers no services, exiting conversation")
+		push_error("NPC.talk_to() npc [", display_name, "] offers no services, exiting conversation")
 		return
 
 	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
@@ -105,7 +105,6 @@ func _available_services() -> Array:
 func _pick_dialogue() -> Dialogue:
 	# Quest-aware: if NPC has a quest, route based on its state
 	if quest:
-		print("npc._pick_dialogue - QuestLog.get_state(", quest.id, ") =", QuestLog.get_state_str(quest.id))
 		match QuestLog.get_state(quest.id):
 			Quest.QuestState.NOT_STARTED:
 				if quest.offer_dialogue:
@@ -125,7 +124,6 @@ func _pick_dialogue() -> Dialogue:
 	return null
 
 func _on_dialogue_choice(action: String) -> void:
-	print("NPC._on_dialogue_choice(", action, ") running")
 	match action:
 		"open_chat":
 			_open_chat()
@@ -138,14 +136,13 @@ func _on_dialogue_choice(action: String) -> void:
 				QuestLog.accept_quest(quest)
 		"turn_in_quest":
 			if quest and QuestLog.get_state(quest.id) == Quest.QuestState.READY:
-				print("NPC._on_dialogue_choice(", action, ") turning in a ready quest")
 				QuestLog.turn_in_quest(quest.id)
 			else:
-				printerr("NPC._on_dialogue_choice(", action, ") cannot turn in quest in state:", QuestLog.get_state_str(quest.id))
+				push_error("NPC._on_dialogue_choice(", action, ") cannot turn in quest in state:", QuestLog.get_state_str(quest.id))
 		"close":
 			pass
 		_:
-			printerr("dialogue choice - action case did not match")
+			push_error("dialogue choice - action case did not match")
 
 
 func _on_dialogue_closed() -> void:

@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://chcm47bg56cr6"]
 
 [ext_resource type="Script" uid="uid://do23o22j68yja" path="res://scripts/dialogue_ui.gd" id="1_y3syv"]
+[ext_resource type="Resource" uid="uid://c4v6qo7bftciy" path="res://scripts/dialogue/dialogue_continue_prompt.tres" id="2_sd0pw"]
 
 [node name="DialogueUI" type="CanvasLayer" unique_id=1351978307]
 script = ExtResource("1_y3syv")
+continue_prompt = ExtResource("2_sd0pw")
 
 [node name="Panel" type="Panel" parent="." unique_id=1039856166]
 anchors_preset = -1
@@ -75,6 +77,7 @@ alignment = 2
 layout_mode = 2
 
 [node name="ContinueHint" type="Label" parent="Panel/MarginContainer/Root/Footer" unique_id=2095505111]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "CROSS or 'e' to continue, CIRCLE or `ESC` to exit"

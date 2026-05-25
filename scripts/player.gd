@@ -99,8 +99,15 @@ func play_directional_animation(prefix: String) -> void:
 			animated_sprite_2d.play(prefix + "_down")
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		print("player._input: ", event.as_text(),
+		" handled=", get_viewport().is_input_handled())
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
+		print("\n--> player interact <--\n")
 		if interact_target:
 			if interact_target is HarvestNode:
 				change_state(State.MINING)

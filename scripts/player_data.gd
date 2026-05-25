@@ -31,7 +31,7 @@ func spend_gold(amount: int) -> bool:
 
 func add_item(item: Item, quantity: int) -> void:
 	inventory[item] = inventory.get(item, 0) + quantity
-	print("PlayerData.add_item(", item.id, ",", quantity, "), emitting signal")
+	#print("PlayerData.add_item(", item.id, ",", quantity, "), emitting signal")
 	item_added.emit(item, quantity)
 
 
@@ -42,7 +42,7 @@ func remove_item(item: Item, quantity: int) -> bool:
 	if inventory[item] <= 0:
 		inventory.erase(item)
 	
-	print("PlayerData.remove_item(", item.id, ",", quantity, "), emitting signal")
+	#print("PlayerData.remove_item(", item.id, ",", quantity, "), emitting signal")
 	item_removed.emit(item, quantity)
 	return true
 
