@@ -4,13 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://8rw3x0iwu62t" path="res://assets/images/items/cute_fantasy/tile044.png" id="2_jl8rk"]
 [ext_resource type="Resource" uid="uid://b78ghjbx1mamq" path="res://npcs/aldwin_smith/two_line_dialogue.tres" id="2_xgu8k"]
 [ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="3_vva32"]
+[ext_resource type="Resource" uid="uid://cxxbhoax8lrir" path="res://quests/gather_copper/gather_copper_quest.tres" id="4_vxphu"]
 
 [node name="AldwinSmith" unique_id=1751764694 instance=ExtResource("1_dnrts")]
-display_name = "Aldwin"
+display_name = "Aldwin Smith"
 dialogue = ExtResource("2_xgu8k")
 portrait = ExtResource("2_jl8rk")
 vendor_inventory = null
-quest = null
+quest = ExtResource("4_vxphu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1136388758]
 texture = ExtResource("3_vva32")

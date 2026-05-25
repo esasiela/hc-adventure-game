@@ -7,6 +7,8 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 
 func _ready() -> void:
+	DialogueUI.close()
+	
 	ZoneManager.register_zone_container(zone_container)
 	ZoneManager.register_player(player)
 		

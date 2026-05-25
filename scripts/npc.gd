@@ -2,6 +2,8 @@ class_name NPC
 extends Interactable
 
 
+const SERVICE_MENU_DIALOGUE: Dialogue = preload("res://dialogue/service_menu_dialogue.tres")
+
 @export var display_name: String = "Villager"
 @export var dialogue: Dialogue
 @export var portrait: Texture2D
@@ -33,73 +35,51 @@ func has_interaction() -> bool:
 func talk_to(player: Player) -> void:
 	var services := _available_services()
 	if services.is_empty():
-		push_error("NPC.talk_to() npc [", display_name, "] offers no services, exiting conversation")
+		push_error("NPC.talk_to() npc [%s] offers no services" % display_name)
 		return
-
-	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
 	
-	if not dialogue_ui.choice_selected.is_connected(_on_dialogue_choice):
-		dialogue_ui.choice_selected.connect(_on_dialogue_choice)
+	DialogueUI.choice_selected.connect(_on_dialogue_choice)
+	DialogueUI.closed.connect(_on_dialogue_closed)
 	
-	if not dialogue_ui.closed.is_connected(_on_dialogue_closed):
-		dialogue_ui.closed.connect(_on_dialogue_closed)
-
 	if services.size() == 1:
 		_start_service(services[0])
-		return
-
-	# multiple — show generated menu
-	var menu := _build_service_menu()
-	dialogue_ui.show_dialogue(menu, self)
+	else:
+		DialogueUI.start(self, _build_service_menu(services))
 
 
-func _build_service_menu() -> Dialogue:
-	var menu := Dialogue.new()
-	var line := DialogueLine.new()
-	line.speaker = display_name
-	line.text = "What can I help you with?"
-	menu.lines = [line]
-	
-	menu.choices = []
-	if quest and _pick_quest_dialogue() != null:
-		var c := DialogueChoice.new()
-		c.text = "About that work..."
-		c.action = "open_quest"
-		menu.choices.append(c)
-	if vendor_inventory:
-		var c := DialogueChoice.new()
-		c.text = "Show me your wares"
-		c.action = "open_vendor"
-		menu.choices.append(c)
-	if dialogue:
-		var c := DialogueChoice.new()
-		c.text = "Let's talk"
-		c.action = "open_chat"
-		menu.choices.append(c)
-	var goodbye := DialogueChoice.new()
-	goodbye.text = "Goodbye"
-	goodbye.action = "close"
-	menu.choices.append(goodbye)
-	
+func _build_service_menu(services: Array[String]) -> Dialogue:
+	var menu := SERVICE_MENU_DIALOGUE.duplicate(true) as Dialogue
+	# Filter choices to only those matching available services
+	var filtered: Array[DialogueChoice] = []
+	for choice in menu.choices:
+		var service_name := choice.action.trim_prefix("service_")
+		if service_name in services:
+			filtered.append(choice)
+	menu.choices = filtered
 	return menu
 
 
 func _start_service(service: String) -> void:
 	match service:
-		"quest": _open_quest()
-		"vendor": _open_vendor()
-		"chat": _open_chat()
+		"dialogue":
+			DialogueUI.start(self, dialogue)
+		"quest":
+			print("TODO: quest service")
+			DialogueUI.close()
+		"vendor":
+			print("TODO: vendor service")
+			DialogueUI.close()
 
 
-func _available_services() -> Array:
-	var result: Array = []
-	if quest and _pick_quest_dialogue() != null:
-		result.append("quest")
-	if vendor_inventory:
-		result.append("vendor")
+func _available_services() -> Array[String]:
+	var services: Array[String] = []
 	if dialogue:
-		result.append("chat")
-	return result
+		services.append("dialogue")
+	if quest:
+		services.append("quest")
+	if vendor_inventory:
+		services.append("vendor")
+	return services
 
 
 func _pick_dialogue() -> Dialogue:
@@ -123,39 +103,22 @@ func _pick_dialogue() -> Dialogue:
 		return dialogue
 	return null
 
-func _on_dialogue_choice(action: String) -> void:
-	match action:
-		"open_chat":
-			_open_chat()
-		"open_vendor":
-			_open_vendor()
-		"open_quest":
-			_open_quest()
-		"accept_quest":
-			if quest:
-				QuestLog.accept_quest(quest)
-		"turn_in_quest":
-			if quest and QuestLog.get_state(quest.id) == Quest.QuestState.READY:
-				QuestLog.turn_in_quest(quest.id)
-			else:
-				push_error("NPC._on_dialogue_choice(", action, ") cannot turn in quest in state:", QuestLog.get_state_str(quest.id))
-		"close":
-			pass
-		_:
-			push_error("dialogue choice - action case did not match")
+func _on_dialogue_choice(choice: DialogueChoice) -> void:
+	var action := choice.action
+	if action.begins_with("service_"):
+		var service := action.trim_prefix("service_")
+		_start_service(service)
 
 
 func _on_dialogue_closed() -> void:
-	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
-	dialogue_ui.choice_selected.disconnect(_on_dialogue_choice)
-	dialogue_ui.closed.disconnect(_on_dialogue_closed)
+	DialogueUI.choice_selected.disconnect(_on_dialogue_choice)
+	DialogueUI.closed.disconnect(_on_dialogue_closed)
 
 
 func _open_chat() -> void:
 	if not dialogue:
 		return
-	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
-	dialogue_ui.show_dialogue.call_deferred(dialogue, self)
+	DialogueUI.show_dialogue.call_deferred(dialogue, self)
 
 
 func _open_vendor() -> void:
@@ -169,8 +132,7 @@ func _open_quest() -> void:
 	var dialogue_to_play := _pick_quest_dialogue()
 	if not dialogue_to_play:
 		return
-	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
-	dialogue_ui.show_dialogue.call_deferred(dialogue_to_play, self, quest.rewards)
+	DialogueUI.show_dialogue.call_deferred(dialogue_to_play, self, quest.rewards)
 
 
 func _pick_quest_dialogue() -> Dialogue:

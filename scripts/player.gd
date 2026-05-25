@@ -23,6 +23,8 @@ func _ready() -> void:
 	vendor_ui.opened.connect(_on_vendor_opened)
 	vendor_ui.closed.connect(_on_vendor_closed)
 	
+	DialogueUI.closed.connect(_on_dialogue_closed)
+	
 	if OS.is_debug_build():
 		_seed_test_inventory()
 	
@@ -99,15 +101,11 @@ func play_directional_animation(prefix: String) -> void:
 			animated_sprite_2d.play(prefix + "_down")
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		print("player._input: ", event.as_text(),
-		" handled=", get_viewport().is_input_handled())
-
-
 func _unhandled_input(event: InputEvent) -> void:
+	if DialogueUI.visible:
+		return
+	
 	if event.is_action_pressed("interact"):
-		print("\n--> player interact <--\n")
 		if interact_target:
 			if interact_target is HarvestNode:
 				change_state(State.MINING)
@@ -152,9 +150,6 @@ func _enter_state_idle() -> void:
 
 func _enter_state_talking() -> void:
 	play_directional_animation("idle")
-	var dialogue_ui := get_tree().get_first_node_in_group("dialogue_ui") as DialogueUI
-	if not dialogue_ui.closed.is_connected(_on_dialogue_closed):
-		dialogue_ui.closed.connect(_on_dialogue_closed)
 	(interact_target as NPC).talk_to(self)
 
 

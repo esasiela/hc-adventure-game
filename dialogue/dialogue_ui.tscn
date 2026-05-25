@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bgvmt3c3g0guf"]
+
+[ext_resource type="Script" uid="uid://c52rftixffrl4" path="res://dialogue/dialogue_ui.gd" id="1_km8cd"]
+
+[node name="DialogueUi" type="CanvasLayer" unique_id=94468849]
+script = ExtResource("1_km8cd")
+
+[node name="Panel" type="Panel" parent="." unique_id=188245441]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=311004338]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Columns" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=1815572660]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NpcInfo" type="VBoxContainer" parent="Panel/MarginContainer/Columns" unique_id=1264041051]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/Columns/NpcInfo" unique_id=156786637]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Name & Portrait"
+
+[node name="Portrait" type="TextureRect" parent="Panel/MarginContainer/Columns/NpcInfo" unique_id=731123341]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="LineText" type="Label" parent="Panel/MarginContainer/Columns" unique_id=1909960745]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "test text"
+autowrap_mode = 2
+
+[node name="Choices" type="VBoxContainer" parent="Panel/MarginContainer/Columns" unique_id=742600524]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2

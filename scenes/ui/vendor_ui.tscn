@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7d3mntbq8e2c" path="res://scripts/vendor_ui.gd" id="1_yefkj"]
 
-[node name="VendorUI" type="CanvasLayer" unique_id=226857976]
+[node name="VendorUI" type="CanvasLayer" unique_id=226857976 groups=["vendor_ui"]]
 script = ExtResource("1_yefkj")
 
 [node name="Panel" type="Panel" parent="." unique_id=965215909]
@@ -82,7 +82,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "---"
 
-[node name="Grids" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=406091517]
+[node name="Grids" type="HBoxContainer" parent="Panel/MarginContainer/Root" unique_id=406091517 groups=["vendor_ui"]]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 30
