@@ -25,11 +25,7 @@ func _on_interact_target_lost() -> void:
 
 
 func has_interaction() -> bool:
-	if _pick_dialogue() != null:
-		return true
-	if vendor_inventory != null:
-		return true
-	return false
+	return dialogue or quest or vendor_inventory
 
 
 func talk_to(player: Player) -> void:
@@ -64,8 +60,12 @@ func _start_service(service: String) -> void:
 		"dialogue":
 			DialogueUI.start(self, dialogue)
 		"quest":
-			print("TODO: quest service")
-			DialogueUI.close()
+			var quest_dialogue = _pick_quest_dialogue()
+			if quest_dialogue:
+				DialogueUI.start(self, quest_dialogue)
+			else:
+				push_error("NPC._start_service() npc [%s] no quest dialogue for quest [%s] state [%s]" % display_name, quest.id, QuestLog.get_state(quest.id))
+				DialogueUI.close()
 		"vendor":
 			print("TODO: vendor service")
 			DialogueUI.close()
@@ -82,8 +82,7 @@ func _available_services() -> Array[String]:
 	return services
 
 
-func _pick_dialogue() -> Dialogue:
-	# Quest-aware: if NPC has a quest, route based on its state
+func _pick_quest_dialogue() -> Dialogue:
 	if quest:
 		match QuestLog.get_state(quest.id):
 			Quest.QuestState.NOT_STARTED:
@@ -98,13 +97,21 @@ func _pick_dialogue() -> Dialogue:
 			Quest.QuestState.TURNED_IN:
 				if quest.completed_dialogue:
 					return quest.completed_dialogue
-	# Fallback: NPC's own dialogue field
-	if dialogue:
-		return dialogue
 	return null
+
 
 func _on_dialogue_choice(choice: DialogueChoice) -> void:
 	var action := choice.action
+	print("NPC._on_dialogue_choice(%s)" % action)
+	
+	match action:
+		"accept_quest":
+			QuestLog.accept_quest(quest)
+			DialogueUI.close()
+		"turn_in_quest":
+			QuestLog.turn_in_quest(quest.id)
+			DialogueUI.close()
+	
 	if action.begins_with("service_"):
 		var service := action.trim_prefix("service_")
 		_start_service(service)
@@ -115,36 +122,6 @@ func _on_dialogue_closed() -> void:
 	DialogueUI.closed.disconnect(_on_dialogue_closed)
 
 
-func _open_chat() -> void:
-	if not dialogue:
-		return
-	DialogueUI.show_dialogue.call_deferred(dialogue, self)
-
-
 func _open_vendor() -> void:
 	var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
 	vendor_ui.open_for(self)
-
-
-func _open_quest() -> void:
-	if not quest:
-		return
-	var dialogue_to_play := _pick_quest_dialogue()
-	if not dialogue_to_play:
-		return
-	DialogueUI.show_dialogue.call_deferred(dialogue_to_play, self, quest.rewards)
-
-
-func _pick_quest_dialogue() -> Dialogue:
-	if not quest:
-		return null
-	match QuestLog.get_state(quest.id):
-		Quest.QuestState.NOT_STARTED:
-			return quest.offer_dialogue
-		Quest.QuestState.ACTIVE:
-			return quest.in_progress_dialogue
-		Quest.QuestState.READY:
-			return quest.turn_in_dialogue
-		Quest.QuestState.TURNED_IN:
-			return quest.completed_dialogue
-	return null

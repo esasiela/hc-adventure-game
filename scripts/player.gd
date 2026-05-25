@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _seed_test_inventory() -> void:
-	PlayerData.add_item(preload("res://items/copper.tres"), 25)
+	PlayerData.add_item(preload("res://items/copper.tres"), 9)
 	PlayerData.add_item(preload("res://items/stone.tres"), 15)
 	PlayerData.add_gold(500)
 
