@@ -95,7 +95,7 @@ func _start_service(service: String) -> void:
 		"quest":
 			var quest_dialogue = _pick_quest_dialogue()
 			if quest_dialogue:
-				DialogueUI.start(self, quest_dialogue)
+				DialogueUI.start(self, quest_dialogue, quest)
 			else:
 				push_error("NPC._start_service() npc [%s] no quest dialogue for quest [%s] state [%s]" % display_name, quest.id, QuestLog.get_state(quest.id))
 				DialogueUI.close()

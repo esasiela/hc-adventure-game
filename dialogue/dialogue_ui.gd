@@ -4,11 +4,17 @@ extends CanvasLayer
 const CONTINUE_CHOICE: DialogueChoice = preload("res://dialogue/defaults/dialogue_choice_continue.tres")
 const GOODBYE_CHOICE: DialogueChoice = preload("res://dialogue/defaults/dialogue_choice_goodbye.tres")
 
-@onready var line_text: Label = $Panel/MarginContainer/Columns/LineText
-@onready var choices: VBoxContainer = $Panel/MarginContainer/Columns/Choices
-@onready var name_label: Label = $Panel/MarginContainer/Columns/NpcInfo/NameLabel
-@onready var portrait: TextureRect = $Panel/MarginContainer/Columns/NpcInfo/Portrait
+@onready var line_text: Label = $DialoguePanel/MarginContainer/Columns/LineText
+@onready var choices: VBoxContainer = $DialoguePanel/MarginContainer/Columns/Choices
+@onready var name_label: Label = $DialoguePanel/MarginContainer/Columns/NpcInfo/NameLabel
+@onready var portrait: TextureRect = $DialoguePanel/MarginContainer/Columns/NpcInfo/Portrait
 
+@onready var quest_info: Panel = $QuestInfoPanel
+@onready var quest_title_label: Label = $QuestInfoPanel/MarginContainer/VBoxContainer/QuestTitleLabel
+@onready var quest_description_label: Label = $QuestInfoPanel/MarginContainer/VBoxContainer/QuestDescriptionLabel
+
+@onready var quest_objectives_container: VBoxContainer = $QuestInfoPanel/MarginContainer/VBoxContainer/HBoxContainer/ObjectivesColumn/ObjectivesContainer
+@onready var quest_rewards_container: VBoxContainer = $QuestInfoPanel/MarginContainer/VBoxContainer/HBoxContainer/RewardsColumn/RewardsContainer
 
 var current_dialogue: Dialogue
 var current_npc: NPC
@@ -22,13 +28,32 @@ func _ready() -> void:
 	pass
 
 
-func start(npc: NPC, dialogue: Dialogue) -> void:
+func start(npc: NPC, dialogue: Dialogue, quest: Quest = null) -> void:
 	current_npc = npc
 	current_dialogue = dialogue
 	current_line_index = 0
+
 	name_label.text = npc.display_name
 	portrait.texture = npc.portrait
 	portrait.visible = npc.portrait != null
+
+	quest_info.visible = quest != null
+	if quest_info.visible:
+		quest_title_label.text = quest.title
+		quest_description_label.text = quest.description
+		
+		for objective in quest.objectives:
+			var objective_label := Label.new()
+			objective_label.add_theme_font_size_override("font_size", 32)
+			objective_label.text = "  •  " + objective.get_progress_text()
+			quest_objectives_container.add_child(objective_label)
+
+		for reward in quest.rewards:
+			var reward_label := Label.new()
+			reward_label.add_theme_font_size_override("font_size", 32)
+			reward_label.text = "  •  " + reward.description
+			quest_rewards_container.add_child(reward_label)
+
 	visible = true
 	_show_current_line()
 
@@ -36,6 +61,12 @@ func start(npc: NPC, dialogue: Dialogue) -> void:
 func close() -> void:
 	if not visible:
 		return
+	
+	for objective in quest_objectives_container.get_children():
+		objective.queue_free()
+	
+	for reward in quest_rewards_container.get_children():
+		reward.queue_free()
 	
 	visible = false
 	closed.emit()
@@ -86,7 +117,6 @@ func _render_choices(choice_list: Array[DialogueChoice]) -> void:
 
 
 func _on_choice_pressed(choice: DialogueChoice) -> void:
-	print("choice pressed: ", choice.text, " action=", choice.action)
 	choice_selected.emit(choice)
 	match choice.action:
 		"close":
