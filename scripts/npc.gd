@@ -2,7 +2,13 @@ class_name NPC
 extends Interactable
 
 
-const SERVICE_MENU_DIALOGUE: Dialogue = preload("res://dialogue/service_menu_dialogue.tres")
+const SERVICE_MENU_DIALOGUE: Dialogue = preload("res://dialogue/defaults/service_menu_dialogue.tres")
+
+const QUEST_OFFER_DIALOGUE: Dialogue = preload("res://dialogue/defaults/quest_offer_dialogue.tres")
+const QUEST_IN_PROGRESS_DIALOGUE: Dialogue = preload("res://dialogue/defaults/quest_in_progress_dialogue.tres")
+const QUEST_TURN_IN_DIALOGUE: Dialogue = preload("res://dialogue/defaults/quest_turn_in_dialogue.tres")
+const QUEST_COMPLETED_DIALOGUE: Dialogue = preload("res://dialogue/defaults/quest_completed_dialogue.tres")
+
 
 @export var display_name: String = "Villager"
 @export var dialogue: Dialogue
@@ -86,23 +92,18 @@ func _pick_quest_dialogue() -> Dialogue:
 	if quest:
 		match QuestLog.get_state(quest.id):
 			Quest.QuestState.NOT_STARTED:
-				if quest.offer_dialogue:
-					return quest.offer_dialogue
+				return quest.offer_dialogue if quest.offer_dialogue else QUEST_OFFER_DIALOGUE
 			Quest.QuestState.ACTIVE:
-				if quest.in_progress_dialogue:
-					return quest.in_progress_dialogue
+				return quest.in_progress_dialogue if quest.in_progress_dialogue else QUEST_IN_PROGRESS_DIALOGUE
 			Quest.QuestState.READY:
-				if quest.turn_in_dialogue:
-					return quest.turn_in_dialogue
+				return quest.turn_in_dialogue if quest.turn_in_dialogue else QUEST_TURN_IN_DIALOGUE
 			Quest.QuestState.TURNED_IN:
-				if quest.completed_dialogue:
-					return quest.completed_dialogue
+				return quest.completed_dialogue if quest.completed_dialogue else QUEST_COMPLETED_DIALOGUE
 	return null
 
 
 func _on_dialogue_choice(choice: DialogueChoice) -> void:
 	var action := choice.action
-	print("NPC._on_dialogue_choice(%s)" % action)
 	
 	match action:
 		"accept_quest":

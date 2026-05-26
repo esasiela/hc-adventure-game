@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://dghqpns4by4tn"]
+
+[ext_resource type="Script" uid="uid://bcq7s40seq3ik" path="res://dialogue/dialogue_choice.gd" id="1_pbth8"]
+[ext_resource type="Script" uid="uid://baauah4044ivb" path="res://dialogue/dialogue_line.gd" id="2_74i0x"]
+[ext_resource type="Script" uid="uid://duy33n3rk3o2f" path="res://dialogue/dialogue.gd" id="3_70vmj"]
+
+[sub_resource type="Resource" id="Resource_l3vgl"]
+script = ExtResource("2_74i0x")
+text = "Please keep going, there's more at stake than you realize. You can do it!"
+metadata/_custom_type_script = "uid://baauah4044ivb"
+
+[resource]
+script = ExtResource("3_70vmj")
+lines = Array[ExtResource("2_74i0x")]([SubResource("Resource_l3vgl")])
+metadata/_custom_type_script = "uid://duy33n3rk3o2f"

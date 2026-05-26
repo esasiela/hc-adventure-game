@@ -1,17 +1,13 @@
 [gd_resource type="Resource" script_class="Quest" format=3 uid="uid://cxxbhoax8lrir"]
 
-[ext_resource type="Resource" uid="uid://cnblqahd7mllh" path="res://quests/gather_copper/gather_copper_completed.tres" id="1_ofc4o"]
-[ext_resource type="Resource" uid="uid://ddpsaisj027jn" path="res://quests/gather_copper/gather_copper_in_progress.tres" id="2_u1i5w"]
 [ext_resource type="Script" uid="uid://d0fnk84827y3j" path="res://quests/objective.gd" id="3_h4x88"]
 [ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="4_3i2of"]
 [ext_resource type="Script" uid="uid://bpnpycmbewxmx" path="res://quests/objective_gather.gd" id="5_pleq8"]
-[ext_resource type="Resource" uid="uid://csirgi6ug4u8l" path="res://quests/gather_copper/gather_copper_offer.tres" id="6_j2tve"]
 [ext_resource type="Script" uid="uid://dnsnn3jvnfqdq" path="res://quests/reward.gd" id="7_ui7nl"]
 [ext_resource type="Script" uid="uid://dvuxfj4rkkw00" path="res://quests/reward_gold.gd" id="8_2q22a"]
 [ext_resource type="Resource" uid="uid://dy1o715l7uimk" path="res://items/stone.tres" id="9_sb3pi"]
 [ext_resource type="Script" uid="uid://478l12uuxcht" path="res://quests/reward_item.gd" id="10_p0imq"]
 [ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="11_a5sg4"]
-[ext_resource type="Resource" uid="uid://bfa3klod2q1qq" path="res://quests/gather_copper/gather_copper_turn_in.tres" id="12_gb4hg"]
 
 [sub_resource type="Resource" id="Resource_axnii"]
 script = ExtResource("5_pleq8")
@@ -38,9 +34,5 @@ id = "gather_copper"
 title = "Copper for the Smith"
 description = "The blacksmith Aldwin needs copper ore to forge new tools for the village. Bring him 2 pieces of copper."
 objectives = Array[ExtResource("3_h4x88")]([SubResource("Resource_axnii")])
-offer_dialogue = ExtResource("6_j2tve")
-in_progress_dialogue = ExtResource("2_u1i5w")
-turn_in_dialogue = ExtResource("12_gb4hg")
-completed_dialogue = ExtResource("1_ofc4o")
 rewards = Array[ExtResource("7_ui7nl")]([SubResource("Resource_rmlik"), SubResource("Resource_no3lo")])
 metadata/_custom_type_script = "uid://klkf740dgoy6"
