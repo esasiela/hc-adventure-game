@@ -49,34 +49,6 @@ func talk_to(player: Player) -> void:
 		DialogueUI.start(self, _build_service_menu(services))
 
 
-func _build_service_menu(services: Array[String]) -> Dialogue:
-	var menu := SERVICE_MENU_DIALOGUE.duplicate(true) as Dialogue
-	# Filter choices to only those matching available services
-	var filtered: Array[DialogueChoice] = []
-	for choice in menu.choices:
-		var service_name := choice.action.trim_prefix("service_")
-		if service_name in services:
-			filtered.append(choice)
-	menu.choices = filtered
-	return menu
-
-
-func _start_service(service: String) -> void:
-	match service:
-		"dialogue":
-			DialogueUI.start(self, dialogue)
-		"quest":
-			var quest_dialogue = _pick_quest_dialogue()
-			if quest_dialogue:
-				DialogueUI.start(self, quest_dialogue)
-			else:
-				push_error("NPC._start_service() npc [%s] no quest dialogue for quest [%s] state [%s]" % display_name, quest.id, QuestLog.get_state(quest.id))
-				DialogueUI.close()
-		"vendor":
-			print("TODO: vendor service")
-			DialogueUI.close()
-
-
 func _available_services() -> Array[String]:
 	var services: Array[String] = []
 	if dialogue:
@@ -88,18 +60,16 @@ func _available_services() -> Array[String]:
 	return services
 
 
-func _pick_quest_dialogue() -> Dialogue:
-	if quest:
-		match QuestLog.get_state(quest.id):
-			Quest.QuestState.NOT_STARTED:
-				return quest.offer_dialogue if quest.offer_dialogue else QUEST_OFFER_DIALOGUE
-			Quest.QuestState.ACTIVE:
-				return quest.in_progress_dialogue if quest.in_progress_dialogue else QUEST_IN_PROGRESS_DIALOGUE
-			Quest.QuestState.READY:
-				return quest.turn_in_dialogue if quest.turn_in_dialogue else QUEST_TURN_IN_DIALOGUE
-			Quest.QuestState.TURNED_IN:
-				return quest.completed_dialogue if quest.completed_dialogue else QUEST_COMPLETED_DIALOGUE
-	return null
+func _build_service_menu(services: Array[String]) -> Dialogue:
+	var menu := SERVICE_MENU_DIALOGUE.duplicate(true) as Dialogue
+	# Filter choices to only those matching available services
+	var filtered: Array[DialogueChoice] = []
+	for choice in menu.choices:
+		var service_name := choice.action.trim_prefix("service_")
+		if service_name in services:
+			filtered.append(choice)
+	menu.choices = filtered
+	return menu
 
 
 func _on_dialogue_choice(choice: DialogueChoice) -> void:
@@ -118,11 +88,37 @@ func _on_dialogue_choice(choice: DialogueChoice) -> void:
 		_start_service(service)
 
 
+func _start_service(service: String) -> void:
+	match service:
+		"dialogue":
+			DialogueUI.start(self, dialogue)
+		"quest":
+			var quest_dialogue = _pick_quest_dialogue()
+			if quest_dialogue:
+				DialogueUI.start(self, quest_dialogue)
+			else:
+				push_error("NPC._start_service() npc [%s] no quest dialogue for quest [%s] state [%s]" % display_name, quest.id, QuestLog.get_state(quest.id))
+				DialogueUI.close()
+		"vendor":
+			var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
+			vendor_ui.open_for(self)
+			DialogueUI.close()
+
+
+func _pick_quest_dialogue() -> Dialogue:
+	if quest:
+		match QuestLog.get_state(quest.id):
+			Quest.QuestState.NOT_STARTED:
+				return quest.offer_dialogue if quest.offer_dialogue else QUEST_OFFER_DIALOGUE
+			Quest.QuestState.ACTIVE:
+				return quest.in_progress_dialogue if quest.in_progress_dialogue else QUEST_IN_PROGRESS_DIALOGUE
+			Quest.QuestState.READY:
+				return quest.turn_in_dialogue if quest.turn_in_dialogue else QUEST_TURN_IN_DIALOGUE
+			Quest.QuestState.TURNED_IN:
+				return quest.completed_dialogue if quest.completed_dialogue else QUEST_COMPLETED_DIALOGUE
+	return null
+
+
 func _on_dialogue_closed() -> void:
 	DialogueUI.choice_selected.disconnect(_on_dialogue_choice)
 	DialogueUI.closed.disconnect(_on_dialogue_closed)
-
-
-func _open_vendor() -> void:
-	var vendor_ui := get_tree().get_first_node_in_group("vendor_ui") as VendorUI
-	vendor_ui.open_for(self)
