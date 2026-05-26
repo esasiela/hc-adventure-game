@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 
-const CONTINUE_CHOICE: DialogueChoice = preload("res://dialogue/dialogue_choice_continue.tres")
-const GOODBYE_CHOICE: DialogueChoice = preload("res://dialogue/dialogue_choice_goodbye.tres")
+const CONTINUE_CHOICE: DialogueChoice = preload("res://dialogue/defaults/dialogue_choice_continue.tres")
+const GOODBYE_CHOICE: DialogueChoice = preload("res://dialogue/defaults/dialogue_choice_goodbye.tres")
 
 @onready var line_text: Label = $Panel/MarginContainer/Columns/LineText
 @onready var choices: VBoxContainer = $Panel/MarginContainer/Columns/Choices
