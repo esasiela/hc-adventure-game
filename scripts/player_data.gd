@@ -16,6 +16,7 @@ func add_gold(amount: int) -> void:
 	if amount <= 0:
 		return
 	gold += amount
+	gold_added.emit(amount)
 	gold_changed.emit(gold)
 
 
@@ -25,13 +26,13 @@ func spend_gold(amount: int) -> bool:
 	if gold < amount:
 		return false
 	gold -= amount
+	gold_spent.emit(amount)
 	gold_changed.emit(gold)
 	return true
 
 
 func add_item(item: Item, quantity: int) -> void:
 	inventory[item] = inventory.get(item, 0) + quantity
-	#print("PlayerData.add_item(", item.id, ",", quantity, "), emitting signal")
 	item_added.emit(item, quantity)
 
 
@@ -42,7 +43,6 @@ func remove_item(item: Item, quantity: int) -> bool:
 	if inventory[item] <= 0:
 		inventory.erase(item)
 	
-	#print("PlayerData.remove_item(", item.id, ",", quantity, "), emitting signal")
 	item_removed.emit(item, quantity)
 	return true
 

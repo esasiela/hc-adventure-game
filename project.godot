@@ -21,6 +21,7 @@ PlayerData="*uid://duay47crmyirf"
 ZoneManager="*uid://u8xxj86wg58d"
 QuestLog="*uid://bct0i8hhq3oru"
 DialogueUI="*uid://bgvmt3c3g0guf"
+FloatingText="*uid://b27t7q7plpyf2"
 
 [display]
 

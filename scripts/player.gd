@@ -185,11 +185,14 @@ func _on_lootbox_area_entered(area: Area2D) -> void:
 	if not area is WorldItem:
 		return
 	var world_item := area as WorldItem
+	var item_pos := world_item.global_position
 	
 	if world_item.item is Currency:
 		PlayerData.add_gold(world_item.quantity)
+		FloatingText.spawn("+%dg" % world_item.quantity, item_pos, FloatingText.Style.GOLD)
 	else:
 		PlayerData.add_item(world_item.item, world_item.quantity)
+		FloatingText.spawn("+%d %s" % [world_item.quantity, world_item.item.display_name], item_pos, FloatingText.Style.LOOT)
 	world_item.queue_free()
 
 
