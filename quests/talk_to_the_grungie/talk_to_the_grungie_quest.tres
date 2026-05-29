@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://d4cmwndwbdg5g"]
+
+[ext_resource type="Script" uid="uid://d0fnk84827y3j" path="res://quests/objective.gd" id="1_xdh0t"]
+[ext_resource type="Script" uid="uid://dnsnn3jvnfqdq" path="res://quests/reward.gd" id="2_k78ou"]
+[ext_resource type="Script" uid="uid://b04ypb8ltr341" path="res://quests/objective_talk_to.gd" id="2_ohdtf"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="3_ohdtf"]
+[ext_resource type="Script" uid="uid://dvuxfj4rkkw00" path="res://quests/reward_gold.gd" id="4_ohdtf"]
+
+[sub_resource type="Resource" id="Resource_ao0j8"]
+script = ExtResource("2_ohdtf")
+target_npc_id = "grungie_grumble"
+description = "Talk to Grungie Grumble"
+metadata/_custom_type_script = "uid://b04ypb8ltr341"
+
+[sub_resource type="Resource" id="Resource_mhfil"]
+script = ExtResource("4_ohdtf")
+amount = 50
+metadata/_custom_type_script = "uid://dvuxfj4rkkw00"
+
+[resource]
+script = ExtResource("3_ohdtf")
+id = "talk_to_the_grungie"
+title = "Talk to the Grungie"
+description = "There has been beef between us for far too long. Feydor Slack wants you to talk to Grungie to see if there's a chance at squashing the beef."
+objectives = Array[ExtResource("1_xdh0t")]([SubResource("Resource_ao0j8")])
+rewards = Array[ExtResource("2_k78ou")]([SubResource("Resource_mhfil")])
+metadata/_custom_type_script = "uid://klkf740dgoy6"

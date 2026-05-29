@@ -10,6 +10,7 @@ const QUEST_TURN_IN_DIALOGUE: Dialogue = preload("res://dialogue/defaults/quest_
 const QUEST_COMPLETED_DIALOGUE: Dialogue = preload("res://dialogue/defaults/quest_completed_dialogue.tres")
 
 
+@export var id: String = ""
 @export var display_name: String = "Villager"
 @export var dialogue: Dialogue
 @export var portrait: Texture2D
@@ -95,7 +96,9 @@ func _start_service(service: String) -> void:
 		"quest":
 			var quest_dialogue = _pick_quest_dialogue()
 			if quest_dialogue:
-				DialogueUI.start(self, quest_dialogue, quest)
+				var runtime_quest = QuestLog.get_active_quest(quest.id)				
+				var quest_for_ui = runtime_quest if runtime_quest else quest
+				DialogueUI.start(self, quest_dialogue, quest_for_ui)
 			else:
 				push_error("NPC._start_service() npc [%s] no quest dialogue for quest [%s] state [%s]" % display_name, quest.id, QuestLog.get_state(quest.id))
 				DialogueUI.close()

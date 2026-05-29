@@ -16,22 +16,21 @@ func is_satisfied() -> bool:
 func get_progress_text() -> String:
 	if not item:
 		return ""
-	var have: int = PlayerData.inventory.get(item, 0)
-	return "%s: %d/%d" % [item.display_name, min(have, required_qty), required_qty]
+	return "%s: %d/%d" % [item.display_name, min(progress_qty, required_qty), required_qty]
 
 func activate() -> void:
-	PlayerData.item_added.connect(_player_inventory_changed)
-	PlayerData.item_removed.connect(_player_inventory_changed)
+	PlayerData.item_added.connect(_on_player_inventory_changed)
+	PlayerData.item_removed.connect(_on_player_inventory_changed)
 	
 	# set initial properties
-	_player_inventory_changed(item, 0)
+	_on_player_inventory_changed(item, 0)
 
 
 func deactivate() -> void:
-	PlayerData.item_added.disconnect(_player_inventory_changed)
-	PlayerData.item_removed.disconnect(_player_inventory_changed)
+	PlayerData.item_added.disconnect(_on_player_inventory_changed)
+	PlayerData.item_removed.disconnect(_on_player_inventory_changed)
 
-func _player_inventory_changed(signal_item: Item, signal_qty: int) -> void:
+func _on_player_inventory_changed(signal_item: Item, signal_qty: int) -> void:
 	if item != signal_item:
 		return
 

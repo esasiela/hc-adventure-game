@@ -52,3 +52,7 @@ func turn_in_quest(quest_id: String) -> void:
 
 func active_quests() -> Array:
 	return _active_quests.values()
+
+
+func get_active_quest(quest_id: String) -> Quest:
+	return _active_quests.get(quest_id)

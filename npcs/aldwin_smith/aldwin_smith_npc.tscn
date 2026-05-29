@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cxxbhoax8lrir" path="res://quests/gather_copper/gather_copper_quest.tres" id="4_vxphu"]
 
 [node name="AldwinSmith" unique_id=1751764694 instance=ExtResource("1_dnrts")]
+id = "aldwin_smith"
 display_name = "Aldwin Smith"
 dialogue = ExtResource("2_xgu8k")
 portrait = ExtResource("2_jl8rk")
