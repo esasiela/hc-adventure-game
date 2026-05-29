@@ -25,6 +25,8 @@ func _ready() -> void:
 	
 	DialogueUI.closed.connect(_on_dialogue_closed)
 	
+	QuestLog.quest_turned_in.connect(_on_quest_turned_in)
+	
 	if OS.is_debug_build():
 		_seed_test_inventory()
 	
@@ -156,6 +158,10 @@ func _enter_state_talking() -> void:
 func _on_dialogue_closed() -> void:
 	if state == State.TALKING:
 		change_state(State.IDLE)
+
+
+func _on_quest_turned_in(quest: Quest) -> void:
+	FloatingText.spawn("Quest Completed\n%s" % quest.title, global_position, FloatingText.Style.CELEBRATION)
 
 
 func _enter_state_vendoring() -> void:
