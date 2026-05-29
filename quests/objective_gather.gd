@@ -10,9 +10,7 @@ var _satisfied: bool = false
 
 func is_satisfied() -> bool:
 	if not item:
-		printerr("GatherObjective.is_satisfied() - null item needs configuration")
 		return false
-	#return PlayerData.inventory.get(item, 0) >= required_qty
 	return progress_qty >= required_qty
 
 func get_progress_text() -> String:
@@ -22,7 +20,6 @@ func get_progress_text() -> String:
 	return "%s: %d/%d" % [item.display_name, min(have, required_qty), required_qty]
 
 func activate() -> void:
-	print("GatherObjective.activate() connecting to signals")
 	PlayerData.item_added.connect(_player_inventory_changed)
 	PlayerData.item_removed.connect(_player_inventory_changed)
 	
@@ -44,12 +41,10 @@ func _player_inventory_changed(signal_item: Item, signal_qty: int) -> void:
 	progress_qty = min(PlayerData.inventory.get(item, 0), required_qty)
 	
 	if progress_qty != old_qty:
-		print("GatherObjective - emit progress_changed new=" + str(progress_qty) + " old=" + str(old_qty))
 		progress_changed.emit()
 	
 	if is_satisfied() != old_satisfied:
 		_satisfied = is_satisfied()
-		print("GatherObjective - emit satisfied_changed new=" + str(is_satisfied()) + " old=" + str(old_satisfied))
 		satisfied_changed.emit()
 
 

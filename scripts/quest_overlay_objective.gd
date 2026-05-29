@@ -21,5 +21,4 @@ func set_objective(o: Objective) -> void:
 
 
 func _progress_changed() -> void:
-	print("QuestOverlayObjective._progress_changed()")
 	progress_label.text = objective.get_progress_text()

@@ -30,7 +30,6 @@ signal state_changed(quest: Quest, new_state: QuestState)
 
 
 func _recompute_state() -> void:
-	print("Quest._recompute_state()")
 	if _state == QuestState.NOT_STARTED or _state == QuestState.TURNED_IN:
 		return
 	
@@ -42,25 +41,20 @@ func _recompute_state() -> void:
 			break
 	
 	if all_satisfied and _state == QuestState.ACTIVE:
-		print("Quest._recompute_state() transition to READY")
 		_state = QuestState.READY
 		state_changed.emit(self, _state)
 	elif not all_satisfied and _state == QuestState.READY:
-		print("Quest._recompute_state() transition to ACTIVE")
 		_state = QuestState.ACTIVE
 		state_changed.emit(self, _state)
 
 
 func _on_objective_satisfied_changed() -> void:
-	print("Quest._on_objective_satisfied_changed()")
 	_recompute_state()
 
 
-func activate() -> void:
-	print("Quest.activate(" + id +")")
-	
+func activate() -> void:	
 	if _state != QuestState.NOT_STARTED:
-		printerr("Quest.activate(" + id + ") - expect NOT_STARTED but have " + str(_state))
+		push_error("Quest.activate(", id, ") - expect NOT_STARTED but have " + str(_state))
 	
 	_state = QuestState.ACTIVE
 	
@@ -72,10 +66,8 @@ func activate() -> void:
 
 
 func turn_in() -> void:
-	print("Quest.turn_in()")
-	
 	if _state != QuestState.READY:
-		printerr("Quest.turn_in() cannot turn in when state is:", _state)
+		push_error("Quest.turn_in(", id , ") cannot turn in when state is:", _state)
 		return
 	
 	for objective in objectives:
@@ -94,7 +86,6 @@ func turn_in() -> void:
 
 
 func deactivate() -> void:
-	print("Quest.deactivate(" + id + ")")
 	for objective in objectives:
 		objective.deactivate()
 		objective.satisfied_changed.disconnect(_on_objective_satisfied_changed)
