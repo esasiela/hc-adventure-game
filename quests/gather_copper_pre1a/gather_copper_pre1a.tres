@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://bekg0twoqdoyw"]
+
+[ext_resource type="Script" uid="uid://d0fnk84827y3j" path="res://quests/objective.gd" id="1_18y42"]
+[ext_resource type="Resource" uid="uid://q3oklm07ui4s" path="res://items/copper.tres" id="2_4tmde"]
+[ext_resource type="Script" uid="uid://bpnpycmbewxmx" path="res://quests/objective_gather.gd" id="3_nvbcw"]
+[ext_resource type="Script" uid="uid://dnsnn3jvnfqdq" path="res://quests/reward.gd" id="4_juvx8"]
+[ext_resource type="Script" uid="uid://dvuxfj4rkkw00" path="res://quests/reward_gold.gd" id="5_punab"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="6_cilgf"]
+
+[sub_resource type="Resource" id="Resource_k4ajk"]
+script = ExtResource("3_nvbcw")
+item = ExtResource("2_4tmde")
+required_qty = 5
+description = "Gather copper"
+metadata/_custom_type_script = "uid://bpnpycmbewxmx"
+
+[sub_resource type="Resource" id="Resource_y4mdi"]
+script = ExtResource("5_punab")
+amount = 50
+description = "Gold"
+metadata/_custom_type_script = "uid://dvuxfj4rkkw00"
+
+[resource]
+script = ExtResource("6_cilgf")
+id = "gather_copper_pre1a"
+title = "Gather Copper Pre1a"
+description = "This quest has no preconditions.  It starts you off by getting you to gather some copper.  Once this is complete, a second quest will open up."
+objectives = Array[ExtResource("1_18y42")]([SubResource("Resource_k4ajk")])
+rewards = Array[ExtResource("4_juvx8")]([SubResource("Resource_y4mdi")])
+metadata/_custom_type_script = "uid://klkf740dgoy6"

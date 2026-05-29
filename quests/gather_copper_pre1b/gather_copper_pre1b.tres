@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://chi14y7k00ngs"]
+
+[ext_resource type="Script" uid="uid://d0fnk84827y3j" path="res://quests/objective.gd" id="1_qs2jh"]
+[ext_resource type="Script" uid="uid://b04ypb8ltr341" path="res://quests/objective_talk_to.gd" id="2_1ef13"]
+[ext_resource type="Script" uid="uid://dnsnn3jvnfqdq" path="res://quests/reward.gd" id="2_7rdc1"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="3_1ef13"]
+[ext_resource type="Script" uid="uid://dvuxfj4rkkw00" path="res://quests/reward_gold.gd" id="4_1ef13"]
+
+[sub_resource type="Resource" id="Resource_fuw2n"]
+script = ExtResource("2_1ef13")
+target_npc_id = "feydor_slack"
+description = "Talk to Feydor Slack"
+metadata/_custom_type_script = "uid://b04ypb8ltr341"
+
+[sub_resource type="Resource" id="Resource_007e8"]
+script = ExtResource("4_1ef13")
+amount = 5
+description = "Gold"
+metadata/_custom_type_script = "uid://dvuxfj4rkkw00"
+
+[resource]
+script = ExtResource("3_1ef13")
+id = "gather_copper_pre1b"
+title = "Gather Copper Pre1b"
+description = "This is a gather quest with no preconditions.  Complete this one and also Pre1a and you open up pre2. You can do it!"
+objectives = Array[ExtResource("1_qs2jh")]([SubResource("Resource_fuw2n")])
+rewards = Array[ExtResource("2_7rdc1")]([SubResource("Resource_007e8")])
+metadata/_custom_type_script = "uid://klkf740dgoy6"

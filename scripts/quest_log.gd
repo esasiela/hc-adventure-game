@@ -21,14 +21,18 @@ func get_state_str(id: String) -> String:
 	return Quest.QuestState.find_key(get_state(id))
 
 
-func accept_quest(quest: Quest) -> void:
-	if quest._state != Quest.QuestState.NOT_STARTED:
-		printerr("QuestLog.accept_quest(" + quest.id + ") cannot accept quest in state: " + str(quest.state))
+func accept_quest(quest_template: Quest) -> void:
+	if not quest_template.are_preconditions_met():
+		push_error("QuestLog.accept_quest(", quest_template.id, " preconditions not met")
+		return
+	
+	if quest_template._state != Quest.QuestState.NOT_STARTED:
+		printerr("QuestLog.accept_quest(", quest_template.id, ") cannot accept quest in state: ", str(quest_template.state))
 		return
 	
 	# make a duplicate of the quest resource so we can mutate the data
-	var runtime_quest := quest.duplicate(true) as Quest
-	_active_quests[quest.id] = runtime_quest
+	var runtime_quest := quest_template.duplicate(true) as Quest
+	_active_quests[quest_template.id] = runtime_quest
 	runtime_quest.activate()
 	
 	quest_accepted.emit(runtime_quest)

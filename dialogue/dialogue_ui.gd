@@ -43,8 +43,6 @@ func start(npc: NPC, dialogue: Dialogue, quest: Quest = null) -> void:
 
 	quest_info.visible = quest != null
 	if quest_info.visible:
-		print("DialogueUI.start() quest_info is visible")
-
 		quest_title_label.text = quest.title
 		quest_description_label.text = quest.description
 		

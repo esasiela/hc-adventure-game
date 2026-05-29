@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="2_0yt18"]
 [ext_resource type="Resource" uid="uid://c0y8p652npgg" path="res://npcs/feydor_slack/feydor_slack_dialogue.tres" id="2_q8gm6"]
 [ext_resource type="Resource" uid="uid://kp02ywkm5xei" path="res://npcs/feydor_slack/feydor_slack_inventory.tres" id="3_u4ebg"]
-[ext_resource type="Resource" uid="uid://d4cmwndwbdg5g" path="res://quests/talk_to_the_grungie/talk_to_the_grungie_quest.tres" id="4_u4ebg"]
+[ext_resource type="Resource" uid="uid://bekg0twoqdoyw" path="res://quests/gather_copper_pre1a/gather_copper_pre1a.tres" id="4_u4ebg"]
 
 [node name="FeydorSlack" unique_id=1751764694 instance=ExtResource("1_nquu3")]
 id = "feydor_slack"

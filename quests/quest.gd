@@ -17,6 +17,8 @@ signal state_changed(quest: Quest, new_state: QuestState)
 @export var title: String = ""
 @export_multiline var description: String = ""
 
+@export var precondition_ids: Array[String] = []
+
 @export var objectives: Array[Objective] = []
 
 @export_group("Dialogue")
@@ -50,6 +52,13 @@ func _recompute_state() -> void:
 
 func _on_objective_satisfied_changed() -> void:
 	_recompute_state()
+
+
+func are_preconditions_met() -> bool:
+	for precond_id in precondition_ids:
+		if QuestLog.get_state(precond_id) != Quest.QuestState.TURNED_IN:
+			return false
+	return true
 
 
 func activate() -> void:	

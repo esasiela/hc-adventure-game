@@ -25,14 +25,29 @@ func _ready() -> void:
 	interact_indicator.visible = false
 
 func _on_interact_target_acquired() -> void:
-	interact_indicator.visible = true
+	if has_interaction():
+		interact_indicator.visible = true
+
 
 func _on_interact_target_lost() -> void:
 	interact_indicator.visible = false
 
 
 func has_interaction() -> bool:
-	return dialogue or quest or vendor_inventory
+	return dialogue or _has_quest_interaction() or vendor_inventory
+
+
+func _has_quest_interaction() -> bool:
+	if not quest:
+		return false
+
+	var quest_state := QuestLog.get_state(quest.id)	
+	
+	if quest_state == Quest.QuestState.NOT_STARTED:
+		return quest.are_preconditions_met()
+
+	# all other quest states mean we have at least something to say
+	return true
 
 
 func talk_to(player: Player) -> void:
@@ -54,7 +69,7 @@ func _available_services() -> Array[String]:
 	var services: Array[String] = []
 	if dialogue:
 		services.append("dialogue")
-	if quest:
+	if _has_quest_interaction():
 		services.append("quest")
 	if vendor_inventory:
 		services.append("vendor")
