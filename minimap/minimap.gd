@@ -6,6 +6,10 @@ extends CanvasLayer
 func _ready() -> void:
 	ZoneManager.register_minimap(self)
 	sub_viewport.world_2d = get_tree().root.world_2d
+	
+	# make the main camera NOT show layer 2 (which is reserved for mini-map icons)
+	get_tree().root.canvas_cull_mask &= ~(1 << 1)
+
 
 func _process(_delta: float) -> void:
 	if ZoneManager.player:

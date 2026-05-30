@@ -11,20 +11,23 @@ signal harvested
 		node_type = value
 		_update_visual()
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var world_sprite: Sprite2D = $WorldSprite
+@onready var minimap_sprite: Sprite2D = $MinimapSprite
 
 
 func _ready() -> void:
 	super()
-	sprite_2d.material = sprite_2d.material.duplicate()
-	sprite_2d.material.set_shader_parameter("active", false)
+	world_sprite.material = world_sprite.material.duplicate()
+	world_sprite.material.set_shader_parameter("active", false)
 	_update_visual()
 
 func _update_visual() -> void:
 	if not is_node_ready():
 		return
 	if node_type:
-		sprite_2d.texture = node_type.harvest_texture
+		world_sprite.texture = node_type.harvest_texture
+		if node_type.minimap_texture:
+			minimap_sprite.texture = node_type.minimap_texture
 
 
 func harvest() -> void:
@@ -49,11 +52,11 @@ func roll_drops() -> Array:
 
 
 func _on_interact_target_acquired() -> void:
-	sprite_2d.material.set_shader_parameter("active", true)
+	world_sprite.material.set_shader_parameter("active", true)
 
 
 func _on_interact_target_lost() -> void:
-	sprite_2d.material.set_shader_parameter("active", false)
+	world_sprite.material.set_shader_parameter("active", false)
 
 
 func get_zone() -> Zone:

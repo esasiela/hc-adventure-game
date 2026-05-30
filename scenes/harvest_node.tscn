@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ugu74liv03kx" path="res://scenes/interactable.tscn" id="1_qligw"]
 [ext_resource type="Texture2D" uid="uid://c1dw3aktjlmmv" path="res://assets/images/items/shikashi/tile230.png" id="2_iwril"]
 [ext_resource type="Shader" uid="uid://ct8r1dg1yii82" path="res://shaders/harvest_node.gdshader" id="3_h74ku"]
+[ext_resource type="Texture2D" uid="uid://b8sdga37jfusu" path="res://assets/images/minimap/kenney_simpleSpace/star_medium.png" id="5_dy0by"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy0by"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h74ku"]
 shader = ExtResource("3_h74ku")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
@@ -18,11 +19,15 @@ size = Vector2(15, 16)
 script = ExtResource("1_iwril")
 node_type = null
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=1398977672]
-material = SubResource("ShaderMaterial_dy0by")
+[node name="WorldSprite" type="Sprite2D" parent="." index="1" unique_id=1398977672]
+material = SubResource("ShaderMaterial_h74ku")
 texture = ExtResource("2_iwril")
 
-[node name="HitBox" type="StaticBody2D" parent="." index="2" unique_id=1362728212]
+[node name="MinimapSprite" type="Sprite2D" parent="." index="2" unique_id=1670073587]
+visibility_layer = 2
+texture = ExtResource("5_dy0by")
+
+[node name="HitBox" type="StaticBody2D" parent="." index="3" unique_id=1362728212]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=1744010995]
 position = Vector2(0.5, 1)
