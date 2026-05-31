@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://c361bksx5n0st"]
+
+[ext_resource type="Script" uid="uid://bcq7s40seq3ik" path="res://dialogue/dialogue_choice.gd" id="1_s4rmy"]
+[ext_resource type="Script" uid="uid://baauah4044ivb" path="res://dialogue/dialogue_line.gd" id="2_lblxb"]
+[ext_resource type="Script" uid="uid://duy33n3rk3o2f" path="res://dialogue/dialogue.gd" id="3_7mlqu"]
+
+[sub_resource type="Resource" id="Resource_s4rmy"]
+script = ExtResource("2_lblxb")
+text = "There is much you can do for me."
+metadata/_custom_type_script = "uid://baauah4044ivb"
+
+[resource]
+script = ExtResource("3_7mlqu")
+lines = Array[ExtResource("2_lblxb")]([SubResource("Resource_s4rmy")])
+metadata/_custom_type_script = "uid://duy33n3rk3o2f"

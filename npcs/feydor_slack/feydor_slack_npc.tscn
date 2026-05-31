@@ -5,13 +5,14 @@
 [ext_resource type="Resource" uid="uid://c0y8p652npgg" path="res://npcs/feydor_slack/feydor_slack_dialogue.tres" id="2_q8gm6"]
 [ext_resource type="Resource" uid="uid://kp02ywkm5xei" path="res://npcs/feydor_slack/feydor_slack_inventory.tres" id="3_u4ebg"]
 [ext_resource type="Resource" uid="uid://bekg0twoqdoyw" path="res://quests/gather_copper_pre1a/gather_copper_pre1a.tres" id="4_u4ebg"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="4_ytktw"]
 
 [node name="FeydorSlack" unique_id=1751764694 instance=ExtResource("1_nquu3")]
 id = "feydor_slack"
 display_name = "Feydor Slack"
 dialogue = ExtResource("2_q8gm6")
 vendor_inventory = ExtResource("3_u4ebg")
-quest = ExtResource("4_u4ebg")
+quest_templates = Array[ExtResource("4_ytktw")]([ExtResource("4_u4ebg")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1796010105]
 modulate = Color(0.2901961, 0.24313726, 0.39215687, 1)

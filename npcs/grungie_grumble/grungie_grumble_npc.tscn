@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://q8xeyu0a0hp8" path="res://npcs/npc.tscn" id="1_s42fy"]
 [ext_resource type="Texture2D" uid="uid://cq2j4ev7ji58b" path="res://assets/images/items/cute_fantasy/tile030.png" id="2_yvhrq"]
 [ext_resource type="Resource" uid="uid://f5ne2vavispm" path="res://quests/gather_copper_pre2/gather_copper_pre2.tres" id="3_3xvuf"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="3_l0t2v"]
 [ext_resource type="Texture2D" uid="uid://b4tn0o7rjfb5d" path="res://assets/images/isaiah658/Green-Cap-Character-16x18.png" id="4_nilrj"]
+[ext_resource type="Resource" uid="uid://b2lrsixkprher" path="res://quests/gather_stone/gather_stone_quest.tres" id="5_uqjjn"]
 
 [node name="GrungieGrumble" unique_id=1751764694 instance=ExtResource("1_s42fy")]
 id = "grungie_grumble"
@@ -11,7 +13,7 @@ display_name = "Grungie"
 dialogue = null
 portrait = ExtResource("2_yvhrq")
 vendor_inventory = null
-quest = ExtResource("3_3xvuf")
+quest_templates = Array[ExtResource("3_l0t2v")]([ExtResource("3_3xvuf"), ExtResource("5_uqjjn")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1136388758]
 modulate = Color(1, 0.22352941, 1, 1)
