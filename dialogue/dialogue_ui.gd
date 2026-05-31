@@ -5,7 +5,7 @@ const CONTINUE_CHOICE: DialogueChoice = preload("res://dialogue/defaults/dialogu
 const GOODBYE_CHOICE: DialogueChoice = preload("res://dialogue/defaults/dialogue_choice_goodbye.tres")
 
 @onready var line_text: Label = $DialoguePanel/MarginContainer/Columns/LineText
-@onready var choices: VBoxContainer = $DialoguePanel/MarginContainer/Columns/Choices
+@onready var choices: VBoxContainer = $DialoguePanel/MarginContainer/Columns/ScrollContainer/MarginContainer/Choices
 @onready var name_label: Label = $DialoguePanel/MarginContainer/Columns/NpcInfo/NameLabel
 @onready var portrait: TextureRect = $DialoguePanel/MarginContainer/Columns/NpcInfo/Portrait
 
