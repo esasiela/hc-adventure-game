@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cml6jhn7slil7" path="res://scenes/door.tscn" id="4_ub5mf"]
 [ext_resource type="PackedScene" uid="uid://bsessbvakrq1f" path="res://npcs/feydor_slack/feydor_slack_npc.tscn" id="5_0udjk"]
 [ext_resource type="Resource" uid="uid://bj5il7ktxon6n" path="res://harvest_nodes/stone_spawn_profile.tres" id="6_qy5nk"]
+[ext_resource type="PackedScene" uid="uid://d4c1nuo1os6wq" path="res://scenes/road_sign.tscn" id="11_hohov"]
 
 [node name="BidwellSquareZone" unique_id=1825439271 instance=ExtResource("1_sjqc4")]
 
@@ -56,3 +57,9 @@ target_zone_path = "uid://dib4bnabbd0qv"
 
 [node name="WakeupHouseSpawn" type="Marker2D" parent="WakeupHouseExterior" index="3" unique_id=1757402973]
 position = Vector2(726, 459)
+
+[node name="RoadSign" parent="WakeupHouseExterior" index="4" unique_id=593243402 instance=ExtResource("11_hohov")]
+position = Vector2(698, 474)
+sign_text = "Wakeup House
+Starting Zone
+L3"

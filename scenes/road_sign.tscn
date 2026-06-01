@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://d4c1nuo1os6wq"]
+
+[ext_resource type="Script" uid="uid://c2csl5ojvwhpo" path="res://scripts/road_sign.gd" id="1_fpywm"]
+[ext_resource type="PackedScene" uid="uid://ugu74liv03kx" path="res://scenes/interactable.tscn" id="1_oed7t"]
+[ext_resource type="Texture2D" uid="uid://cxo6lpbwhadow" path="res://assets/images/pipoya/base/tile234.png" id="2_fpywm"]
+[ext_resource type="Shader" uid="uid://ct8r1dg1yii82" path="res://shaders/harvest_node.gdshader" id="3_46p1a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpjah"]
+shader = ExtResource("3_46p1a")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/active = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46p1a"]
+radius = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46p1a"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="RoadSign" unique_id=1751764694 instance=ExtResource("1_oed7t")]
+script = ExtResource("1_fpywm")
+sign_text = "Sign Text"
+
+[node name="WorldSprite" type="Sprite2D" parent="." index="1" unique_id=1803399296]
+material = SubResource("ShaderMaterial_fpjah")
+position = Vector2(1, -2)
+texture = ExtResource("2_fpywm")
+
+[node name="HitBox" type="StaticBody2D" parent="." index="2" unique_id=1585020846]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=2128292144]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_46p1a")
+
+[node name="LabelPanel" type="PanelContainer" parent="." index="3" unique_id=785438255]
+visible = false
+offset_left = -30.0
+offset_top = -25.0
+offset_right = 30.0
+offset_bottom = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_46p1a")
+
+[node name="Label" type="Label" parent="LabelPanel" index="0" unique_id=1643664424]
+layout_mode = 2

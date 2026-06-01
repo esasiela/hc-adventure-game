@@ -33,6 +33,8 @@ func _ready() -> void:
 
 
 func start(npc: NPC, dialogue: Dialogue, quest: Quest = null) -> void:
+	get_tree().paused = true
+	
 	current_npc = npc
 	current_dialogue = dialogue
 	current_line_index = 0
@@ -75,6 +77,7 @@ func close() -> void:
 		reward.queue_free()
 	
 	visible = false
+	get_tree().paused = false
 	closed.emit()
 
 
