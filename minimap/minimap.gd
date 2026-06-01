@@ -10,6 +10,9 @@ func _ready() -> void:
 	# make the main camera NOT show layer 2 (which is reserved for mini-map icons)
 	get_tree().root.canvas_cull_mask &= ~(1 << 1)
 
+	# make the minimap camera NOT show layer 3 (reserved for world-only)
+	sub_viewport.canvas_cull_mask &= ~(1 << 2)
+
 
 func _process(_delta: float) -> void:
 	if ZoneManager.player:

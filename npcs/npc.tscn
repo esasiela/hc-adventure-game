@@ -2,23 +2,42 @@
 
 [ext_resource type="PackedScene" uid="uid://ugu74liv03kx" path="res://scenes/interactable.tscn" id="1_mea8m"]
 [ext_resource type="Script" uid="uid://dd7cstgoted7" path="res://scripts/npc.gd" id="2_atlxo"]
-[ext_resource type="Resource" uid="uid://dmmfjgihqcro2" path="res://npcs/villager_one/villager_one_dialogue.tres" id="3_p37wn"]
+[ext_resource type="Script" uid="uid://klkf740dgoy6" path="res://quests/quest.gd" id="3_mea8m"]
 [ext_resource type="Texture2D" uid="uid://dkqprriovne61" path="res://assets/images/items/shikashi/tile003.png" id="4_65ghs"]
+[ext_resource type="Texture2D" uid="uid://csqwulwllf7gj" path="res://assets/images/minimap/kenney_simpleSpace/icon_exclamationLarge.png" id="5_atlxo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p1a37"]
 
 [node name="NPC" unique_id=1751764694 instance=ExtResource("1_mea8m")]
 script = ExtResource("2_atlxo")
-display_name = "Villager"
-dialogue = ExtResource("3_p37wn")
+id = ""
+display_name = ""
+dialogue = null
 portrait = null
+vendor_inventory = null
+quest_templates = Array[ExtResource("3_mea8m")]([])
 
-[node name="InteractIndicator" type="Sprite2D" parent="." index="1" unique_id=1385889537]
+[node name="HitBox" type="StaticBody2D" parent="." index="1" unique_id=1243924056]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=1140847653]
+shape = SubResource("CircleShape2D_p1a37")
+
+[node name="InteractIndicator" type="Sprite2D" parent="." index="2" unique_id=1385889537]
 position = Vector2(1, -17.000002)
 scale = Vector2(0.625, 0.56249994)
 texture = ExtResource("4_65ghs")
 
-[node name="HitBox" type="StaticBody2D" parent="." index="2" unique_id=1243924056]
+[node name="QuestWorldIndicator" type="Sprite2D" parent="." index="3" unique_id=1059357997]
+visible = false
+modulate = Color(0.9843137, 0.9490196, 0, 1)
+visibility_layer = 4
+position = Vector2(0, -17)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_atlxo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0" unique_id=1140847653]
-shape = SubResource("CircleShape2D_p1a37")
+[node name="QuestMinimapIndicator" type="Sprite2D" parent="." index="4" unique_id=1853962406]
+modulate = Color(0.9843137, 0.9490196, 0, 1)
+visibility_layer = 2
+position = Vector2(0, -1.9073486e-06)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_atlxo")

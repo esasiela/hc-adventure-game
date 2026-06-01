@@ -12,7 +12,7 @@ const QUEST_COMPLETED_DIALOGUE: Dialogue = preload("res://dialogue/defaults/ques
 
 
 @export var id: String = ""
-@export var display_name: String = "Villager"
+@export var display_name: String = ""
 @export var dialogue: Dialogue
 @export var portrait: Texture2D
 @export var vendor_inventory: VendorInventory
@@ -21,10 +21,22 @@ const QUEST_COMPLETED_DIALOGUE: Dialogue = preload("res://dialogue/defaults/ques
 var focused_quest_idx: int = -1
 
 @onready var interact_indicator: Sprite2D = $InteractIndicator
+@onready var quest_world_indicator: Sprite2D = $QuestWorldIndicator
+@onready var quest_minimap_indicator: Sprite2D = $QuestMinimapIndicator
+
 
 func _ready() -> void:
 	super()
 	interact_indicator.visible = false
+	quest_world_indicator.visible = _needs_quest_indicator()
+	quest_minimap_indicator.visible = _needs_quest_indicator(true)
+	QuestLog.quest_turned_in.connect(_on_quest_turned_in)
+
+
+func _on_quest_turned_in(quest: Quest) -> void:
+	quest_world_indicator.visible = _needs_quest_indicator()
+	quest_minimap_indicator.visible = _needs_quest_indicator(true)
+
 
 func _on_interact_target_acquired() -> void:
 	if has_interaction():
@@ -46,7 +58,7 @@ func _has_quest_interaction() -> bool:
 func _get_quest_interactable_count() -> int:
 	if not quest_templates:
 		return 0
-
+	
 	var count := 0
 	for quest_template in quest_templates:
 		if _is_quest_interactable(quest_template):
@@ -58,6 +70,14 @@ func _get_quest_interactable_count() -> int:
 func _is_quest_interactable(quest: Quest) -> bool:
 	var quest_state := QuestLog.get_state(quest.id)
 	return quest_state != Quest.QuestState.NOT_STARTED or quest.are_preconditions_met()
+
+
+func _needs_quest_indicator(is_minimap: bool = false) -> bool:
+	for template_quest in quest_templates:
+		var quest_state = QuestLog.get_state(template_quest.id)	
+		if quest_state == Quest.QuestState.ACTIVE or quest_state == Quest.QuestState.READY or (quest_state == Quest.QuestState.NOT_STARTED and template_quest.are_preconditions_met()):
+			return true
+	return false
 
 
 func talk_to(player: Player) -> void:
@@ -183,5 +203,7 @@ func _pick_quest_dialogue(quest: Quest) -> Dialogue:
 
 func _on_dialogue_closed() -> void:
 	focused_quest_idx = -1
+	
+	
 	DialogueUI.choice_selected.disconnect(_on_dialogue_choice)
 	DialogueUI.closed.disconnect(_on_dialogue_closed)
