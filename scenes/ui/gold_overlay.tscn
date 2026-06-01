@@ -11,7 +11,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -196.0
 offset_top = 20.0
-offset_right = -240.0
+offset_right = -440.0
 offset_bottom = 55.0
 grow_horizontal = 0
 
@@ -21,6 +21,7 @@ theme_override_font_sizes/font_size = 40
 text = "GOLD: "
 
 [node name="QuantityLabel" type="Label" parent="HBoxContainer" unique_id=1182496279]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "0"

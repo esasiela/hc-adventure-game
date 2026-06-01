@@ -21,10 +21,10 @@ initial_spawn_name = "DefaultPlayerSpawn"
 
 [node name="VendorUI" parent="UI" unique_id=226857976 instance=ExtResource("4_tbgi4")]
 
-[node name="GoldOverlay" parent="UI" unique_id=245660110 instance=ExtResource("3_sugp2")]
-
 [node name="QuestOverlay" parent="UI" unique_id=1883518701 instance=ExtResource("6_o6xl0")]
 
 [node name="GameMenu" parent="UI" unique_id=754159516 groups=["game_menu"] instance=ExtResource("7_o6xl0")]
+
+[node name="GoldOverlay" parent="UI" unique_id=245660110 instance=ExtResource("3_sugp2")]
 
 [node name="Minimap" parent="UI" unique_id=1207898479 instance=ExtResource("7_tipki")]
