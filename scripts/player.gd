@@ -16,6 +16,7 @@ var interact_target = null
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var mining_timer: Timer = $MiningTimer
 @onready var damage_visual_timer: Timer = $DamageVisualTimer
+@onready var stun_box: Area2D = $StunBox
 
 
 func _ready() -> void:
@@ -119,6 +120,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				var npc := interact_target as NPC
 				if npc.has_interaction():
 					change_state(State.TALKING)
+	
+	if event.is_action_pressed("stun"):
+		for body in stun_box.get_overlapping_bodies():
+			if body.has_method("stun"):
+				body.stun()
 		
 	if event.is_action_pressed("gold_debug"):
 		PlayerData.add_gold(1)
