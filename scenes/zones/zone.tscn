@@ -11,6 +11,8 @@ script = ExtResource("1_n1mk8")
 
 [node name="NPCs" type="Node2D" parent="." unique_id=1279334607]
 
+[node name="Mobs" type="Node2D" parent="." unique_id=1719451766]
+
 [node name="HarvestNodeMarkers" type="Node2D" parent="." unique_id=178503207]
 
 [node name="HarvestNodes" type="Node2D" parent="." unique_id=2008417457]

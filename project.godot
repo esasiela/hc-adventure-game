@@ -124,6 +124,14 @@ ui_tab_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="mob"
+2d_physics/layer_5="interact"
+2d_physics/layer_6="loot"
+2d_physics/layer_7="agro"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

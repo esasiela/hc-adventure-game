@@ -70,7 +70,6 @@ func update_movement() -> void:
 	if direction != Vector2.ZERO:
 		velocity = direction * SPEED
 		last_direction = direction
-		# TODO update_hitbox_offset()
 		
 		# interrupt any existing state on movement input
 		change_state(State.WALKING, false)

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d1drrvvq0udse"]
+
+[ext_resource type="Script" uid="uid://dp3g5g8gigihk" path="res://mobs/critter/critter.gd" id="1_bngft"]
+[ext_resource type="Texture2D" uid="uid://djtqff1kytl3d" path="res://assets/images/critters/bunny-hop-spritesheet.png" id="1_f6v34"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bngft"]
+radius = 18.027756
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6v34"]
+radius = 109.457756
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_17wuo"]
+radius = 22.135944
+
+[node name="Critter" type="CharacterBody2D" unique_id=176598326]
+script = ExtResource("1_bngft")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=520973147]
+texture = ExtResource("1_f6v34")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 32)
+
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=623587980]
+shape = SubResource("CircleShape2D_bngft")
+
+[node name="AgroBox" type="Area2D" parent="." unique_id=2145715227]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgroBox" unique_id=529674240]
+shape = SubResource("CircleShape2D_f6v34")
+debug_color = Color(0.96634763, 0, 0.493051, 0.41960785)
+
+[node name="AttackBox" type="Area2D" parent="." unique_id=293024918]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox" unique_id=1243048633]
+shape = SubResource("CircleShape2D_17wuo")

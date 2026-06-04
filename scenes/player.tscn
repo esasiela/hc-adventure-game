@@ -354,6 +354,8 @@ radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
+
 [node name="Player" type="CharacterBody2D" unique_id=413221303 groups=["player"]]
 script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
@@ -362,15 +364,16 @@ metadata/_edit_group_ = true
 sprite_frames = SubResource("SpriteFrames_60mlk")
 animation = &"idle_up"
 
-[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=131896049]
+[node name="HitBox" type="CollisionShape2D" parent="." unique_id=131896049]
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="LootBox" type="Area2D" parent="." unique_id=1719536526]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LootBox" unique_id=723882992]
+visible = false
 shape = SubResource("CircleShape2D_qhqgy")
 debug_color = Color(0.77892065, 0.4131505, 0.40211958, 0.41960785)
 
@@ -382,6 +385,15 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractBox" unique_id=1642552557]
 shape = SubResource("CircleShape2D_g2els")
 debug_color = Color(0.48235294, 0.48235294, 1, 0.41960785)
+
+[node name="AgroBox" type="Area2D" parent="." unique_id=511907449]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AgroBox" unique_id=1601536340]
+visible = false
+shape = SubResource("CircleShape2D_dqkch")
+debug_color = Color(0.9647059, 0, 0.49411765, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2042346229]
 zoom = Vector2(5, 5)

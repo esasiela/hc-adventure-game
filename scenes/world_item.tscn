@@ -7,7 +7,7 @@
 
 [node name="WorldItem" type="Area2D" unique_id=852606424]
 collision_layer = 32
-collision_mask = 32
+collision_mask = 0
 script = ExtResource("1_8r7n1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2072031479]
