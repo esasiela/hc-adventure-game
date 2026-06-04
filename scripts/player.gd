@@ -122,6 +122,10 @@ func _unhandled_input(event: InputEvent) -> void:
 					change_state(State.TALKING)
 	
 	if event.is_action_pressed("stun"):
+		var pulse := StunPulse.new()
+		stun_box.add_child(pulse)
+		pulse.play(8.0, 64.0, 0.25)
+		
 		for body in stun_box.get_overlapping_bodies():
 			if body.has_method("stun"):
 				body.stun()
