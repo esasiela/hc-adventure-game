@@ -2,7 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://c2lb0vfh7moc4" path="res://assets/images/player/Player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cwpygbd3wlih8" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Shader" uid="uid://ct8r1dg1yii82" path="res://shaders/harvest_node.gdshader" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d1f14qsd7vvv1" path="res://assets/images/player/Player_Actions.png" id="3_qhqgy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
+shader = ExtResource("2_dqkch")
+shader_parameter/line_color = Color(1, 0, 0, 1)
+shader_parameter/line_thickness = 1.0
+shader_parameter/active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -363,6 +370,7 @@ script = ExtResource("1_g2els")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1621253660]
+material = SubResource("ShaderMaterial_qlg0r")
 sprite_frames = SubResource("SpriteFrames_60mlk")
 animation = &"idle_up"
 
@@ -404,6 +412,10 @@ limit_top = 0
 
 [node name="MiningTimer" type="Timer" parent="." unique_id=1320191218]
 wait_time = 3.0
+one_shot = true
+
+[node name="DamageVisualTimer" type="Timer" parent="." unique_id=791220893]
+wait_time = 0.25
 one_shot = true
 
 [connection signal="area_entered" from="LootBox" to="." method="_on_lootbox_area_entered"]

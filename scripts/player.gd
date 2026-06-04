@@ -15,6 +15,7 @@ var interact_target = null
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var mining_timer: Timer = $MiningTimer
+@onready var damage_visual_timer: Timer = $DamageVisualTimer
 
 
 func _ready() -> void:
@@ -26,6 +27,10 @@ func _ready() -> void:
 	DialogueUI.closed.connect(_on_dialogue_closed)
 	
 	QuestLog.quest_turned_in.connect(_on_quest_turned_in)
+	
+	animated_sprite_2d.material = animated_sprite_2d.material.duplicate()
+	animated_sprite_2d.material.set_shader_parameter("active", false)
+	damage_visual_timer.timeout.connect(_on_damage_visual_timer_timeout)
 	
 	if OS.is_debug_build():
 		_seed_test_inventory()
@@ -188,7 +193,18 @@ func _on_mining_timer_timeout() -> void:
 
 func take_damage(amount: int) -> void:
 	print("PLAYER - take_damage")
+	_update_damage_visual()
 	change_state(State.IDLE)
+
+
+func _update_damage_visual() -> void:
+	if damage_visual_timer.is_stopped():
+		animated_sprite_2d.material.set_shader_parameter("active", true)
+		damage_visual_timer.start()
+
+
+func _on_damage_visual_timer_timeout() -> void:
+	animated_sprite_2d.material.set_shader_parameter("active", false)
 
 
 func _on_lootbox_area_entered(area: Area2D) -> void:
