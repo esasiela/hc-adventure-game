@@ -186,6 +186,11 @@ func _on_mining_timer_timeout() -> void:
 	change_state(State.IDLE)
 
 
+func take_damage(amount: int) -> void:
+	print("PLAYER - take_damage")
+	change_state(State.IDLE)
+
+
 func _on_lootbox_area_entered(area: Area2D) -> void:
 	if not area is WorldItem:
 		return
