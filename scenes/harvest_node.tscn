@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://ct8r1dg1yii82" path="res://shaders/harvest_node.gdshader" id="3_h74ku"]
 [ext_resource type="Texture2D" uid="uid://c30rgea47qh3m" path="res://assets/images/minimap/kenney_simpleSpace/star_large.png" id="5_dy0by"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h74ku"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy0by"]
 shader = ExtResource("3_h74ku")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
@@ -16,11 +16,12 @@ shader_parameter/active = false
 size = Vector2(15, 16)
 
 [node name="HarvestNode" unique_id=1751764694 instance=ExtResource("1_qligw")]
+collision_layer = 1
 script = ExtResource("1_iwril")
 node_type = null
 
 [node name="WorldSprite" type="Sprite2D" parent="." index="1" unique_id=1398977672]
-material = SubResource("ShaderMaterial_h74ku")
+material = SubResource("ShaderMaterial_dy0by")
 texture = ExtResource("2_iwril")
 
 [node name="MinimapSprite" type="Sprite2D" parent="." index="2" unique_id=1670073587]

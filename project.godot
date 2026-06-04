@@ -126,8 +126,10 @@ ui_tab_right={
 
 [layer_names]
 
-2d_physics/layer_1="player"
-2d_physics/layer_2="mob"
+2d_physics/layer_1="world_solid"
+2d_physics/layer_2="player_body"
+2d_physics/layer_3="mob_body"
+2d_physics/layer_4="npc_body"
 2d_physics/layer_5="interact"
 2d_physics/layer_6="loot"
 2d_physics/layer_7="agro"

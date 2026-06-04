@@ -30,6 +30,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="RoadSign" unique_id=1751764694 instance=ExtResource("1_oed7t")]
+collision_layer = 1
 script = ExtResource("1_fpywm")
 sign_text = "Sign Text"
 

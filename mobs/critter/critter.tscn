@@ -13,6 +13,7 @@ radius = 109.457756
 radius = 22.135944
 
 [node name="Critter" type="CharacterBody2D" unique_id=176598326]
+collision_layer = 4
 script = ExtResource("1_bngft")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=520973147]
